@@ -9,13 +9,13 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: #f9f9f9;
-      color: #333;
+      background:#003399;
+      color: #004080;
       line-height: 1.6;
-      text-align: center; /* Center all text by default */
+      text-align: center;
     }
     header {
-      background: #004080;
+      background: #003399;
       color: white;
       text-align: center;
       padding: 20px;
@@ -27,7 +27,7 @@
     /* Ticker */
     .ticker {
       overflow: hidden;
-      background: #eee;
+      background: #ffffff;
       white-space: nowrap;
       box-sizing: border-box;
       border-top: 2px solid #004080;
@@ -36,7 +36,7 @@
     .ticker p {
       display: inline-block;
       padding-left: 100%;
-      animation: ticker 20s linear infinite;
+      animation: ticker 30s linear infinite;
       margin: 0;
     }
     @keyframes ticker {
@@ -44,19 +44,30 @@
       100% { transform: translateX(-100%); }
     }
 
+    /* About CIA Section */
+    section#about-cia {
+      background: #3399ff; /* Light blue background */
+      color: white;         /* White text */
+      padding: 30px 20px;
+      border-radius: 10px;
+      width: 80%;
+      margin: 20px auto;
+      text-align: center;
+    }
+
     /* Accordion */
     .accordion {
-      background: #004080;
+      background: #003399;
       color: white;
       cursor: pointer;
       padding: 15px;
-      width: 80%; /* Center with smaller width */
+      width: 80%;
       border: none;
-      text-align: center; /* Center button text */
+      text-align: center;
       outline: none;
       font-size: 18px;
       transition: background 0.3s ease;
-      margin: 10px auto; /* Center horizontally */
+      margin: 10px auto;
       display: block;
       border-radius: 5px;
     }
@@ -66,17 +77,17 @@
     .panel {
       padding: 10px;
       display: none;
-      background: #f1f1f1;
+      background: #003399;
       overflow: hidden;
       width: 80%;
-      margin: 0 auto; /* Center panels */
+      margin: 0 auto;
       border-radius: 5px;
     }
     .panel p, .panel ul, .panel ol {
       padding: 10px 0;
       margin: 0 auto;
       text-align: center;
-      list-style-position: inside; /* Numbers and bullets inside & centered */
+      list-style-position: inside;
     }
 
     section {
@@ -100,32 +111,28 @@
 
   <!-- Ticker 1 -->
   <div class="ticker">
-    <p>공지사항: 9월 신학기 등록이 시작되었습니다! | TOEIC/IELTS 집중반 개강 | 새로운 교재 입고 완료 | 주말 영화 교실 모집중</p>
+    <p>공지사항: 휴대폰 문자 수강신청 010-4733-0579  | 개강: 인공지능활용 자기주도학습법 총 12회 회당 2시간 수업 총 3개월 완성 | '자기주도적 평생영어학습습관' 사랑하는 자녀들에게 심어놓고 키워드립니다. 자녀교육의 완성, 인공지능활용학습으로 부모님의 걱정근심 내려놓으세요. 학습 수준별 1:1 맞춤지도</p>
   </div>
-
-  <section>
+  
+  <!-- About CIA Section -->
+  <section id="about-cia">
     <h2>About CIA</h2>
-    <p><b>CIA — Create Intelligence Arts</b> is an English learning platform designed for students who want to master English for daily life, academic study, and professional success...</p>
+    <p><b>CIA — Create Intelligence Arts</b> English Academy can help students become self-motivated English learners who want to master English for daily life, academic study, and professional success.</p>
   </section>
 
   <!-- Accordion Sections -->
   <button class="accordion">Our 1:1 Service Menu</button>
   <div class="panel">
     <ol>
-      <li>레벨 테스트</li>
-      <li>프리토킹</li>
-      <li>발음교정</li>
-      <li>문법강의</li>
-      <li>영어일기쓰기 교정</li>
-      <li>모의고사 쪽집게 풀이</li>
-      <li>Toeic, Toefl, IELTS 시험 준비반</li>
-      <li>듣기, 말하기, 독해, 작문</li>
-      <li>영어논문 및 연설글 준비</li>
-      <li>CIA 특별강의 A.I. Mobile 학습법</li>
+      <li>1.인공지능활용 스마트폰 영어학습법</li>
+      <p>레벨테스트<br>발음교정<br>문법강의<br>듣기,말하기,독해,작문</p>
+      <li>2.영어일기쓰기 교정</li>
+      <li>3.중등,고등,모의고사 쪽집게 풀이</li>
+      <li>영어 스피치 & 창의력 대회 준비</li>
     </ol>
   </div>
 
-  <button class="accordion">CIA English Academy 학생 규정 및 환불규정</button>
+  <button class="accordion">학생 규정 및 환불규정</button>
   <div class="panel">
     <ol>
       <li>강의 및 학습이 어려운 경우, 즉시 귀가조치</li>
@@ -177,13 +184,14 @@
   </div>
 
   <!-- Ticker 2 -->
-  <div class="ticker" style="background:#dff0ff; color:#004080;">
+  <div class="ticker" style="background:#003399; color:#ffffff;">
     <p>"The pen is mightier than the sword." ✦ "Practice makes perfect." ✦ "Don’t put all your eggs in one basket." ✦ "Actions speak louder than words." ✦ "A journey of a thousand miles begins with a single step."</p>
   </div>
 
   <footer>
-    <p>강의료 납부계좌: 기업은행 01047330579 오준영</p>
-    <p>사이트 콘텐츠 무단사용 금지 | Copy Right Rules and Regulations</p>
+    <p>강의료 납부는 매달 1일 기준, 기업은행 01047330579 오준영</p>
+    <p>영어일기숙제 제출 및 질문 이메일 : ciaohjoonyeong@gmail.com</p>
+    <p>경고: 사이트 콘텐츠 무단사용 금지 | Copy Right Rules and Regulations</p>
   </footer>
 
   <script>
@@ -199,3 +207,4 @@
   </script>
 </body>
 </html>
+
