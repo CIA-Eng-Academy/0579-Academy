@@ -1,11 +1,15 @@
-body {
-  font-family: Arial, sans-serif;
+/* General Reset */
+* {
   margin: 0;
   padding: 0;
-  background: #003399;
-  color: #004080;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
   line-height: 1.6;
-  text-align: center;
+  background: #f8f8f8;
+  color: #222;
 }
 
 /* Header */
@@ -13,48 +17,46 @@ header {
   background: #003399;
   color: white;
   text-align: center;
-  padding: 20px;
+  padding: 1.5rem;
 }
 
 header h1 {
-  margin: 0;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
 }
 
 /* Ticker */
 .ticker {
+  background: #eee;
   overflow: hidden;
-  background: #ffffff;
   white-space: nowrap;
-  box-sizing: border-box;
-  border-top: 2px solid #004080;
-  border-bottom: 2px solid #004080;
+  border-top: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
 }
 
-.ticker p {
+.ticker__text {
   display: inline-block;
   padding-left: 100%;
-  animation: ticker 30s linear infinite;
-  margin: 0;
+  animation: ticker-scroll 20s linear infinite;
 }
 
-@keyframes ticker {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 }
 
-/* About CIA Section */
-section#about-cia {
-  background: #3399ff;
-  color: white;
-  padding: 30px 20px;
-  border-radius: 10px;
-  width: 80%;
-  margin: 20px auto;
-  text-align: center;
+.ticker--blue {
+  background: #003399;
+  color: #fff;
+}
+
+/* Sections */
+section {
+  padding: 1.5rem;
+  background: white;
+  margin: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 /* Accordion */
@@ -62,39 +64,34 @@ section#about-cia {
   background: #003399;
   color: white;
   cursor: pointer;
-  padding: 15px;
-  width: 80%;
+  padding: 1rem;
+  margin: 0.5rem 1rem;
+  width: calc(100% - 2rem);
+  text-align: left;
   border: none;
-  text-align: center;
   outline: none;
-  font-size: 18px;
+  font-size: 1rem;
+  border-radius: 6px;
   transition: background 0.3s ease;
-  margin: 10px auto;
-  display: block;
-  border-radius: 5px;
 }
 
 .accordion:hover {
-  background: #0066cc;
+  background: #001f66;
 }
 
 .panel {
-  padding: 10px;
-  display: none;
-  background: #003399;
+  margin: 0 1rem;
+  padding: 0 1rem;
+  background: #fff;
   overflow: hidden;
-  width: 80%;
-  margin: 0 auto;
-  border-radius: 5px;
+  max-height: 0;
+  transition: max-height 0.3s ease-out;
+  border: 1px solid #ddd;
+  border-radius: 6px;
 }
 
-.panel p,
-.panel ul,
-.panel ol {
-  padding: 10px 0;
-  margin: 0 auto;
-  text-align: center;
-  list-style-position: inside;
+.panel p, .panel li {
+  padding: 0.5rem 0;
 }
 
 /* Footer */
@@ -102,6 +99,7 @@ footer {
   background: #222;
   color: white;
   text-align: center;
-  padding: 15px;
-  font-size: 14px;
+  padding: 1rem;
+  margin-top: 2rem;
+  font-size: 0.9rem;
 }
