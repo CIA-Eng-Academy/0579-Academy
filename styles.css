@@ -82,7 +82,8 @@ section {
 .panel {
   margin: 0 1rem;
   padding: 0 1rem;
-  background: #fff;
+  background: #ffffff;   /* ✅ solid white so text is visible */
+  color: #222;           /* ✅ dark readable text */
   overflow: hidden;
   max-height: 0;
   transition: max-height 0.3s ease-out;
@@ -90,8 +91,17 @@ section {
   border-radius: 6px;
 }
 
-.panel p, .panel li {
+.panel p,
+.panel li {
   padding: 0.5rem 0;
+  font-size: 1rem;
+  color: #222;           /* ✅ ensure text is always dark */
+}
+
+.panel ol, 
+.panel ul {
+  margin-left: 1.5rem;
+  list-style-position: outside;
 }
 
 /* Footer */
