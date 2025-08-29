@@ -5,6 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CIA English Academy</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Share button styling */
+    .share-container {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .share-button {
+      background: #0078ff;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .share-button:hover {
+      background: #005bb5;
+    }
+
+    .share-msg {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
 
@@ -89,6 +117,12 @@
     <p>YouTube Video materials</p>
   </div>
 
+  <!-- Website Share Button -->
+  <div class="share-container">
+    <button class="share-button" id="shareBtn">📲 친구에게 공유하기</button>
+    <div class="share-msg" id="shareMsg"></div>
+  </div>
+
   <!-- Ticker 2 -->
   <div class="ticker ticker--blue">
     <div class="ticker__text">
@@ -116,10 +150,31 @@
         }
       });
     });
-  </script>
 
-</body>
-</html>
+    // Share Button Script
+    const shareBtn = document.getElementById("shareBtn");
+    const shareMsg = document.getElementById("shareMsg");
+
+    shareBtn.addEventListener("click", async () => {
+      const shareData = {
+        title: "CIA English Academy",
+        text: "CIA 영어학원 - 자기주도적 평생영어학습 습관 만들기!",
+        url: window.location.href
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+          shareMsg.textContent = "✅ 공유 완료!";
+        } catch (err) {
+          shareMsg.textContent = "❌ 공유 취소됨";
+        }
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        shareMsg.textContent = "📋 주소가 복사되었습니다. 친구에게 붙여넣기 해주세요!";
+      }
+    });
+  </script>
 
 </body>
 </html>
