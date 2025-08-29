@@ -1,110 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <link rel="stylesheet" href="styles.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CIA English Academy</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background:#003399;
-      color: #004080;
-      line-height: 1.6;
-      text-align: center;
-    }
-    header {
-      background: #003399;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-    header h1 {
-      margin: 0;
-    }
-
-    /* Ticker */
-    .ticker {
-      overflow: hidden;
-      background: #ffffff;
-      white-space: nowrap;
-      box-sizing: border-box;
-      border-top: 2px solid #004080;
-      border-bottom: 2px solid #004080;
-    }
-    .ticker p {
-      display: inline-block;
-      padding-left: 100%;
-      animation: ticker 30s linear infinite;
-      margin: 0;
-    }
-    @keyframes ticker {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
-
-    /* About CIA Section */
-    section#about-cia {
-      background: #3399ff; /* Light blue background */
-      color: white;         /* White text */
-      padding: 30px 20px;
-      border-radius: 10px;
-      width: 80%;
-      margin: 20px auto;
-      text-align: center;
-    }
-
-    /* Accordion */
-    .accordion {
-      background: #003399;
-      color: white;
-      cursor: pointer;
-      padding: 15px;
-      width: 80%;
-      border: none;
-      text-align: center;
-      outline: none;
-      font-size: 18px;
-      transition: background 0.3s ease;
-      margin: 10px auto;
-      display: block;
-      border-radius: 5px;
-    }
-    .accordion:hover {
-      background: #0066cc;
-    }
-    .panel {
-      padding: 10px;
-      display: none;
-      background: #003399;
-      overflow: hidden;
-      width: 80%;
-      margin: 0 auto;
-      border-radius: 5px;
-    }
-    .panel p, .panel ul, .panel ol {
-      padding: 10px 0;
-      margin: 0 auto;
-      text-align: center;
-      list-style-position: inside;
-    }
-
-    section {
-      padding: 20px;
-      text-align: center;
-    }
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      font-size: 14px;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
   <header>
     <h1>CIA-English-Academy</h1>
     <p>"CIA 영어학원에 오신 것을 환영합니다."</p>
@@ -114,7 +17,7 @@
   <div class="ticker">
     <p>공지사항: 휴대폰 문자 수강신청 010-4733-0579  | 개강: 인공지능활용 자기주도학습법 총 12회 회당 2시간 수업 총 3개월 완성 | '자기주도적 평생영어학습습관' 사랑하는 자녀들에게 심어놓고 키워드립니다. 자녀교육의 완성, 인공지능활용학습으로 부모님의 걱정근심 내려놓으세요. 학습 수준별 1:1 맞춤지도</p>
   </div>
-  
+
   <!-- About CIA Section -->
   <section id="about-cia">
     <h2>About CIA</h2>
@@ -199,13 +102,13 @@
     // Accordion Script
     const acc = document.querySelectorAll(".accordion");
     acc.forEach(btn => {
-      btn.addEventListener("click", function() {
+      btn.addEventListener("click", function () {
         this.classList.toggle("active");
         const panel = this.nextElementSibling;
         panel.style.display = (panel.style.display === "block") ? "none" : "block";
       });
     });
   </script>
+
 </body>
 </html>
-
