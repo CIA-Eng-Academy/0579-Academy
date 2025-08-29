@@ -1,0 +1,87 @@
+/* Header */
+header {
+    background: #004080;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+/* Ticker */
+.ticker {
+    overflow: hidden;
+    background: #eee;
+    white-space: nowrap;
+    box-sizing: border-box;
+    border-top: 2px solid #004080;
+    border-bottom: 2px solid #004080;
+}
+
+.ticker p {
+    display: inline-block;
+    padding-left: 100%;
+    animation: ticker 20s linear infinite;
+    margin: 0;
+}
+
+@keyframes ticker {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Accordion */
+.accordion {
+    background: #004080;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    width: 80%;
+    border: none;
+    text-align: center;
+    outline: none;
+    font-size: 18px;
+    transition: background 0.3s ease;
+    margin: 10px auto;
+    display: block;
+    border-radius: 5px;
+}
+
+.accordion:hover {
+    background: #0066cc;
+}
+
+.panel {
+    padding: 10px;
+    display: none;
+    background: #f1f1f1;
+    overflow: hidden;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+.panel p,
+.panel ul,
+.panel ol {
+    padding: 10px 0;
+    margin: 0 auto;
+    text-align: center;
+    list-style-position: inside;
+}
+
+/* Footer */
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+}
