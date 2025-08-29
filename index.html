@@ -15,7 +15,9 @@
 
   <!-- Ticker 1 -->
   <div class="ticker">
-    <p>공지사항: 휴대폰 문자 수강신청 010-4733-0579  | 개강: 인공지능활용 자기주도학습법 총 12회 회당 2시간 수업 총 3개월 완성 | '자기주도적 평생영어학습습관' 사랑하는 자녀들에게 심어놓고 키워드립니다. 자녀교육의 완성, 인공지능활용학습으로 부모님의 걱정근심 내려놓으세요. 학습 수준별 1:1 맞춤지도</p>
+    <div class="ticker__text">
+      공지사항: 휴대폰 문자 수강신청 010-4733-0579  | 개강: 인공지능활용 자기주도학습법 총 12회 회당 2시간 수업 총 3개월 완성 | '자기주도적 평생영어학습습관' 사랑하는 자녀들에게 심어놓고 키워드립니다. 자녀교육의 완성, 인공지능활용학습으로 부모님의 걱정근심 내려놓으세요. 학습 수준별 1:1 맞춤지도
+    </div>
   </div>
 
   <!-- About CIA Section -->
@@ -88,8 +90,10 @@
   </div>
 
   <!-- Ticker 2 -->
-  <div class="ticker" style="background:#003399; color:#ffffff;">
-    <p>"The pen is mightier than the sword." ✦ "Practice makes perfect." ✦ "Don’t put all your eggs in one basket." ✦ "Actions speak louder than words." ✦ "A journey of a thousand miles begins with a single step."</p>
+  <div class="ticker ticker--blue">
+    <div class="ticker__text">
+      "The pen is mightier than the sword." ✦ "Practice makes perfect." ✦ "Don’t put all your eggs in one basket." ✦ "Actions speak louder than words." ✦ "A journey of a thousand miles begins with a single step."
+    </div>
   </div>
 
   <footer>
@@ -105,10 +109,17 @@
       btn.addEventListener("click", function () {
         this.classList.toggle("active");
         const panel = this.nextElementSibling;
-        panel.style.display = (panel.style.display === "block") ? "none" : "block";
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        }
       });
     });
   </script>
+
+</body>
+</html>
 
 </body>
 </html>
