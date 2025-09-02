@@ -32,6 +32,24 @@
       font-size: 0.9rem;
       color: #333;
     }
+
+    /* PDF button styling */
+    .pdf-button {
+      display: inline-block;
+      margin: 5px 0;
+      padding: 10px 18px;
+      background-color: #28a745; /* Green color */
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .pdf-button:hover {
+      background-color: #218838; /* Darker green on hover */
+      transform: scale(1.05);    /* Slight zoom on hover */
+    }
   </style>
 </head>
 <body>
@@ -104,11 +122,11 @@
     <ul>
       <li>판매중인 교재</li>
       <li>예약판매중인 교재</li>
-      <li><a href="중1 동사구 모음.pdf" target="_blank" download>중1 동사구 모음.pdf</a></li>
-      <li><a href="중2 동사구 모음.pdf" target="_blank" download>중2 동사구 모음.pdf</a></li>
-      <li><a href="중2 영어 공통문법.pdf" target="_blank" download>중2 영어 공통문법.pdf</a></li>
-      <li><a href="중3 동사구 모음.pdf" target="_blank" download>중3 동사구 모음.pdf</a></li>
-      <li><a href="중3 영어 공통문법.pdf" target="_blank" download>중3 영어 공통문법.pdf</a></li>
+      <li><a href="중1 동사구 모음.pdf" class="pdf-button" target="_blank" download>중1 동사구 모음.pdf</a></li>
+      <li><a href="중2 동사구 모음.pdf" class="pdf-button" target="_blank" download>중2 동사구 모음.pdf</a></li>
+      <li><a href="중2 영어 공통문법.pdf" class="pdf-button" target="_blank" download>중2 영어 공통문법.pdf</a></li>
+      <li><a href="중3 동사구 모음.pdf" class="pdf-button" target="_blank" download>중3 동사구 모음.pdf</a></li>
+      <li><a href="중3 영어 공통문법.pdf" class="pdf-button" target="_blank" download>중3 영어 공통문법.pdf</a></li>
     </ul>
   </div>
 
