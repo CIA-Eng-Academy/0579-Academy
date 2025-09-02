@@ -5,33 +5,91 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CIA English Academy</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; }
-  body { font-family: Arial, sans-serif; margin:0; padding:10px; background:white !important; color:black !important; }
-  header, section, .accordion, .panel, footer { margin-bottom:1.5rem; }
+  /* Reset & box-sizing */
+  *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    background: white !important;
+    color: black !important;
+    padding: 10px;
+  }
+  header, section, .accordion, .panel, footer { margin-bottom: 1.5rem; border-radius:6px; }
 
-  header { background:royalblue !important; color:white !important; padding:15px; text-align:center; border-radius:6px; }
-  .accordion { background:royalblue !important; color:white !important; cursor:pointer; padding:12px; width:100%; border:none; outline:none; border-radius:6px; font-weight:bold; transition:0.3s; }
-  .accordion.active, .accordion:hover { background:#0056b3 !important; }
-  .panel { max-height:0; overflow:hidden; transition:max-height 0.4s ease; background:white !important; border-radius:6px; padding:0 18px; color:black !important; }
-  .panel ul, .panel ol { padding-left:20px; margin:10px 0; }
+  /* Header */
+  header {
+    background: royalblue !important;
+    color: white !important;
+    padding: 15px;
+    text-align: center;
+  }
 
-  .ticker { overflow:hidden; white-space:nowrap; background:royalblue !important; padding:10px; margin-bottom:1rem; color:white !important; }
-  .ticker__text { display:inline-block; padding-left:100%; animation:ticker 15s linear infinite; }
-  @keyframes ticker { 0% { transform:translateX(100%);} 100% { transform:translateX(-100%);} }
+  /* Accordion */
+  .accordion {
+    background: royalblue !important;
+    color: white !important;
+    cursor: pointer;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  .accordion:hover, .accordion.active { background: #0056b3 !important; }
 
-  .share-button, .sms-button, .wa-button { background:royalblue !important; color:white !important; padding:12px 20px; border:none; border-radius:8px; font-size:1rem; cursor:pointer; margin:5px; }
-  .share-button:hover, .sms-button:hover, .wa-button:hover { background:#0056b3 !important; }
+  .panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background: white !important;
+    color: black !important;
+    padding: 0 18px;
+  }
+  .panel ul, .panel ol { padding-left: 20px; margin: 10px 0; }
 
-  .pdf-button { display:inline-block; margin:5px 0; padding:10px 18px; background:#28a745 !important; color:white !important; text-decoration:none; border-radius:6px; font-weight:bold; }
-  .pdf-button:hover { background:#218838 !important; transform:scale(1.05); }
+  /* Ticker */
+  .ticker {
+    overflow: hidden;
+    white-space: nowrap;
+    background: royalblue !important;
+    color: white !important;
+    padding: 10px;
+    margin-bottom: 1rem;
+  }
+  .ticker__text { display: inline-block; padding-left: 100%; animation: ticker 15s linear infinite; }
+  @keyframes ticker { 0% { transform: translateX(100%);} 100% { transform: translateX(-100%);} }
 
-  footer { background:royalblue !important; color:white !important; padding:10px; text-align:center; border-radius:6px; }
+  /* Buttons */
+  .share-button, .sms-button, .wa-button {
+    background: royalblue !important; color: white !important;
+    padding: 12px 20px; border:none; border-radius:8px; cursor:pointer; margin:5px;
+  }
+  .share-button:hover, .sms-button:hover, .wa-button:hover { background: #0056b3 !important; }
 
-  .share-input { padding:8px; font-size:1rem; width:220px; margin-right:5px; border-radius:6px; border:1px solid #ccc; }
+  .pdf-button { background:#28a745 !important; color:white !important; padding:10px 18px; text-decoration:none; border-radius:6px; display:inline-block; font-weight:bold; margin:5px 0;}
+  .pdf-button:hover { background:#218838 !important; transform: scale(1.05); }
 
-  #hackerLog { background:#ffefef; color:red; padding:10px; margin:10px 0; border:2px solid red; display:none; font-family:monospace; max-height:150px; overflow:auto; }
+  /* Footer */
+  footer {
+    background: royalblue !important;
+    color: white !important;
+    padding: 10px;
+    text-align: center;
+  }
 
-  @media(max-width:480px){ .share-button,.sms-button,.wa-button{width:90%; margin:5px 0;} .share-input{width:90%; margin-bottom:10px;} }
+  /* Hacker log */
+  #hackerLog {
+    display: none;
+    background:#ffefef; color:red;
+    border:2px solid red; padding:10px; font-family:monospace;
+    max-height:150px; overflow:auto; margin:10px 0;
+  }
+
+  /* Responsive */
+  @media(max-width:480px){
+    .share-button,.sms-button,.wa-button{width:90%; margin:5px 0;}
+  }
 </style>
 </head>
 <body>
@@ -72,32 +130,49 @@
   document.querySelectorAll(".accordion").forEach(acc => {
     acc.addEventListener("click", function(){
       this.classList.toggle("active");
-      const panel=this.nextElementSibling;
-      panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight+"px";
+      const panel = this.nextElementSibling;
+      panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + "px";
     });
   });
 
-  // Hacker logging & style enforcement
-  function log(msg){
+  // Hacker detection
+  function logHacker(msg){
     console.warn(msg);
-    const logDiv=document.getElementById("hackerLog");
-    logDiv.style.display="block";
-    logDiv.innerHTML+=msg+"<br>";
+    const logDiv = document.getElementById("hackerLog");
+    logDiv.style.display = "block";
+    logDiv.innerHTML += msg + "<br>";
   }
 
   function enforceStyles(){
-    const body=document.body;
-    const header=document.querySelector("header");
-    if(getComputedStyle(body).backgroundColor!=="rgb(255, 255, 255)"){ log("Body background changed!"); body.style.backgroundColor="white"; body.style.color="black"; }
-    if(getComputedStyle(header).backgroundColor!=="rgb(65, 105, 225)"){ log("Header background changed!"); header.style.backgroundColor="royalblue"; header.style.color="white"; }
+    const body = document.body;
+    const header = document.querySelector("header");
+    if(getComputedStyle(body).backgroundColor !== "rgb(255, 255, 255)"){
+      logHacker("Body background altered!"); body.style.background="white"; body.style.color="black";
+    }
+    if(getComputedStyle(header).backgroundColor !== "rgb(65, 105, 225)"){
+      logHacker("Header background altered!"); header.style.background="royalblue"; header.style.color="white";
+    }
     document.querySelectorAll(".accordion").forEach(acc=>{
-      if(getComputedStyle(acc).backgroundColor!=="rgb(65, 105, 225)"){ log("Accordion changed!"); acc.style.backgroundColor="royalblue"; acc.style.color="white"; }
+      if(getComputedStyle(acc).backgroundColor !== "rgb(65, 105, 225)"){
+        logHacker("Accordion altered!"); acc.style.background="royalblue"; acc.style.color="white";
+      }
     });
   }
 
-  const observer=new MutationObserver(enforceStyles);
-  observer.observe(document,{attributes:true,subtree:true,attributeFilter:["style"]});
-  setInterval(enforceStyles,1000);
+  // Detect new scripts injected
+  const scriptObserver = new MutationObserver(mutations=>{
+    mutations.forEach(m=>{
+      m.addedNodes.forEach(node=>{
+        if(node.tagName === "SCRIPT") logHacker("New script injected: "+(node.src || "inline script"));
+      });
+    });
+  });
+  scriptObserver.observe(document.documentElement, { childList:true, subtree:true });
+
+  // Watch style changes
+  const observer = new MutationObserver(enforceStyles);
+  observer.observe(document, { attributes:true, subtree:true, attributeFilter:["style"] });
+  setInterval(enforceStyles, 1000);
 </script>
 
 </body>
