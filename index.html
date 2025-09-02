@@ -5,109 +5,70 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CIA English Academy</title>
 <style>
-  /* Global Reset */
   *, *::before, *::after { box-sizing: border-box; }
   body {
     font-family: Arial, sans-serif;
-    line-height: 1.5;
-    margin: 0;
-    padding: 10px;
-    background-color: #fff !important;
-    color: #000 !important;
+    margin: 0; padding: 10px;
+    background-color: white !important;
+    color: black !important;
   }
+  header, section, .accordion, .panel, footer { margin-bottom: 1.5rem; }
 
   /* Header */
   header {
     background-color: royalblue !important;
-    color: #fff !important;
-    padding: 15px !important;
-    text-align: center !important;
-    border-radius: 6px !important;
+    color: white !important;
+    padding: 15px;
+    text-align: center;
+    border-radius: 6px;
   }
 
-  /* Footer */
-  footer {
-    background-color: royalblue !important;
-    color: #fff !important;
-    padding: 10px !important;
-    text-align: center !important;
-    border-radius: 6px !important;
-  }
-
-  /* Ticker */
-  .ticker {
-    overflow: hidden !important;
-    white-space: nowrap !important;
-    background-color: royalblue !important;
-    color: #fff !important;
-    padding: 10px !important;
-    margin-bottom: 1rem !important;
-  }
-  .ticker__text { display: inline-block; padding-left: 100%; animation: ticker 15s linear infinite; }
-  @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-
-  /* Accordion Buttons */
-  .accordion {
-    background-color: royalblue !important;
-    color: #fff !important;
-    cursor: pointer !important;
-    padding: 12px !important;
-    width: 100% !important;
-    text-align: left !important;
-    border: none !important;
-    outline: none !important;
-    transition: 0.3s !important;
-    border-radius: 6px !important;
-    font-weight: bold !important;
+  /* Accordion */
+  .accordion { 
+    background-color: royalblue !important; 
+    color: white !important; 
+    cursor: pointer; 
+    padding: 12px; width: 100%; text-align: left;
+    border: none; outline: none; transition: 0.3s; border-radius: 6px; font-weight: bold;
   }
   .accordion.active, .accordion:hover { background-color: #0056b3 !important; }
 
-  /* Panels */
-  .panel {
-    max-height: 0 !important;
-    overflow: hidden !important;
-    transition: max-height 0.4s ease !important;
-    background-color: #fff !important;
-    color: #000 !important;
-    padding: 0 18px !important;
-    border-radius: 6px !important;
+  .panel { 
+    max-height: 0; overflow: hidden; transition: max-height 0.4s ease; 
+    background-color: white !important; border-radius: 6px; padding: 0 18px; color: black !important;
   }
 
+  /* Ticker */
+  .ticker { overflow: hidden; white-space: nowrap; background: royalblue !important; padding: 10px; margin-bottom: 1rem; color: white !important; }
+  .ticker__text { display: inline-block; padding-left: 100%; animation: ticker 15s linear infinite; }
+  @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
   /* Buttons */
-  .share-button, .sms-button, .wa-button {
-    background-color: royalblue !important;
-    color: #fff !important;
-    padding: 12px 20px !important;
-    border: none !important;
-    border-radius: 8px !important;
-    cursor: pointer !important;
-    font-size: 1rem !important;
-    margin: 5px !important;
+  .share-button, .sms-button, .wa-button { 
+    background: royalblue !important; color: white !important; padding: 12px 20px; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; margin: 5px; 
   }
   .share-button:hover, .sms-button:hover, .wa-button:hover { background-color: #0056b3 !important; }
 
-  .pdf-button {
-    background-color: #28a745 !important;
-    color: #fff !important;
-    text-decoration: none !important;
-    padding: 10px 18px !important;
-    border-radius: 6px !important;
-    font-weight: bold !important;
-    transition: background-color 0.3s, transform 0.2s;
-  }
-  .pdf-button:hover { background-color: #218838 !important; transform: scale(1.05) !important; }
+  .pdf-button { display: inline-block; margin: 5px 0; padding: 10px 18px; background-color: #28a745 !important; color: white !important; text-decoration: none; border-radius: 6px; font-weight: bold; }
+  .pdf-button:hover { background-color: #218838 !important; transform: scale(1.05); }
 
-  /* Inputs */
-  .share-input { padding: 8px !important; font-size: 1rem !important; width: 220px !important; margin-right: 5px !important; border-radius: 6px !important; border: 1px solid #ccc !important; }
+  /* Footer */
+  footer { background-color: royalblue !important; color: white !important; padding: 10px; text-align: center; border-radius: 6px; }
 
-  /* Force all critical text to black in panels */
-  .panel, .panel * { color: #000 !important; }
+  /* Share input */
+  .share-input { padding: 8px; font-size: 1rem; width: 220px; margin-right: 5px; border-radius: 6px; border: 1px solid #ccc; }
+
+  /* Nested list inside accordion */
+  .panel ul, .panel ol { padding-left: 20px; margin: 10px 0; }
 
   /* Responsive */
   @media (max-width: 480px) {
-    .share-button, .sms-button, .wa-button { width: 90% !important; margin: 5px 0 !important; }
-    .share-input { width: 90% !important; margin-bottom: 10px !important; }
+    .share-button, .sms-button, .wa-button { width: 90%; margin: 5px 0; }
+    .share-input { width: 90%; margin-bottom: 10px; }
   }
+
+  /* Hacker log area */
+  #hackerLog { background: #ffefef; color: red; padding: 10px; margin: 10px 0; border: 2px solid red; display: none; font-family: monospace; }
 </style>
 </head>
 <body>
@@ -117,35 +78,35 @@
   <p>"CIA 영어학원에 오신 것을 환영합니다."</p>
 </header>
 
+<div id="hackerLog"></div> <!-- Logs hacker attempts -->
+
+<!-- Ticker -->
 <div class="ticker">
-  <div class="ticker__text">
-    공지사항: 휴대폰 문자 수강신청 010-4733-0579 | 개강: 인공지능활용 자기주도학습법 총 12회 회당 2시간 수업 총 3개월 완성
-  </div>
+  <div class="ticker__text">공지사항: 휴대폰 문자 수강신청 010-4733-0579 | 개강: AI 활용 자기주도학습법 12회, 2시간 수업</div>
 </div>
 
 <section id="about-cia">
   <h2>About CIA</h2>
-  <p><b>CIA — Create Intelligence Arts</b> English Academy helps students become self-motivated English learners.</p>
+  <p><b>CIA — Create Intelligence Arts</b> English Academy helps students become self-motivated English learners for daily life, academics, and career success.</p>
 </section>
 
 <button class="accordion">Our 1:1 Service Menu</button>
 <div class="panel">
   <ol>
-    <li>인공지능 활용 스마트폰 영어학습법
+    <li>AI 활용 스마트폰 영어학습법
       <ul><li>레벨테스트</li><li>발음교정</li><li>문법강의</li></ul>
     </li>
     <li>영어일기쓰기 교정</li>
-    <li>중등/고등 모의고사 쪽집게 풀이</li>
   </ol>
 </div>
 
 <footer>
   <p>강의료 납부: 기업은행 01047330579 오준영</p>
-  <p>영어일기숙제 제출: ciaohjoonyeong@gmail.com</p>
+  <p>질문 이메일: ciaohjoonyeong@gmail.com</p>
 </footer>
 
 <script>
-  // Accordion
+  // Accordion functionality
   document.querySelectorAll(".accordion").forEach(acc => {
     acc.addEventListener("click", function() {
       this.classList.toggle("active");
@@ -154,24 +115,36 @@
     });
   });
 
-  // Watchdog to prevent style changes by hackers
-  const enforceColors = () => {
-    document.body.style.backgroundColor = "#fff";
-    document.body.style.color = "#000";
-    document.querySelectorAll("header, footer, .ticker, .accordion, .panel, .share-button, .sms-button, .wa-button").forEach(el => {
-      if (el.classList.contains('accordion') || el.classList.contains('share-button') || el.classList.contains('sms-button') || el.classList.contains('wa-button')) {
-        el.style.backgroundColor = "royalblue";
-        el.style.color = "#fff";
-      } else if (el.classList.contains('panel')) {
-        el.style.backgroundColor = "#fff";
-        el.style.color = "#000";
-      } else {
-        el.style.backgroundColor = "royalblue";
-        el.style.color = "#fff";
-      }
-    });
-  };
-  setInterval(enforceColors, 500); // Checks every 0.5s to fix any malicious changes
+  // Function to reset styles if overridden
+  function enforceStyles() {
+    const header = document.querySelector("header");
+    if (getComputedStyle(header).backgroundColor !== "rgb(65, 105, 225)") { // royalblue
+      logHacker("Header background color changed!");
+      header.style.backgroundColor = "royalblue";
+      header.style.color = "white";
+    }
+    const body = document.body;
+    if (getComputedStyle(body).backgroundColor !== "rgb(255, 255, 255)") {
+      logHacker("Body background color changed!");
+      body.style.backgroundColor = "white";
+      body.style.color = "black";
+    }
+  }
+
+  // Log suspected hacker actions
+  function logHacker(msg) {
+    console.warn(msg);
+    const logDiv = document.getElementById("hackerLog");
+    logDiv.style.display = "block";
+    logDiv.innerHTML += msg + "<br>";
+  }
+
+  // Watch for any DOM attribute/style changes
+  const observer = new MutationObserver(enforceStyles);
+  observer.observe(document, { attributes: true, subtree: true, attributeFilter: ["style"] });
+
+  // Enforce styles every second (extra layer)
+  setInterval(enforceStyles, 1000);
 </script>
 
 </body>
