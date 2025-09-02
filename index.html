@@ -6,6 +6,9 @@
   <title>CIA English Academy</title>
   <link rel="stylesheet" href="styles.css">
   <style>
+    body { font-family: Arial, sans-serif; line-height: 1.5; padding: 10px; margin:0; }
+    header, section, .accordion, .panel, footer { margin-bottom: 1.5rem; }
+
     .share-container { text-align: center; margin: 2rem 0; }
     .share-button, .sms-button, .wa-button {
       background: #0078ff; color: #fff; padding: 12px 20px; border: none;
@@ -13,13 +16,31 @@
     }
     .share-button:hover, .sms-button:hover, .wa-button:hover { background: #005bb5; }
     .share-msg { margin-top: 10px; font-size: 0.9rem; color: #333; }
+
     .pdf-button {
       display: inline-block; margin: 5px 0; padding: 10px 18px;
       background-color: #28a745; color: #fff; text-decoration: none;
       border-radius: 6px; font-weight: bold; transition: background-color 0.3s, transform 0.2s;
     }
     .pdf-button:hover { background-color: #218838; transform: scale(1.05); }
+
     .share-input { padding: 8px; font-size: 1rem; width: 220px; margin-right: 5px; border-radius: 6px; border: 1px solid #ccc; }
+
+    /* Accordion */
+    .accordion { background-color: #eee; cursor: pointer; padding: 12px; width: 100%; text-align: left; border: none; outline: none; transition: 0.3s; border-radius: 6px; }
+    .accordion.active, .accordion:hover { background-color: #ccc; }
+    .panel { padding: 0 18px; display: none; overflow: hidden; background-color: #f9f9f9; border-radius: 6px; }
+
+    /* Ticker */
+    .ticker { overflow: hidden; white-space: nowrap; background: #f0f0f0; padding: 10px; margin-bottom: 1rem; }
+    .ticker__text { display: inline-block; padding-left: 100%; animation: ticker 15s linear infinite; }
+    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+    /* Responsive for mobile */
+    @media (max-width: 480px) {
+      .share-button, .sms-button, .wa-button { width: 90%; margin: 5px 0; }
+      .share-input { width: 90%; margin-bottom: 10px; }
+    }
   </style>
 </head>
 <body>
@@ -121,7 +142,7 @@
   <p>YouTube Video materials</p>
 </div>
 
-<!-- Share Section moved here AFTER main content -->
+<!-- Share Section -->
 <div class="share-container">
   <h2>친구에게 우리 학원을 공유하세요!</h2>
   <button class="share-button" id="shareBtn">📲 친구에게 공유하기</button>
@@ -152,7 +173,7 @@
     btn.addEventListener("click", function () {
       this.classList.toggle("active");
       const panel = this.nextElementSibling;
-      panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + "px";
+      panel.style.display = panel.style.display === "block" ? "none" : "block";
     });
   });
 
@@ -182,9 +203,7 @@
   function sendWhatsApp() {
     const number = document.getElementById("smsNumber").value.trim();
     const message = encodeURIComponent("CIA English Academy 웹사이트를 확인하세요: " + window.location.href);
-    let url = "";
-    if (number) { url = `https://wa.me/${number.replace(/\+/g, '')}?text=${message}`; }
-    else { url = `https://wa.me/?text=${message}`; }
+    let url = number ? `https://wa.me/${number.replace(/\+/g, '')}?text=${message}` : `https://wa.me/?text=${message}`;
     window.open(url, "_blank");
   }
 </script>
