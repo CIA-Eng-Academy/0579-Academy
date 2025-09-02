@@ -1,52 +1,56 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CIA English Academy</title>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CIA English Academy</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { font-family: Arial, sans-serif; line-height: 1.5; margin: 0; padding: 10px; }
+  header, section, .accordion, .panel, footer { margin-bottom: 1.5rem; }
 
-    body { font-family: Arial, sans-serif; line-height: 1.5; margin: 0; padding: 10px; }
-    header, section, .accordion, .panel, footer { margin-bottom: 1.5rem; }
+  /* Share Buttons */
+  .share-container { text-align: center; margin: 2rem 0; }
+  .share-button, .sms-button, .wa-button {
+    background: #0078ff; color: #fff; padding: 12px 20px; border: none;
+    border-radius: 8px; font-size: 1rem; cursor: pointer; transition: background 0.3s; margin: 5px;
+  }
+  .share-button:hover, .sms-button:hover, .wa-button:hover { background: #005bb5; }
+  .share-msg { margin-top: 10px; font-size: 0.9rem; color: #333; }
 
-    /* Share Buttons */
-    .share-container { text-align: center; margin: 2rem 0; }
-    .share-button, .sms-button, .wa-button {
-      background: #0078ff; color: #fff; padding: 12px 20px; border: none;
-      border-radius: 8px; font-size: 1rem; cursor: pointer; transition: background 0.3s; margin: 5px;
-    }
-    .share-button:hover, .sms-button:hover, .wa-button:hover { background: #005bb5; }
-    .share-msg { margin-top: 10px; font-size: 0.9rem; color: #333; }
+  /* PDF Buttons */
+  .pdf-button {
+    display: inline-block; margin: 5px 0; padding: 10px 18px;
+    background-color: #28a745; color: #fff; text-decoration: none;
+    border-radius: 6px; font-weight: bold; transition: background-color 0.3s, transform 0.2s;
+  }
+  .pdf-button:hover { background-color: #218838; transform: scale(1.05); }
 
-    /* PDF Buttons */
-    .pdf-button {
-      display: inline-block; margin: 5px 0; padding: 10px 18px;
-      background-color: #28a745; color: #fff; text-decoration: none;
-      border-radius: 6px; font-weight: bold; transition: background-color 0.3s, transform 0.2s;
-    }
-    .pdf-button:hover { background-color: #218838; transform: scale(1.05); }
+  .share-input { padding: 8px; font-size: 1rem; width: 220px; margin-right: 5px; border-radius: 6px; border: 1px solid #ccc; }
 
-    .share-input { padding: 8px; font-size: 1rem; width: 220px; margin-right: 5px; border-radius: 6px; border: 1px solid #ccc; }
+  /* Accordion */
+  .accordion { 
+    background-color: #eee; color: #333; cursor: pointer; padding: 12px; 
+    width: 100%; text-align: left; border: none; outline: none; 
+    transition: 0.3s; border-radius: 6px; font-weight: bold; 
+  }
+  .accordion.active, .accordion:hover { background-color: #ccc; }
+  .panel { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background-color: #f9f9f9; border-radius: 6px; padding: 0 18px; }
 
-    /* Accordion */
-    .accordion { background-color: #f1f1f1; cursor: pointer; padding: 12px; width: 100%; text-align: left; border: none; outline: none; transition: 0.3s; border-radius: 6px; font-weight: bold; color: #333; }
-    .accordion.active, .accordion:hover { background-color: #0078ff; color: #fff; }
+  /* Nested list style inside accordion */
+  .panel ul, .panel ol { padding-left: 20px; margin: 10px 0; }
 
-    .panel { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background-color: #f9f9f9; border-radius: 6px; padding: 0 18px; }
+  /* Ticker */
+  .ticker { overflow: hidden; white-space: nowrap; background: #f0f0f0; padding: 10px; margin-bottom: 1rem; }
+  .ticker__text { display: inline-block; padding-left: 100%; animation: ticker 15s linear infinite; }
+  @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-    /* Ticker */
-    .ticker { overflow: hidden; white-space: nowrap; background: #f0f0f0; padding: 10px; margin-bottom: 1rem; }
-    .ticker__text { display: inline-block; padding-left: 100%; animation: ticker 15s linear infinite; }
-    @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-      .share-button, .sms-button, .wa-button { width: 90%; margin: 5px 0; }
-      .share-input { width: 90%; margin-bottom: 10px; }
-    }
-  </style>
+  /* Responsive */
+  @media (max-width: 480px) {
+    .share-button, .sms-button, .wa-button { width: 90%; margin: 5px 0; }
+    .share-input { width: 90%; margin-bottom: 10px; }
+  }
+</style>
 </head>
 <body>
 
@@ -137,14 +141,10 @@
 </div>
 
 <button class="accordion">강사구인</button>
-<div class="panel">
-  <p>Find English/Korean Native Teachers</p>
-</div>
+<div class="panel"><p>Find English/Korean Native Teachers</p></div>
 
 <button class="accordion">유튜브 강의</button>
-<div class="panel">
-  <p>YouTube Video materials</p>
-</div>
+<div class="panel"><p>YouTube Video materials</p></div>
 
 <!-- Share Section -->
 <div class="share-container">
@@ -172,14 +172,10 @@
 <script>
   // Accordion functionality
   document.querySelectorAll(".accordion").forEach(acc => {
-    acc.addEventListener("click", function () {
+    acc.addEventListener("click", function() {
       this.classList.toggle("active");
       const panel = this.nextElementSibling;
-      if (panel.style.maxHeight) {
-        panel.style.maxHeight = null;
-      } else {
-        panel.style.maxHeight = panel.scrollHeight + "px";
-      }
+      panel.style.maxHeight = panel.scrollHeight + "px";
     });
   });
 
