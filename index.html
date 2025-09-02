@@ -5,38 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CIA English Academy</title>
 <style>
-  /* Basic Styles */
   *, *::before, *::after { box-sizing: border-box; }
   body { margin:0; padding:10px; font-family:Arial,sans-serif; background:white; color:black; transition: background 0.3s, color 0.3s; }
   .container { max-width:900px; width:100%; margin:0 auto; text-align:center; }
-
   header, footer { background:royalblue; color:white; padding:15px; text-align:center; border-radius:6px; transition: background 0.3s, color 0.3s; }
-
   .accordion { background:royalblue; color:white; cursor:pointer; padding:12px; width:100%; border:none; outline:none; border-radius:6px; font-weight:bold; transition: background 0.3s, color 0.3s; margin-top:10px; }
   .accordion.active, .accordion:hover { background:#0056b3; }
-
   .panel { max-height:0; overflow:hidden; transition:max-height 0.4s ease; background:white; border-radius:6px; padding:0 18px; color:black; text-align:left; }
   .panel ul, .panel ol { padding-left:20px; margin:10px 0; }
-
   .ticker { overflow:hidden; white-space:nowrap; background:royalblue; padding:10px; margin-bottom:1rem; color:white; border-radius:6px; }
   .ticker__text { display:inline-block; padding-left:100%; animation:ticker 15s linear infinite; }
   @keyframes ticker { 0% { transform:translateX(100%);} 100% { transform:translateX(-100%);} }
-
-  /* Buttons */
   .share-button, .sms-button, .wa-button { background:royalblue; color:white; padding:12px 20px; border:none; border-radius:8px; font-size:1rem; cursor:pointer; margin:5px; }
   .share-button:hover, .sms-button:hover, .wa-button:hover { background:#0056b3; }
   .pdf-button { display:inline-block; margin:5px 0; padding:10px 18px; background:#28a745; color:white; text-decoration:none; border-radius:6px; font-weight:bold; }
   .pdf-button:hover { background:#218838; transform:scale(1.05); }
-  .share-input { padding:8px; font-size:1rem; width:220px; margin-right:5px; border-radius:6px; border:1px solid #ccc; }
-
-  /* Hacker Log */
+  .share-input, #smsMessage { padding:8px; font-size:1rem; width:220px; margin-right:5px; border-radius:6px; border:1px solid #ccc; }
   #hackerLog { display:none; background:#ffefef; color:red; padding:10px; margin:10px 0; border:2px solid red; font-family:monospace; max-height:200px; overflow:auto; border-radius:6px; }
-
-  /* Responsive */
-  @media(max-width:480px){ 
-    .share-button,.sms-button,.wa-button{width:90%; margin:5px 0;} 
-    .share-input{width:90%; margin-bottom:10px;} 
-  }
+  @media(max-width:480px){ .share-button,.sms-button,.wa-button{width:90%; margin:5px 0;} .share-input,#smsMessage{width:90%; margin-bottom:10px;} }
 </style>
 </head>
 <body>
@@ -125,15 +111,13 @@
 <button class="accordion">유튜브 강의</button>
 <div class="panel"><p>YouTube Video materials</p></div>
 
-<!-- Share Section -->
+<!-- SMS Share Section -->
 <div class="share-container" style="margin-top:15px;">
-  <h2>친구에게 우리 학원을 공유하세요!</h2>
-  <button class="share-button" id="shareBtn">📲 친구에게 공유하기</button>
-  <div class="share-msg" id="shareMsg"></div>
-  <p>또는 휴대폰 번호를 입력하여 공유하기:</p>
-  <input type="text" id="smsNumber" class="share-input" placeholder="+821012345678">
+  <h2>친구에게 우리 학원을 SMS로 공유하세요! (Free Trial)</h2>
+  <input type="text" id="phone" class="share-input" placeholder="+821012345678">
+  <input type="text" id="smsMessage" placeholder="Check out CIA English Academy!">
   <button class="sms-button" onclick="sendSMS()">📩 SMS 보내기</button>
-  <button class="wa-button" onclick="sendWhatsApp()">💬 WhatsApp 보내기</button>
+  <div id="smsStatus" style="margin-top:10px;"></div>
 </div>
 
 <!-- Ticker 2 -->
@@ -144,12 +128,7 @@
 <footer>
   <p>강의료 납부: 기업은행 01047330579 오준영</p>
   <p>영어일기숙제 제출 및 질문 이메일 : ciaohjoonyeong@gmail.com</p>
-  <p>
-    공식 웹사이트 방문: 
-    <a href="https://www.cia.gov" target="_blank" style="color:white; text-decoration:underline;">
-      CIA Official Site
-    </a>
-  </p>
+  <p>공식 웹사이트 방문: <a href="https://www.cia.gov" target="_blank" style="color:white; text-decoration:underline;">CIA Official Site</a></p>
 </footer>
 
 <script>
@@ -162,23 +141,28 @@
     });
   });
 
-  // Share Buttons
-  const shareBtn = document.getElementById("shareBtn");
-  const shareMsg = document.getElementById("shareMsg");
-  shareBtn.addEventListener("click", async ()=>{
-    const shareData = { title: "CIA English Academy", text:"CIA English Academy: Self-motivated AI-based English learning!", url: window.location.href };
-    try { await navigator.share(shareData); shareMsg.innerText="✅ 공유 성공!"; } 
-    catch(err){ shareMsg.innerText="❌ 공유 실패: "+err; }
-  });
-
+  // SMS via Textbelt Free Trial
   function sendSMS(){
-    const number = document.getElementById("smsNumber").value.trim();
-    if(number) window.location.href = `sms:${number}?body=Check out CIA English Academy!`;
-  }
+    const number = document.getElementById('phone').value.trim();
+    const message = document.getElementById('smsMessage').value.trim();
+    const statusDiv = document.getElementById('smsStatus');
 
-  function sendWhatsApp(){
-    const number = document.getElementById("smsNumber").value.trim();
-    if(number) window.open(`https://wa.me/${number.replace(/\D/g,'')}?text=Check out CIA English Academy!`, '_blank');
+    if(!number || !message){ 
+      statusDiv.innerText = "❌ 번호와 메시지를 모두 입력해주세요.";
+      return;
+    }
+
+    fetch('https://textbelt.com/text', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone: number, message: message, key: 'textbelt' }) // free trial key
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.success) statusDiv.innerText = "✅ SMS 전송 성공!";
+      else statusDiv.innerText = "❌ SMS 전송 실패: " + data.error;
+    })
+    .catch(err => statusDiv.innerText = "❌ SMS 에러: " + err);
   }
 
   // Hacker Detection
@@ -187,9 +171,7 @@
     {el: document.querySelector("header"),bg:"rgb(65, 105, 225)",color:"white"}, 
     ...document.querySelectorAll(".accordion")
   ].map(a=>({el:a,bg:"rgb(65, 105, 225)", color:"white"}));
-
   const hackerLogDiv = document.getElementById("hackerLog");
-
   function triggerAlarm(el,prop,expected,found){
     hackerLogDiv.style.display="block";
     const msg = `[ALERT] ${prop} changed on ${el.tagName}. Expected: ${expected}, Found: ${found}, Time: ${new Date().toLocaleTimeString()}`;
@@ -200,7 +182,6 @@
     document.querySelector("header").style.background="darkred";
     document.querySelector("header").style.color="white";
   }
-
   function checkElements(){
     monitoredElements.forEach(m=>{
       const style=getComputedStyle(m.el);
@@ -208,12 +189,11 @@
       if(style.color!==m.color) triggerAlarm(m.el,"color",m.color,style.color);
     });
   }
-
   setInterval(checkElements,500);
   const observer=new MutationObserver(checkElements);
   observer.observe(document,{attributes:true,subtree:true,attributeFilter:["style"]});
 </script>
 
-</div> <!-- container -->
+</div>
 </body>
 </html>
