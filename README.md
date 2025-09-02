@@ -112,8 +112,8 @@
 <body>
 
     <header>
-        <h1>CIA-English-Academy</h1>
-        <p>"CIA 영어학원에 오신 것을 환영합니다."</p>
+        <h1>0579 Academy</h1>
+        <p>"0579 학원에 오신 것을 환영합니다."</p>
     </header>
 
     <!-- Ticker 1 -->
@@ -122,8 +122,8 @@
     </div>
 
     <section>
-        <h2>About CIA</h2>
-        <p><b>CIA — Create Intelligence Arts</b> is an English learning platform designed for students who want to master English for daily life, academic study, and professional success...</p>
+        <h2>About 0579</h2>
+        <p><b>0579 Academy — 0579 Academy </b> is an English learning platform designed for students who want to master English for daily life, academic study, and professional success...</p>
         <!-- Insert an image (uploaded on GitHub) -->
         <img src="https://raw.githubusercontent.com/username/repository-name/main/images/about-image.jpg" alt="CIA English Academy" style="width: 100%; max-width: 500px;">
     </section>
@@ -145,7 +145,7 @@
         </ol>
     </div>
 
-    <button class="accordion">CIA English Academy 학생 규정 및 환불규정</button>
+    <button class="accordion">0579 Academy 학생 규정 및 환불규정</button>
     <div class="panel">
         <ol>
             <li>강의 및 학습이 어려운 경우, 즉시 귀가조치</li>
