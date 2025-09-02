@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CIA English Academy</title>
+    <title>0579 Academy</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -118,12 +118,12 @@
 
     <!-- Ticker 1 -->
     <div class="ticker">
-        <p>공지사항: 9월 신학기 등록이 시작되었습니다! | TOEIC/IELTS 집중반 개강 | 새로운 교재 입고 완료 | 주말 영화 교실 모집중</p>
+        <p>공지사항: 9월 신학기 등록이 시작되었습니다! | 상담시간: 오전 9시부터 오후 3시 010-4733-0579로 상담신청 문자 남겨주시면 잔화드리겠습니다.</p>
     </div>
 
     <section>
         <h2>About 0579</h2>
-        <p><b>0579 Academy — 0579 Academy </b> is an English learning platform designed for students who want to master English for daily life, academic study, and professional success...</p>
+        <p><b>0579 — 0579 Academy </b> is an English learning platform designed for students who want to master English for daily life, academic study, and professional success...</p>
         <!-- Insert an image (uploaded on GitHub) -->
         <img src="https://raw.githubusercontent.com/username/repository-name/main/images/about-image.jpg" alt="CIA English Academy" style="width: 100%; max-width: 500px;">
     </section>
