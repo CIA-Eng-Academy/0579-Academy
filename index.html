@@ -144,6 +144,12 @@
 <footer>
   <p>강의료 납부: 기업은행 01047330579 오준영</p>
   <p>영어일기숙제 제출 및 질문 이메일 : ciaohjoonyeong@gmail.com</p>
+  <p>
+    공식 웹사이트 방문: 
+    <a href="https://www.cia.gov" target="_blank" style="color:white; text-decoration:underline;">
+      CIA Official Site
+    </a>
+  </p>
 </footer>
 
 <script>
@@ -176,8 +182,14 @@
   }
 
   // Hacker Detection
-  const monitoredElements = [{el: document.body,bg:"white",color:"black"}, {el: document.querySelector("header"),bg:"rgb(65, 105, 225)",color:"white"}, ...document.querySelectorAll(".accordion")].map(a=>({el:a,bg:"rgb(65, 105, 225)", color:"white"}));
+  const monitoredElements = [
+    {el: document.body,bg:"white",color:"black"}, 
+    {el: document.querySelector("header"),bg:"rgb(65, 105, 225)",color:"white"}, 
+    ...document.querySelectorAll(".accordion")
+  ].map(a=>({el:a,bg:"rgb(65, 105, 225)", color:"white"}));
+
   const hackerLogDiv = document.getElementById("hackerLog");
+
   function triggerAlarm(el,prop,expected,found){
     hackerLogDiv.style.display="block";
     const msg = `[ALERT] ${prop} changed on ${el.tagName}. Expected: ${expected}, Found: ${found}, Time: ${new Date().toLocaleTimeString()}`;
@@ -188,6 +200,7 @@
     document.querySelector("header").style.background="darkred";
     document.querySelector("header").style.color="white";
   }
+
   function checkElements(){
     monitoredElements.forEach(m=>{
       const style=getComputedStyle(m.el);
@@ -195,6 +208,7 @@
       if(style.color!==m.color) triggerAlarm(m.el,"color",m.color,style.color);
     });
   }
+
   setInterval(checkElements,500);
   const observer=new MutationObserver(checkElements);
   observer.observe(document,{attributes:true,subtree:true,attributeFilter:["style"]});
