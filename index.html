@@ -6,9 +6,12 @@
   <title>CIA English Academy</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    body { font-family: Arial, sans-serif; line-height: 1.5; padding: 10px; margin:0; }
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body { font-family: Arial, sans-serif; line-height: 1.5; margin: 0; padding: 10px; }
     header, section, .accordion, .panel, footer { margin-bottom: 1.5rem; }
 
+    /* Share Buttons */
     .share-container { text-align: center; margin: 2rem 0; }
     .share-button, .sms-button, .wa-button {
       background: #0078ff; color: #fff; padding: 12px 20px; border: none;
@@ -17,6 +20,7 @@
     .share-button:hover, .sms-button:hover, .wa-button:hover { background: #005bb5; }
     .share-msg { margin-top: 10px; font-size: 0.9rem; color: #333; }
 
+    /* PDF Buttons */
     .pdf-button {
       display: inline-block; margin: 5px 0; padding: 10px 18px;
       background-color: #28a745; color: #fff; text-decoration: none;
@@ -29,14 +33,14 @@
     /* Accordion */
     .accordion { background-color: #eee; cursor: pointer; padding: 12px; width: 100%; text-align: left; border: none; outline: none; transition: 0.3s; border-radius: 6px; }
     .accordion.active, .accordion:hover { background-color: #ccc; }
-    .panel { padding: 0 18px; display: none; overflow: hidden; background-color: #f9f9f9; border-radius: 6px; }
+    .panel { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background-color: #f9f9f9; border-radius: 6px; padding: 0 18px; }
 
     /* Ticker */
     .ticker { overflow: hidden; white-space: nowrap; background: #f0f0f0; padding: 10px; margin-bottom: 1rem; }
     .ticker__text { display: inline-block; padding-left: 100%; animation: ticker 15s linear infinite; }
-    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+    @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-    /* Responsive for mobile */
+    /* Responsive */
     @media (max-width: 480px) {
       .share-button, .sms-button, .wa-button { width: 90%; margin: 5px 0; }
       .share-input { width: 90%; margin-bottom: 10px; }
@@ -57,7 +61,6 @@
   </div>
 </div>
 
-<!-- About CIA Section -->
 <section id="about-cia">
   <h2>About CIA</h2>
   <p><b>CIA — Create Intelligence Arts</b> English Academy helps students become self-motivated English learners for daily life, academics, and career success.</p>
@@ -124,11 +127,11 @@
   <ul>
     <li>판매중인 교재</li>
     <li>예약판매중인 교재</li>
-    <li><a href="중1 동사구 모음.pdf" class="pdf-button" target="_blank" download>중1 동사구 모음.pdf</a></li>
-    <li><a href="중2 동사구 모음.pdf" class="pdf-button" target="_blank" download>중2 동사구 모음.pdf</a></li>
-    <li><a href="중2 영어 공통문법.pdf" class="pdf-button" target="_blank" download>중2 영어 공통문법.pdf</a></li>
-    <li><a href="중3 동사구 모음.pdf" class="pdf-button" target="_blank" download>중3 동사구 모음.pdf</a></li>
-    <li><a href="중3 영어 공통문법.pdf" class="pdf-button" target="_blank" download>중3 영어 공통문법.pdf</a></li>
+    <li><a href="중1 동사구 모음.pdf" class="pdf-button" target="_blank" download rel="noopener noreferrer">중1 동사구 모음.pdf</a></li>
+    <li><a href="중2 동사구 모음.pdf" class="pdf-button" target="_blank" download rel="noopener noreferrer">중2 동사구 모음.pdf</a></li>
+    <li><a href="중2 영어 공통문법.pdf" class="pdf-button" target="_blank" download rel="noopener noreferrer">중2 영어 공통문법.pdf</a></li>
+    <li><a href="중3 동사구 모음.pdf" class="pdf-button" target="_blank" download rel="noopener noreferrer">중3 동사구 모음.pdf</a></li>
+    <li><a href="중3 영어 공통문법.pdf" class="pdf-button" target="_blank" download rel="noopener noreferrer">중3 영어 공통문법.pdf</a></li>
   </ul>
 </div>
 
@@ -147,7 +150,6 @@
   <h2>친구에게 우리 학원을 공유하세요!</h2>
   <button class="share-button" id="shareBtn">📲 친구에게 공유하기</button>
   <div class="share-msg" id="shareMsg"></div>
-
   <p>또는 휴대폰 번호를 입력하여 공유하기 (무료, 즉시 모바일 SMS 또는 WhatsApp):</p>
   <input type="text" id="smsNumber" class="share-input" placeholder="+821012345678">
   <button class="sms-button" onclick="sendSMS()">📩 SMS 보내기</button>
@@ -155,7 +157,7 @@
 </div>
 
 <!-- Ticker 2 -->
-<div class="ticker ticker--blue">
+<div class="ticker">
   <div class="ticker__text">
     "The pen is mightier than the sword." ✦ "Practice makes perfect." ✦ "Don’t put all your eggs in one basket." ✦ "Actions speak louder than words." ✦ "A journey of a thousand miles begins with a single step."
   </div>
@@ -167,13 +169,12 @@
 </footer>
 
 <script>
-  // Accordion Script
-  const acc = document.querySelectorAll(".accordion");
-  acc.forEach(btn => {
-    btn.addEventListener("click", function () {
+  // Accordion functionality
+  document.querySelectorAll(".accordion").forEach(acc => {
+    acc.addEventListener("click", function () {
       this.classList.toggle("active");
       const panel = this.nextElementSibling;
-      panel.style.display = panel.style.display === "block" ? "none" : "block";
+      panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + "px";
     });
   });
 
@@ -203,7 +204,7 @@
   function sendWhatsApp() {
     const number = document.getElementById("smsNumber").value.trim();
     const message = encodeURIComponent("CIA English Academy 웹사이트를 확인하세요: " + window.location.href);
-    let url = number ? `https://wa.me/${number.replace(/\+/g, '')}?text=${message}` : `https://wa.me/?text=${message}`;
+    const url = number ? `https://wa.me/${number.replace(/\+/g,'')}?text=${message}` : `https://wa.me/?text=${message}`;
     window.open(url, "_blank");
   }
 </script>
