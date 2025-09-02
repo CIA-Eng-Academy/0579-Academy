@@ -6,14 +6,37 @@
 <title>CIA English Academy</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; }
-  body { font-family: Arial, sans-serif; line-height: 1.5; margin: 0; padding: 10px; color: #000; background-color: #fff; }
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    margin: 0;
+    padding: 10px;
+    color: #000; 
+    background-color: #fff; /* White page background */
+  }
   header, section, .accordion, .panel, footer { margin-bottom: 1.5rem; }
+
+  /* Header */
+  header {
+    background-color: royalblue;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    border-radius: 6px;
+  }
 
   /* Share Buttons */
   .share-container { text-align: center; margin: 2rem 0; }
   .share-button, .sms-button, .wa-button {
-    background: royalblue; color: #fff; padding: 12px 20px; border: none;
-    border-radius: 8px; font-size: 1rem; cursor: pointer; transition: background 0.3s; margin: 5px;
+    background: royalblue; 
+    color: #fff;
+    padding: 12px 20px; 
+    border: none;
+    border-radius: 8px; 
+    font-size: 1rem; 
+    cursor: pointer; 
+    transition: background 0.3s; 
+    margin: 5px;
   }
   .share-button:hover, .sms-button:hover, .wa-button:hover { background: #0056b3; }
   .share-msg { margin-top: 10px; font-size: 0.9rem; color: #000; }
@@ -30,23 +53,53 @@
 
   /* Accordion */
   .accordion { 
-    background-color: royalblue; color: #fff; cursor: pointer; padding: 12px; 
-    width: 100%; text-align: left; border: none; outline: none; 
-    transition: 0.3s; border-radius: 6px; font-weight: bold; 
+    background-color: royalblue; 
+    color: #fff; 
+    cursor: pointer; 
+    padding: 12px; 
+    width: 100%; 
+    text-align: left; 
+    border: none; 
+    outline: none; 
+    transition: 0.3s; 
+    border-radius: 6px; 
+    font-weight: bold; 
   }
   .accordion.active, .accordion:hover { background-color: #0056b3; }
-  .panel { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background-color: #f9f9f9; border-radius: 6px; padding: 0 18px; color: #000; }
+
+  .panel { 
+    max-height: 0; 
+    overflow: hidden; 
+    transition: max-height 0.4s ease; 
+    background-color: #fff; /* White panel background */
+    border-radius: 6px; 
+    padding: 0 18px; 
+    color: #000; /* Black text */
+  }
 
   /* Nested list style inside accordion */
   .panel ul, .panel ol { padding-left: 20px; margin: 10px 0; }
 
   /* Ticker */
-  .ticker { overflow: hidden; white-space: nowrap; background: #f0f0f0; padding: 10px; margin-bottom: 1rem; color: #000; }
+  .ticker { 
+    overflow: hidden; 
+    white-space: nowrap; 
+    background: royalblue; 
+    padding: 10px; 
+    margin-bottom: 1rem; 
+    color: #fff; 
+  }
   .ticker__text { display: inline-block; padding-left: 100%; animation: ticker 15s linear infinite; }
   @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
   /* Footer */
-  footer { text-align: center; font-size: 0.9rem; color: #000; }
+  footer {
+    background-color: royalblue; 
+    color: #fff; 
+    padding: 10px; 
+    text-align: center; 
+    border-radius: 6px;
+  }
 
   /* Responsive */
   @media (max-width: 480px) {
