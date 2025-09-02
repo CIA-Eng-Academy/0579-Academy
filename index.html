@@ -5,106 +5,108 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CIA English Academy</title>
 <style>
+  /* Global Reset */
   *, *::before, *::after { box-sizing: border-box; }
   body {
     font-family: Arial, sans-serif;
     line-height: 1.5;
     margin: 0;
     padding: 10px;
-    color: #000; 
-    background-color: #fff; /* White page background */
+    background-color: #fff !important;
+    color: #000 !important;
   }
-  header, section, .accordion, .panel, footer { margin-bottom: 1.5rem; }
 
   /* Header */
   header {
-    background-color: royalblue;
-    color: #fff;
-    padding: 15px;
-    text-align: center;
-    border-radius: 6px;
+    background-color: royalblue !important;
+    color: #fff !important;
+    padding: 15px !important;
+    text-align: center !important;
+    border-radius: 6px !important;
   }
 
-  /* Share Buttons */
-  .share-container { text-align: center; margin: 2rem 0; }
-  .share-button, .sms-button, .wa-button {
-    background: royalblue; 
-    color: #fff;
-    padding: 12px 20px; 
-    border: none;
-    border-radius: 8px; 
-    font-size: 1rem; 
-    cursor: pointer; 
-    transition: background 0.3s; 
-    margin: 5px;
+  /* Footer */
+  footer {
+    background-color: royalblue !important;
+    color: #fff !important;
+    padding: 10px !important;
+    text-align: center !important;
+    border-radius: 6px !important;
   }
-  .share-button:hover, .sms-button:hover, .wa-button:hover { background: #0056b3; }
-  .share-msg { margin-top: 10px; font-size: 0.9rem; color: #000; }
-
-  /* PDF Buttons */
-  .pdf-button {
-    display: inline-block; margin: 5px 0; padding: 10px 18px;
-    background-color: #28a745; color: #fff; text-decoration: none;
-    border-radius: 6px; font-weight: bold; transition: background-color 0.3s, transform 0.2s;
-  }
-  .pdf-button:hover { background-color: #218838; transform: scale(1.05); }
-
-  .share-input { padding: 8px; font-size: 1rem; width: 220px; margin-right: 5px; border-radius: 6px; border: 1px solid #ccc; }
-
-  /* Accordion */
-  .accordion { 
-    background-color: royalblue; 
-    color: #fff; 
-    cursor: pointer; 
-    padding: 12px; 
-    width: 100%; 
-    text-align: left; 
-    border: none; 
-    outline: none; 
-    transition: 0.3s; 
-    border-radius: 6px; 
-    font-weight: bold; 
-  }
-  .accordion.active, .accordion:hover { background-color: #0056b3; }
-
-  .panel { 
-    max-height: 0; 
-    overflow: hidden; 
-    transition: max-height 0.4s ease; 
-    background-color: #fff; /* White panel background */
-    border-radius: 6px; 
-    padding: 0 18px; 
-    color: #000; /* Black text */
-  }
-
-  /* Nested list style inside accordion */
-  .panel ul, .panel ol { padding-left: 20px; margin: 10px 0; }
 
   /* Ticker */
-  .ticker { 
-    overflow: hidden; 
-    white-space: nowrap; 
-    background: royalblue; 
-    padding: 10px; 
-    margin-bottom: 1rem; 
-    color: #fff; 
+  .ticker {
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    background-color: royalblue !important;
+    color: #fff !important;
+    padding: 10px !important;
+    margin-bottom: 1rem !important;
   }
   .ticker__text { display: inline-block; padding-left: 100%; animation: ticker 15s linear infinite; }
   @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-  /* Footer */
-  footer {
-    background-color: royalblue; 
-    color: #fff; 
-    padding: 10px; 
-    text-align: center; 
-    border-radius: 6px;
+  /* Accordion Buttons */
+  .accordion {
+    background-color: royalblue !important;
+    color: #fff !important;
+    cursor: pointer !important;
+    padding: 12px !important;
+    width: 100% !important;
+    text-align: left !important;
+    border: none !important;
+    outline: none !important;
+    transition: 0.3s !important;
+    border-radius: 6px !important;
+    font-weight: bold !important;
   }
+  .accordion.active, .accordion:hover { background-color: #0056b3 !important; }
+
+  /* Panels */
+  .panel {
+    max-height: 0 !important;
+    overflow: hidden !important;
+    transition: max-height 0.4s ease !important;
+    background-color: #fff !important;
+    color: #000 !important;
+    padding: 0 18px !important;
+    border-radius: 6px !important;
+  }
+
+  /* Buttons */
+  .share-button, .sms-button, .wa-button {
+    background-color: royalblue !important;
+    color: #fff !important;
+    padding: 12px 20px !important;
+    border: none !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    font-size: 1rem !important;
+    margin: 5px !important;
+  }
+  .share-button:hover, .sms-button:hover, .wa-button:hover { background-color: #0056b3 !important; }
+
+  .pdf-button {
+    background-color: #28a745 !important;
+    color: #fff !important;
+    text-decoration: none !important;
+    padding: 10px 18px !important;
+    border-radius: 6px !important;
+    font-weight: bold !important;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  .pdf-button:hover { background-color: #218838 !important; transform: scale(1.05) !important; }
+
+  /* Inputs */
+  .share-input { padding: 8px !important; font-size: 1rem !important; width: 220px !important; margin-right: 5px !important; border-radius: 6px !important; border: 1px solid #ccc !important; }
+
+  /* Force all critical text to black in panels */
+  .panel, .panel * { color: #000 !important; }
 
   /* Responsive */
   @media (max-width: 480px) {
-    .share-button, .sms-button, .wa-button { width: 90%; margin: 5px 0; }
-    .share-input { width: 90%; margin-bottom: 10px; }
+    .share-button, .sms-button, .wa-button { width: 90% !important; margin: 5px 0 !important; }
+    .share-input { width: 90% !important; margin-bottom: 10px !important; }
   }
 </style>
 </head>
@@ -115,156 +117,61 @@
   <p>"CIA 영어학원에 오신 것을 환영합니다."</p>
 </header>
 
-<!-- Ticker 1 -->
 <div class="ticker">
   <div class="ticker__text">
-    공지사항: 휴대폰 문자 수강신청 010-4733-0579 | 개강: 인공지능활용 자기주도학습법 총 12회 회당 2시간 수업 총 3개월 완성 | '자기주도적 평생영어학습습관' 사랑하는 자녀들에게 심어놓고 키워드립니다. 학습 수준별 1:1 맞춤지도
+    공지사항: 휴대폰 문자 수강신청 010-4733-0579 | 개강: 인공지능활용 자기주도학습법 총 12회 회당 2시간 수업 총 3개월 완성
   </div>
 </div>
 
 <section id="about-cia">
   <h2>About CIA</h2>
-  <p><b>CIA — Create Intelligence Arts</b> English Academy helps students become self-motivated English learners for daily life, academics, and career success.</p>
+  <p><b>CIA — Create Intelligence Arts</b> English Academy helps students become self-motivated English learners.</p>
 </section>
 
-<!-- Accordion Sections -->
 <button class="accordion">Our 1:1 Service Menu</button>
 <div class="panel">
   <ol>
-    <li>
-      인공지능활용 스마트폰 영어학습법
-      <ul>
-        <li>레벨테스트</li>
-        <li>발음교정</li>
-        <li>문법강의</li>
-        <li>듣기, 말하기, 독해, 작문</li>
-      </ul>
+    <li>인공지능 활용 스마트폰 영어학습법
+      <ul><li>레벨테스트</li><li>발음교정</li><li>문법강의</li></ul>
     </li>
     <li>영어일기쓰기 교정</li>
-    <li>
-      중등, 고등, 모의고사 쪽집게 풀이
-      <ul>
-        <li>영어 스피치 & 창의력 대회 준비</li>
-      </ul>
-    </li>
+    <li>중등/고등 모의고사 쪽집게 풀이</li>
   </ol>
-</div>
-
-<button class="accordion">학생 규정 및 환불규정</button>
-<div class="panel">
-  <ol>
-    <li>강의 및 학습이 어려운 경우, 즉시 귀가조치</li>
-    <li>단정한 복장 착용과 예의바른 언어사용</li>
-    <li>단순 변심으로 인한 수업 중단 시 환불 규정 적용</li>
-  </ol>
-</div>
-
-<button class="accordion">특별 서비스</button>
-<div class="panel">
-  <ul>
-    <li>24 hours English Radio</li>
-    <li>24 hours chatting</li>
-    <li>24 hours Online Daily Diary checker</li>
-  </ul>
-</div>
-
-<button class="accordion">강의노트</button>
-<div class="panel">
-  <ul>
-    <li>UPS Phonics (발음)</li>
-    <li>Grammar Comprehension</li>
-    <li>Listening Comprehension</li>
-    <li>Speaking Comprehension</li>
-    <li>Reading Comprehension</li>
-    <li>Vocabulary Studies</li>
-    <li>Writing Comprehension</li>
-    <li>Pops English</li>
-    <li>Movie English</li>
-  </ul>
-</div>
-
-<button class="accordion">영어교재 및 영어교구</button>
-<div class="panel">
-  <ul>
-    <li>판매중인 교재</li>
-    <li>예약판매중인 교재</li>
-    <li><a href="중1 동사구 모음.pdf" class="pdf-button" target="_blank" download>중1 동사구 모음.pdf</a></li>
-    <li><a href="중2 동사구 모음.pdf" class="pdf-button" target="_blank" download>중2 동사구 모음.pdf</a></li>
-    <li><a href="중2 영어 공통문법.pdf" class="pdf-button" target="_blank" download>중2 영어 공통문법.pdf</a></li>
-    <li><a href="중3 동사구 모음.pdf" class="pdf-button" target="_blank" download>중3 동사구 모음.pdf</a></li>
-    <li><a href="중3 영어 공통문법.pdf" class="pdf-button" target="_blank" download>중3 영어 공통문법.pdf</a></li>
-  </ul>
-</div>
-
-<button class="accordion">강사구인</button>
-<div class="panel"><p>Find English/Korean Native Teachers</p></div>
-
-<button class="accordion">유튜브 강의</button>
-<div class="panel"><p>YouTube Video materials</p></div>
-
-<!-- Share Section -->
-<div class="share-container">
-  <h2>친구에게 우리 학원을 공유하세요!</h2>
-  <button class="share-button" id="shareBtn">📲 친구에게 공유하기</button>
-  <div class="share-msg" id="shareMsg"></div>
-  <p>또는 휴대폰 번호를 입력하여 공유하기 (무료, 즉시 모바일 SMS 또는 WhatsApp):</p>
-  <input type="text" id="smsNumber" class="share-input" placeholder="+821012345678">
-  <button class="sms-button" onclick="sendSMS()">📩 SMS 보내기</button>
-  <button class="wa-button" onclick="sendWhatsApp()">💬 WhatsApp 보내기</button>
-</div>
-
-<!-- Ticker 2 -->
-<div class="ticker">
-  <div class="ticker__text">
-    "The pen is mightier than the sword." ✦ "Practice makes perfect." ✦ "Don’t put all your eggs in one basket." ✦ "Actions speak louder than words." ✦ "A journey of a thousand miles begins with a single step."
-  </div>
 </div>
 
 <footer>
-  <p>강의료 납부는 매달 1일 기준, 기업은행 01047330579 오준영</p>
-  <p>영어일기숙제 제출 및 질문 이메일 : ciaohjoonyeong@gmail.com</p>
+  <p>강의료 납부: 기업은행 01047330579 오준영</p>
+  <p>영어일기숙제 제출: ciaohjoonyeong@gmail.com</p>
 </footer>
 
 <script>
-  // Accordion functionality
+  // Accordion
   document.querySelectorAll(".accordion").forEach(acc => {
     acc.addEventListener("click", function() {
       this.classList.toggle("active");
       const panel = this.nextElementSibling;
-      if (panel.style.maxHeight) panel.style.maxHeight = null;
-      else panel.style.maxHeight = panel.scrollHeight + "px";
+      panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + "px";
     });
   });
 
-  // Native Share
-  const shareBtn = document.getElementById("shareBtn");
-  const shareMsg = document.getElementById("shareMsg");
-  shareBtn.addEventListener("click", async () => {
-    const shareData = { title: "CIA English Academy", text: "CIA 영어학원 - 자기주도적 평생영어학습 습관 만들기!", url: window.location.href };
-    if (navigator.share) {
-      try { await navigator.share(shareData); shareMsg.textContent = "✅ 공유 완료!"; }
-      catch (err) { shareMsg.textContent = "❌ 공유 취소됨"; }
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      shareMsg.textContent = "📋 주소가 복사되었습니다. 친구에게 붙여넣기 해주세요!";
-    }
-  });
-
-  // SMS Share
-  function sendSMS() {
-    const number = document.getElementById("smsNumber").value.trim();
-    if (!number) { alert("번호를 입력해주세요."); return; }
-    const message = encodeURIComponent("CIA English Academy 웹사이트를 확인하세요: " + window.location.href);
-    window.location.href = `sms:${number}?body=${message}`;
-  }
-
-  // WhatsApp Share
-  function sendWhatsApp() {
-    const number = document.getElementById("smsNumber").value.trim();
-    const message = encodeURIComponent("CIA English Academy 웹사이트를 확인하세요: " + window.location.href);
-    const url = number ? `https://wa.me/${number.replace(/\+/g,'')}?text=${message}` : `https://wa.me/?text=${message}`;
-    window.open(url, "_blank");
-  }
+  // Watchdog to prevent style changes by hackers
+  const enforceColors = () => {
+    document.body.style.backgroundColor = "#fff";
+    document.body.style.color = "#000";
+    document.querySelectorAll("header, footer, .ticker, .accordion, .panel, .share-button, .sms-button, .wa-button").forEach(el => {
+      if (el.classList.contains('accordion') || el.classList.contains('share-button') || el.classList.contains('sms-button') || el.classList.contains('wa-button')) {
+        el.style.backgroundColor = "royalblue";
+        el.style.color = "#fff";
+      } else if (el.classList.contains('panel')) {
+        el.style.backgroundColor = "#fff";
+        el.style.color = "#000";
+      } else {
+        el.style.backgroundColor = "royalblue";
+        el.style.color = "#fff";
+      }
+    });
+  };
+  setInterval(enforceColors, 500); // Checks every 0.5s to fix any malicious changes
 </script>
 
 </body>
