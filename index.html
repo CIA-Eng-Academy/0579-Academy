@@ -31,8 +31,9 @@
     .share-input { padding: 8px; font-size: 1rem; width: 220px; margin-right: 5px; border-radius: 6px; border: 1px solid #ccc; }
 
     /* Accordion */
-    .accordion { background-color: #eee; cursor: pointer; padding: 12px; width: 100%; text-align: left; border: none; outline: none; transition: 0.3s; border-radius: 6px; }
-    .accordion.active, .accordion:hover { background-color: #ccc; }
+    .accordion { background-color: #f1f1f1; cursor: pointer; padding: 12px; width: 100%; text-align: left; border: none; outline: none; transition: 0.3s; border-radius: 6px; font-weight: bold; color: #333; }
+    .accordion.active, .accordion:hover { background-color: #0078ff; color: #fff; }
+
     .panel { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background-color: #f9f9f9; border-radius: 6px; padding: 0 18px; }
 
     /* Ticker */
@@ -174,7 +175,11 @@
     acc.addEventListener("click", function () {
       this.classList.toggle("active");
       const panel = this.nextElementSibling;
-      panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + "px";
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
     });
   });
 
