@@ -25,7 +25,7 @@
   #hackerLog { display:none; background:#ffefef; color:red; padding:10px; margin:10px 0; border:2px solid red; font-family:monospace; max-height:200px; overflow:auto; border-radius:6px; }
 
   /* ====== TEST SECTION STYLES ====== */
-  #tests { margin-top:40px; text-align:left; }
+  #tests { margin-top:20px; text-align:left; }
   #tests h2 { color: royalblue; border-bottom: 2px solid royalblue; padding-bottom:5px; margin-bottom:15px; }
   #tests ul { list-style-type:none; padding-left:0; }
   #tests li { margin-bottom:8px; }
@@ -63,52 +63,83 @@
 
 <!-- Existing accordions here... -->
 
-<!-- ======== TEST SECTION ======== -->
-<section id="tests">
-<h2>Placement Tests (New Students)</h2>
-<ul>
-  <li><a href="tests/placement-tests/level-1/index.html" class="test-link">Level 1 Placement Test</a></li>
-  <li><a href="tests/placement-tests/level-2/index.html" class="test-link">Level 2 Placement Test</a></li>
-  <li><a href="tests/placement-tests/level-3/index.html" class="test-link">Level 3 Placement Test</a></li>
-  <li><a href="tests/placement-tests/level-4/index.html" class="test-link">Level 4 Placement Test</a></li>
-  <li><a href="tests/placement-tests/level-5/index.html" class="test-link">Level 5 Placement Test</a></li>
-  <li><a href="tests/placement-tests/level-6/index.html" class="test-link">Level 6 Placement Test</a></li>
-  <li><a href="tests/placement-tests/level-7/index.html" class="test-link">Level 7 Placement Test</a></li>
-  <li><a href="tests/placement-tests/level-8/index.html" class="test-link">Level 8 Placement Test</a></li>
-  <li><a href="tests/placement-tests/level-9/index.html" class="test-link">Level 9 Placement Test</a></li>
-  <li><a href="tests/placement-tests/level-10/index.html" class="test-link">Level 10 Placement Test</a></li>
-  <li><a href="tests/placement-tests/level-11/index.html" class="test-link">Level 11 Placement Test</a></li>
-  <li><a href="tests/placement-tests/level-12/index.html" class="test-link">Level 12 Placement Test</a></li>
-</ul>
+<!-- ======== TESTS ACCORDION ======== -->
+<button class="accordion">Tests & Placement Exams</button>
+<div class="panel">
+  <section id="tests">
+    <h2>Placement Tests (New Students)</h2>
+    <ul>
+      <li><a href="tests/placement-tests/level-1/index.html" class="test-link">Level 1 Placement Test</a></li>
+      <li><a href="tests/placement-tests/level-2/index.html" class="test-link">Level 2 Placement Test</a></li>
+      <li><a href="tests/placement-tests/level-3/index.html" class="test-link">Level 3 Placement Test</a></li>
+      <li><a href="tests/placement-tests/level-4/index.html" class="test-link">Level 4 Placement Test</a></li>
+      <li><a href="tests/placement-tests/level-5/index.html" class="test-link">Level 5 Placement Test</a></li>
+      <li><a href="tests/placement-tests/level-6/index.html" class="test-link">Level 6 Placement Test</a></li>
+      <li><a href="tests/placement-tests/level-7/index.html" class="test-link">Level 7 Placement Test</a></li>
+      <li><a href="tests/placement-tests/level-8/index.html" class="test-link">Level 8 Placement Test</a></li>
+      <li><a href="tests/placement-tests/level-9/index.html" class="test-link">Level 9 Placement Test</a></li>
+      <li><a href="tests/placement-tests/level-10/index.html" class="test-link">Level 10 Placement Test</a></li>
+      <li><a href="tests/placement-tests/level-11/index.html" class="test-link">Level 11 Placement Test</a></li>
+      <li><a href="tests/placement-tests/level-12/index.html" class="test-link">Level 12 Placement Test</a></li>
+    </ul>
 
-<h2>Level 1 Full & Pillar Tests</h2>
-<ul>
-  <li class="test-category">Full Tests
-    <ul class="test-subcategory">
-      <li><a href="tests/level-1/full-tests/test1/index.html" class="test-link">Full Test 1</a></li>
-      <li><a href="tests/level-1/full-tests/test2/index.html" class="test-link">Full Test 2</a></li>
-      <li><a href="tests/level-1/full-tests/test3/index.html" class="test-link">Full Test 3</a></li>
-      <li><a href="tests/level-1/full-tests/test4/index.html" class="test-link">Full Test 4</a></li>
+    <h2>Level 1 Full & Pillar Tests</h2>
+    <ul>
+      <li class="test-category">Full Tests
+        <ul class="test-subcategory">
+          <li><a href="tests/level-1/full-tests/test1/index.html" class="test-link">Full Test 1</a></li>
+          <li><a href="tests/level-1/full-tests/test2/index.html" class="test-link">Full Test 2</a></li>
+          <li><a href="tests/level-1/full-tests/test3/index.html" class="test-link">Full Test 3</a></li>
+          <li><a href="tests/level-1/full-tests/test4/index.html" class="test-link">Full Test 4</a></li>
+        </ul>
+      </li>
+      <li class="test-category">Pillar Tests
+        <ul class="test-subcategory">
+          <li><a href="tests/level-1/pillar-tests/vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
+          <li><a href="tests/level-1/pillar-tests/grammar/index.html" class="test-link">Grammar Test</a></li>
+          <li><a href="tests/level-1/pillar-tests/listening/index.html" class="test-link">Listening Test</a></li>
+          <li><a href="tests/level-1/pillar-tests/speaking/index.html" class="test-link">Speaking Test</a></li>
+          <li><a href="tests/level-1/pillar-tests/reading/index.html" class="test-link">Reading Test</a></li>
+          <li><a href="tests/level-1/pillar-tests/writing/index.html" class="test-link">Writing Test</a></li>
+        </ul>
+      </li>
     </ul>
-  </li>
-  <li class="test-category">Pillar Tests
-    <ul class="test-subcategory">
-      <li><a href="tests/level-1/pillar-tests/vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-      <li><a href="tests/level-1/pillar-tests/grammar/index.html" class="test-link">Grammar Test</a></li>
-      <li><a href="tests/level-1/pillar-tests/listening/index.html" class="test-link">Listening Test</a></li>
-      <li><a href="tests/level-1/pillar-tests/speaking/index.html" class="test-link">Speaking Test</a></li>
-      <li><a href="tests/level-1/pillar-tests/reading/index.html" class="test-link">Reading Test</a></li>
-      <li><a href="tests/level-1/pillar-tests/writing/index.html" class="test-link">Writing Test</a></li>
-    </ul>
-  </li>
-</ul>
-</section>
-<!-- ======== END TEST SECTION ======== -->
+  </section>
+</div>
+<!-- ======== END TESTS ACCORDION ======== -->
 
 <!-- SMS Share Section and Ticker 2 & Footer same as before -->
 
 <script>
-  // Accordion, SMS, Hacker Detection same as before
+  // Accordion Functionality
+  document.querySelectorAll(".accordion").forEach(acc=>{
+    acc.addEventListener("click", function(){
+      this.classList.toggle("active");
+      const panel=this.nextElementSibling;
+      panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight+"px";
+    });
+  });
+
+  // SMS via Textbelt Free Trial
+  function sendSMS(){
+    const number = document.getElementById('phone').value.trim();
+    const message = document.getElementById('smsMessage').value.trim();
+    const statusDiv = document.getElementById('smsStatus');
+    if(!number || !message){ 
+      statusDiv.innerText = "❌ 번호와 메시지를 모두 입력해주세요.";
+      return;
+    }
+    fetch('https://textbelt.com/text', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone: number, message: message, key: 'textbelt' })
+    })
+    .then(res => res.json())
+    .then(data => { statusDiv.innerText = data.success ? "✅ SMS 전송 성공!" : "❌ SMS 전송 실패: " + data.error; })
+    .catch(err => statusDiv.innerText = "❌ SMS 에러: " + err);
+  }
+
+  // Hacker Detection same as before
 </script>
 
 </div>
