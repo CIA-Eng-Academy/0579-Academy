@@ -17,12 +17,40 @@ h2 { margin-top:30px; color:royalblue; font-size:1.5rem; }
 .accordion.active, .accordion:hover { background:#0056b3; }
 .panel { max-height:0; overflow:hidden; transition:max-height 0.4s ease; background:white; border-radius:6px; padding:0 18px; color:black; text-align:left; }
 
-/* Test category & subcategory styling */
-.test-category { font-weight:bold; font-size:1.1rem; margin:10px 0; color:#003366; }
-.test-subcategory { list-style-type: disc; margin-left:20px; padding-left:10px; }
-.test-subcategory li { font-size:1rem; font-weight:normal; color:#333; margin:4px 0; }
-.test-link { text-decoration:none; color:#0056b3; transition: color 0.3s; }
-.test-link:hover { color:#ff6600; text-decoration:underline; }
+.test-category {
+  margin-bottom: 20px;
+}
+
+.test-category h3 {
+  font-size: 1.2rem;
+  color: royalblue;
+  margin-bottom: 10px;
+}
+
+.test-subcategory {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* three columns */
+  gap: 10px 15px; /* vertical & horizontal spacing */
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.test-subcategory li {
+  font-size: 0.95rem;
+  font-weight: normal;
+}
+
+.test-link {
+  color: #0056b3;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.test-link:hover {
+  color: #ff6600;
+  text-decoration: underline;
+}
+
 
 /* Adjust hierarchy by size slightly */
 .test-category h3 { font-size:1.15rem; }  /* optional if using headings */
@@ -208,141 +236,119 @@ h2 { margin-top:30px; color:royalblue; font-size:1.5rem; }
  
 <button class="accordion">보충 Pillar Tests</button>
 <div class="panel">
-  <ul>
-    <li class="test-category">Pillar Tests Level 1
-      <ul class="test-subcategory">
-        <li><a href="tests/level-1/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-        <li><a href="tests/level-1/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-        <li><a href="tests/level-1/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-        <li><a href="tests/level-1/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-        <li><a href="tests/level-1/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-        <li><a href="tests/level-1/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-      </ul>
-    </li>
+  <div class="test-category">
+    <h3>Pillar Tests Level 1</h3>
+    <ul class="test-subcategory">
+      <li><a href="tests/level-1/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
+      <li><a href="tests/level-1/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
+      <li><a href="tests/level-1/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
+      <li><a href="tests/level-1/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
+      <li><a href="tests/level-1/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
+      <li><a href="tests/level-1/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
+    </ul>
+  </div>
 
-    <li class="test-category">Pillar Tests Level 2
-      <ul class="test-subcategory">
-        <li><a href="tests/level-2/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-        <li><a href="tests/level-2/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-        <li><a href="tests/level-2/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-        <li><a href="tests/level-2/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-        <li><a href="tests/level-2/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-        <li><a href="tests/level-2/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-      </ul>
-    </li>
+  <div class="test-category">
+    <h3>Pillar Tests Level 2</h3>
+    <ul class="test-subcategory">
+      <li><a href="tests/level-2/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
+      <li><a href="tests/level-2/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
+      <li><a href="tests/level-2/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
+      <li><a href="tests/level-2/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
+      <li><a href="tests/level-2/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
+      <li><a href="tests/level-2/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
+    </ul>
+  </div>
 
-    <li class="test-category">Pillar Tests Level 3
-      <ul class="test-subcategory">
-        <li><a href="tests/level-3/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-        <li><a href="tests/level-3/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-        <li><a href="tests/level-3/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-        <li><a href="tests/level-3/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-        <li><a href="tests/level-3/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-        <li><a href="tests/level-3/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-      </ul>
-    </li>
+  <div class="test-category">
+    <h3>Pillar Tests Level 3</h3>
+    <ul class="test-subcategory">
+      <li><a href="tests/level-3/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
+      <li><a href="tests/level-3/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
+      <li><a href="tests/level-3/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
+      <li><a href="tests/level-3/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
+      <li><a href="tests/level-3/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
+      <li><a href="tests/level-3/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
+    </ul>
+  </div>
 
-    <li class="test-category">Pillar Tests Level 4
-      <ul class="test-subcategory">
-        <li><a href="tests/level-4/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-        <li><a href="tests/level-4/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-        <li><a href="tests/level-4/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-        <li><a href="tests/level-4/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-        <li><a href="tests/level-4/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-        <li><a href="tests/level-4/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-      </ul>
-    </li>
+  <div class="test-category">
+    <h3>Pillar Tests Level 4</h3>
+    <ul class="test-subcategory">
+      <li><a href="tests/level-4/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
+      <li><a href="tests/level-4/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
+      <li><a href="tests/level-4/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
+      <li><a href="tests/level-4/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
+      <li><a href="tests/level-4/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
+      <li><a href="tests/level-4/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
+    </ul>
+  </div>
 
-    <li class="test-category">Pillar Tests Level 5
-      <ul class="test-subcategory">
-        <li><a href="tests/level-5/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-        <li><a href="tests/level-5/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-        <li><a href="tests/level-5/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-        <li><a href="tests/level-5/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-        <li><a href="tests/level-5/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-        <li><a href="tests/level-5/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-      </ul>
-    </li>
+  <div class="test-category">
+    <h3>Pillar Tests Level 5</h3>
+    <ul class="test-subcategory">
+      <li><a href="tests/level-5/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
+      <li><a href="tests/level-5/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
+      <li><a href="tests/level-5/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
+      <li><a href="tests/level-5/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
+      <li><a href="tests/level-5/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
+      <li><a href="tests/level-5/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
+    </ul>
+  </div>
 
-    <li class="test-category">Pillar Tests Level 6
-      <ul class="test-subcategory">
-        <li><a href="tests/level-6/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-        <li><a href="tests/level-6/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-        <li><a href="tests/level-6/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-        <li><a href="tests/level-6/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-        <li><a href="tests/level-6/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-        <li><a href="tests/level-6/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-      </ul>
-    </li>
+  <div class="test-category">
+    <h3>Pillar Tests Level 6</h3>
+    <ul class="test-subcategory">
+      <li><a href="tests/level-6/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
+      <li><a href="tests/level-6/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
+      <li><a href="tests/level-6/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
+      <li><a href="tests/level-6/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
+      <li><a href="tests/level-6/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
+      <li><a href="tests/level-6/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
+    </ul>
+  </div>
 
-    <li class="test-category">Pillar Tests Level 7
-      <ul class="test-subcategory">
-        <li><a href="tests/level-7/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-        <li><a href="tests/level-7/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-        <li><a href="tests/level-7/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-        <li><a href="tests/level-7/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-        <li><a href="tests/level-7/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-        <li><a href="tests/level-7/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-      </ul>
-    </li>
+  <div class="test-category">
+    <h3>Pillar Tests Level 7</h3>
+    <ul class="test-subcategory">
+      <li><a href="tests/level-7/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
+      <li><a href="tests/level-7/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
+      <li><a href="tests/level-7/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
+      <li><a href="tests/level-7/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
+      <li><a href="tests/level-7/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
+      <li><a href="tests/level-7/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
+    </ul>
+  </div>
 
-    <li class="test-category">Pillar Tests Level 8
-      <ul class="test-subcategory">
-        <li><a href="tests/level-8/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-        <li><a href="tests/level-8/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-        <li><a href="tests/level-8/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-        <li><a href="tests/level-8/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-        <li><a href="tests/level-8/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-        <li><a href="tests/level-8/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-      </ul>
-    </li>
-
-    <li class="test-category">Pillar Tests Level 9
-      <ul class="test-subcategory">
-        <li><a href="tests/level-9/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-        <li><a href="tests/level-9/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-        <li><a href="tests/level-9/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-        <li><a href="tests/level-9/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-        <li><a href="tests/level-9/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-        <li><a href="tests/level-9/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-      </ul>
-    </li>
-
-    <li class="test-category">Pillar Tests Level 10
-  <ul class="test-subcategory">
-    <li><a href="tests/level-10/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-    <li><a href="tests/level-10/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-    <li><a href="tests/level-10/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-    <li><a href="tests/level-10/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-    <li><a href="tests/level-10/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-    <li><a href="tests/level-10/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-  </ul>
-</li>
-
-
-    <li class="test-category">Pillar Tests Level 11
-      <ul class="test-subcategory">
-        <li><a href="tests/level-11/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-        <li><a href="tests/level-11/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-        <li><a href="tests/level-11/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-        <li><a href="tests/level-11/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-        <li><a href="tests/level-11/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-        <li><a href="tests/level-11/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-      </ul>
-    </li>
-
-    <li class="test-category">Pillar Tests Level 12
-      <ul class="test-subcategory">
-        <li><a href="tests/level-12/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-        <li><a href="tests/level-12/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-        <li><a href="tests/level-12/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-        <li><a href="tests/level-12/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-        <li><a href="tests/level-12/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-        <li><a href="tests/level-12/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-      </ul>
-    </li>
-  </ul>
+  <div class="test-category">
+    <h3>Pillar Tests Level 8</h3>
+    <ul class="test-subcategory">
+      <li><a href="tests/level-8/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
+      <li><a href="tests/level-8/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
+      <li><a href="tests/level-8/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
+      <li><a href="tests/level-8/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
+      <li><a href="tests/level-8/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
+      <li><a href="tests/level-8/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
+    </ul>
+  </div>
 </div>
+
+<script>
+// Accordion functionality
+var acc = document.getElementsByClassName("accordion");
+for (var i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+</script>
+
 
 <button class="accordion">강의노트</button>
 <div class="panel">
