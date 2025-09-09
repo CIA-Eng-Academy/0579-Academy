@@ -1,403 +1,210 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>0579 Academy</title>
-<style>
-/* Base styling */
-*, *::before, *::after { box-sizing: border-box; }
-body { margin:0; padding:10px; font-family: 'Arial', sans-serif; background:white; color:black; transition: background 0.3s, color 0.3s; }
-.container { max-width:900px; width:100%; margin:0 auto; text-align:center; }
-header, footer { background:royalblue; color:white; padding:15px; text-align:center; border-radius:6px; transition: background 0.3s, color 0.3s; }
-h2 { margin-top:30px; color:royalblue; font-size:1.5rem; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>영어 테스트 플랫폼</title>
 
-/* Accordion */
-.accordion { background:royalblue; color:white; cursor:pointer; padding:12px; width:100%; border:none; outline:none; border-radius:6px; font-weight:bold; font-size:1.1rem; transition: background 0.3s, color 0.3s; margin-top:10px; text-align:left; }
-.accordion.active, .accordion:hover { background:#0056b3; }
-.panel { max-height:0; overflow:hidden; transition:max-height 0.4s ease; background:white; border-radius:6px; padding:0 18px; color:black; text-align:left; }
+  <!-- 📌 CSS -->
+  <style>
+    /* Accordion buttons */
+    .accordion {
+      cursor: pointer;
+      padding: 14px;
+      width: 100%;
+      text-align: left;
+      border: none;
+      outline: none;
+      transition: 0.3s;
+      font-size: 1.1em;
+      font-weight: bold;
+      background: #f7f7f7;
+      margin: 4px 0;
+      border-radius: 6px;
+    }
+    .accordion.active, .accordion:hover {
+      background: #e0e0e0;
+    }
 
-.test-category {
-  margin-bottom: 20px;
-}
+    /* Accordion panels */
+    .panel {
+      padding: 0 14px;
+      display: none;
+      overflow: hidden;
+      background: #fafafa;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
 
-.test-category h3 {
-  font-size: 1.2rem;
-  color: royalblue;
-  margin-bottom: 10px;
-}
+    /* Grid for test links */
+    .test-subcategory {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 6px 12px;
+      list-style-type: none;
+      padding-left: 0;
+    }
 
-.test-subcategory {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* three columns */
-  gap: 10px 15px; /* vertical & horizontal spacing */
-  list-style-type: none;
-  padding-left: 0;
-}
+    .test-link {
+      display: block;
+      padding: 6px 10px;
+      background: #f0f0f0;
+      border-radius: 6px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 0.9em;
+      transition: background 0.2s;
+    }
+    .test-link:hover {
+      background: #dcdcdc;
+    }
 
-.test-subcategory li {
-  font-size: 0.95rem;
-  font-weight: normal;
-}
+    .test-category h3 {
+      margin: 10px 0 6px;
+      font-size: 1em;
+      font-weight: bold;
+    }
 
-.test-link {
-  color: #0056b3;
-  text-decoration: none;
-  transition: color 0.3s;
-}
+    /* Responsive */
+    @media (max-width: 600px) {
+      .test-subcategory {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      }
+    }
 
-.test-link:hover {
-  color: #ff6600;
-  text-decoration: underline;
-}
-
-
-/* Adjust hierarchy by size slightly */
-.test-category h3 { font-size:1.15rem; }  /* optional if using headings */
-.test-subcategory li a { font-size:1rem; }
-
-/* Buttons */
-.pdf-button { display:inline-block; margin:5px 0; padding:10px 18px; background:#28a745; color:white; text-decoration:none; border-radius:6px; font-weight:bold; }
-.pdf-button:hover { background:#218838; transform:scale(1.05); }
-.share-button, .sms-button, .wa-button { background:royalblue; color:white; padding:12px 20px; border:none; border-radius:8px; font-size:1rem; cursor:pointer; margin:5px; }
-.share-button:hover, .sms-button:hover, .wa-button:hover { background:#0056b3; }
-.share-input, #smsMessage { padding:8px; font-size:1rem; width:100%; max-width:220px; margin-right:5px; border-radius:6px; border:1px solid #ccc; }
-
-/* Responsive */
-@media(max-width:480px){ 
-    .share-button,.sms-button,.wa-button{width:90%; margin:5px 0;} 
-    .share-input,#smsMessage{width:90%; margin-bottom:10px;} 
-}
-</style>
-
+    /* Ticker */
+    .ticker {
+      background: #222;
+      color: white;
+      padding: 8px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker__text {
+      display: inline-block;
+      padding-left: 100%;
+      animation: ticker 15s linear infinite;
+    }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-<header>
-  <h1>0579 Academy</h1>
-  <p>"영어친구 학원에 오신 것을 환영합니다."</p>
-</header>
 
-<div id="hackerLog"></div>
-
-<div class="ticker">
-  <div class="ticker__text">
-공지사항: 휴대폰 문자 수강신청 010-4733-0579 | 개강: 인공지능 활용 자기주도학습법 총 12회, 2시간 수업 총 3개월 완성 | 학습 수준별 1:1 맞춤지도
+  <!-- 📌 공지사항 Ticker -->
+  <div class="ticker">
+    <div class="ticker__text">
+      공지사항: 새로운 테스트가 업로드되었습니다! &nbsp;&nbsp; | &nbsp;&nbsp; 지금 바로 학습을 시작하세요 🚀
+    </div>
   </div>
 
-<section id="about-0579">
-  <h2>About 0579</h2>
-  <p><b>0579 — English Friend Academy</b> 0579 Academy helps students become self-motivated English learners for daily life, academics, and career success.</p>
-</section>
-
-<!-- Accordion Sections -->
-<button class="accordion">Our 1:1 Service Menu</button>
-<div class="panel">
-  <ol>
-    <li>AI 활용 스마트폰 영어학습법
-      <ul><li>레벨테스트</li><li>발음교정</li><li>문법강의</li><li>듣기, 말하기, 독해, 작문</li></ul>
-    </li>
-    <li>영어일기쓰기 교정</li>
-    <li>중등/고등/모의고사 쪽집게 풀이
-      <ul><li>영어 스피치 & 창의력 대회 준비</li></ul>
-    </li>
-  </ol>
-</div>
-
-<button class="accordion">학생 규정 및 환불규정</button>
-<div class="panel">
-  <ol>
-    <li>강의 및 학습이 어려운 경우, 즉시 귀가조치</li>
-    <li>단정한 복장 착용과 예의바른 언어사용</li>
-    <li>단순 변심으로 인한 수업 중단 시 환불 규정 적용</li>
-  </ol>
-</div>
-
-<button class="accordion">Placement Tests</button>
-<div class="panel">
-  <h2>Placement Tests for New Students</h2>
-  <ul>
-    <li><a href="tests/placement-tests/level-1/index.html" class="test-link">Level 1 Placement Test</a></li>
-    <li><a href="tests/placement-tests/level-2/index.html" class="test-link">Level 2 Placement Test</a></li>
-    <li><a href="tests/placement-tests/level-3/index.html" class="test-link">Level 3 Placement Test</a></li>
-    <li><a href="tests/placement-tests/level-4/index.html" class="test-link">Level 4 Placement Test</a></li>
-    <li><a href="tests/placement-tests/level-5/index.html" class="test-link">Level 5 Placement Test</a></li>
-    <li><a href="tests/placement-tests/level-6/index.html" class="test-link">Level 6 Placement Test</a></li>
-    <li><a href="tests/placement-tests/level-7/index.html" class="test-link">Level 7 Placement Test</a></li>
-    <li><a href="tests/placement-tests/level-8/index.html" class="test-link">Level 8 Placement Test</a></li>
-    <li><a href="tests/placement-tests/level-9/index.html" class="test-link">Level 9 Placement Test</a></li>
-    <li><a href="tests/placement-tests/level-10/index.html" class="test-link">Level 10 Placement Test</a></li>
-    <li><a href="tests/placement-tests/level-11/index.html" class="test-link">Level 11 Placement Test</a></li>
-    <li><a href="tests/placement-tests/level-12/index.html" class="test-link">Level 12 Placement Test</a></li>
-  </ul>
-</div>
-
-<button class="accordion">수강생 Level Tests</button>
-<div class="panel">
-  <section id="tests">
-    <h2>Level 1 Tests</h2>
-    <ul class="test-category">
-      <li><a href="tests/level-1/level-tests/test1/index.html" class="test-link">Level 1 Test 1</a></li>
-      <li><a href="tests/level-1/level-tests/test2/index.html" class="test-link">Level 1 Test 2</a></li>
-      <li><a href="tests/level-1/level-tests/test3/index.html" class="test-link">Level 1 Test 3</a></li>
-      <li><a href="tests/level-1/level-tests/test4/index.html" class="test-link">Level 1 Test 4</a></li>
-    </ul>
-
-    <h2>Level 2 Tests</h2>
-    <ul class="test-category">
-      <li><a href="tests/level-2/level-tests/test1/index.html" class="test-link">Level 2 Test 1</a></li>
-      <li><a href="tests/level-2/level-tests/test2/index.html" class="test-link">Level 2 Test 2</a></li>
-      <li><a href="tests/level-2/level-tests/test3/index.html" class="test-link">Level 2 Test 3</a></li>
-      <li><a href="tests/level-2/level-tests/test4/index.html" class="test-link">Level 2 Test 4</a></li>
-    </ul>
-
-    <h2>Level 3 Tests</h2>
-    <ul class="test-category">
-      <li><a href="tests/level-3/level-tests/test1/index.html" class="test-link">Level 3 Test 1</a></li>
-      <li><a href="tests/level-3/level-tests/test2/index.html" class="test-link">Level 3 Test 2</a></li>
-      <li><a href="tests/level-3/level-tests/test3/index.html" class="test-link">Level 3 Test 3</a></li>
-      <li><a href="tests/level-3/level-tests/test4/index.html" class="test-link">Level 3 Test 4</a></li>
-    </ul>
-
-    <h2>Level 4 Tests</h2>
-    <ul class="test-category">
-      <li><a href="tests/level-4/level-tests/test1/index.html" class="test-link">Level 4 Test 1</a></li>
-      <li><a href="tests/level-4/level-tests/test2/index.html" class="test-link">Level 4 Test 2</a></li>
-      <li><a href="tests/level-4/level-tests/test3/index.html" class="test-link">Level 4 Test 3</a></li>
-      <li><a href="tests/level-4/level-tests/test4/index.html" class="test-link">Level 4 Test 4</a></li>
-    </ul>
-
-    <h2>Level 5 Tests</h2>
-    <ul class="test-category">
-      <li><a href="tests/level-5/level-tests/test1/index.html" class="test-link">Level 5 Test 1</a></li>
-      <li><a href="tests/level-5/level-tests/test2/index.html" class="test-link">Level 5 Test 2</a></li>
-      <li><a href="tests/level-5/level-tests/test3/index.html" class="test-link">Level 5 Test 3</a></li>
-      <li><a href="tests/level-5/level-tests/test4/index.html" class="test-link">Level 5 Test 4</a></li>
-    </ul>
-
-    <h2>Level 6 Tests</h2>
-    <ul class="test-category">
-      <li><a href="tests/level-6/level-tests/test1/index.html" class="test-link">Level 6 Test 1</a></li>
-      <li><a href="tests/level-6/level-tests/test2/index.html" class="test-link">Level 6 Test 2</a></li>
-      <li><a href="tests/level-6/level-tests/test3/index.html" class="test-link">Level 6 Test 3</a></li>
-      <li><a href="tests/level-6/level-tests/test4/index.html" class="test-link">Level 6 Test 4</a></li>
-    </ul>
-
-    <h2>Level 7 Tests</h2>
-    <ul class="test-category">
-      <li><a href="tests/level-7/level-tests/test1/index.html" class="test-link">Level 7 Test 1</a></li>
-      <li><a href="tests/level-7/level-tests/test2/index.html" class="test-link">Level 7 Test 2</a></li>
-      <li><a href="tests/level-7/level-tests/test3/index.html" class="test-link">Level 7 Test 3</a></li>
-      <li><a href="tests/level-7/level-tests/test4/index.html" class="test-link">Level 7 Test 4</a></li>
-    </ul>
-
-    <h2>Level 8 Tests</h2>
-    <ul class="test-category">
-      <li><a href="tests/level-8/level-tests/test1/index.html" class="test-link">Level 8 Test 1</a></li>
-      <li><a href="tests/level-8/level-tests/test2/index.html" class="test-link">Level 8 Test 2</a></li>
-      <li><a href="tests/level-8/level-tests/test3/index.html" class="test-link">Level 8 Test 3</a></li>
-      <li><a href="tests/level-8/level-tests/test4/index.html" class="test-link">Level 8 Test 4</a></li>
-    </ul>
-
-    <h2>Level 9 Tests</h2>
-    <ul class="test-category">
-      <li><a href="tests/level-9/level-tests/test1/index.html" class="test-link">Level 9 Test 1</a></li>
-      <li><a href="tests/level-9/level-tests/test2/index.html" class="test-link">Level 9 Test 2</a></li>
-      <li><a href="tests/level-9/level-tests/test3/index.html" class="test-link">Level 9 Test 3</a></li>
-      <li><a href="tests/level-9/level-tests/test4/index.html" class="test-link">Level 9 Test 4</a></li>
-    </ul>
-
-    <h2>Level 10 Tests</h2>
-    <ul class="test-category">
-      <li><a href="tests/level-10/level-tests/test1/index.html" class="test-link">Level 10 Test 1</a></li>
-      <li><a href="tests/level-10/level-tests/test2/index.html" class="test-link">Level 10 Test 2</a></li>
-      <li><a href="tests/level-10/level-tests/test3/index.html" class="test-link">Level 10 Test 3</a></li>
-      <li><a href="tests/level-10/level-tests/test4/index.html" class="test-link">Level 10 Test 4</a></li>
-    </ul>
-
-    <h2>Level 11 Tests</h2>
-    <ul class="test-category">
-      <li><a href="tests/level-11/level-tests/test1/index.html" class="test-link">Level 11 Test 1</a></li>
-      <li><a href="tests/level-11/level-tests/test2/index.html" class="test-link">Level 11 Test 2</a></li>
-      <li><a href="tests/level-11/level-tests/test3/index.html" class="test-link">Level 11 Test 3</a></li>
-      <li><a href="tests/level-11/level-tests/test4/index.html" class="test-link">Level 11 Test 4</a></li>
-    </ul>
-
-    <h2>Level 12 Tests</h2>
-    <ul class="test-category">
-      <li><a href="tests/level-12/level-tests/test1/index.html" class="test-link">Level 12 Test 1</a></li>
-      <li><a href="tests/level-12/level-tests/test2/index.html" class="test-link">Level 12 Test 2</a></li>
-      <li><a href="tests/level-12/level-tests/test3/index.html" class="test-link">Level 12 Test 3</a></li>
-      <li><a href="tests/level-12/level-tests/test4/index.html" class="test-link">Level 12 Test 4</a></li>
-    </ul>
-  </section>
-</div>
-
- 
-<button class="accordion">보충 Pillar Tests</button>
-<div class="panel">
-  <div class="test-category">
-    <h3>Pillar Tests Level 1</h3>
-    <ul class="test-subcategory">
-      <li><a href="tests/level-1/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-      <li><a href="tests/level-1/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-      <li><a href="tests/level-1/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-      <li><a href="tests/level-1/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-      <li><a href="tests/level-1/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-      <li><a href="tests/level-1/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-    </ul>
+  <!-- 📌 Placement Tests -->
+  <button class="accordion">Placement Tests</button>
+  <div class="panel">
+    <section id="placement">
+      <div class="test-category">
+        <h3>Levels 1–4</h3>
+        <ul class="test-subcategory">
+          <li><a href="tests/level-1/placement/index.html" class="test-link">L1 Placement</a></li>
+          <li><a href="tests/level-2/placement/index.html" class="test-link">L2 Placement</a></li>
+          <li><a href="tests/level-3/placement/index.html" class="test-link">L3 Placement</a></li>
+          <li><a href="tests/level-4/placement/index.html" class="test-link">L4 Placement</a></li>
+        </ul>
+      </div>
+      <div class="test-category">
+        <h3>Levels 5–8</h3>
+        <ul class="test-subcategory">
+          <li><a href="tests/level-5/placement/index.html" class="test-link">L5 Placement</a></li>
+          <li><a href="tests/level-6/placement/index.html" class="test-link">L6 Placement</a></li>
+          <li><a href="tests/level-7/placement/index.html" class="test-link">L7 Placement</a></li>
+          <li><a href="tests/level-8/placement/index.html" class="test-link">L8 Placement</a></li>
+        </ul>
+      </div>
+      <div class="test-category">
+        <h3>Levels 9–12</h3>
+        <ul class="test-subcategory">
+          <li><a href="tests/level-9/placement/index.html" class="test-link">L9 Placement</a></li>
+          <li><a href="tests/level-10/placement/index.html" class="test-link">L10 Placement</a></li>
+          <li><a href="tests/level-11/placement/index.html" class="test-link">L11 Placement</a></li>
+          <li><a href="tests/level-12/placement/index.html" class="test-link">L12 Placement</a></li>
+        </ul>
+      </div>
+    </section>
   </div>
 
-  <div class="test-category">
-    <h3>Pillar Tests Level 2</h3>
-    <ul class="test-subcategory">
-      <li><a href="tests/level-2/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-      <li><a href="tests/level-2/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-      <li><a href="tests/level-2/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-      <li><a href="tests/level-2/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-      <li><a href="tests/level-2/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-      <li><a href="tests/level-2/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-    </ul>
+  <!-- 📌 수강생 Level Tests -->
+  <button class="accordion">수강생 Level Tests</button>
+  <div class="panel">
+    <section id="tests">
+      <div class="test-category">
+        <h3>Levels 1–4</h3>
+        <ul class="test-subcategory">
+          <li><a href="tests/level-1/level-tests/test1/index.html" class="test-link">L1 T1</a></li>
+          <li><a href="tests/level-1/level-tests/test2/index.html" class="test-link">L1 T2</a></li>
+          <li><a href="tests/level-1/level-tests/test3/index.html" class="test-link">L1 T3</a></li>
+          <li><a href="tests/level-1/level-tests/test4/index.html" class="test-link">L1 T4</a></li>
+          <!-- repeat L2–L4 as needed -->
+        </ul>
+      </div>
+      <div class="test-category">
+        <h3>Levels 5–8</h3>
+        <ul class="test-subcategory">
+          <!-- repeat L5–L8 -->
+        </ul>
+      </div>
+      <div class="test-category">
+        <h3>Levels 9–12</h3>
+        <ul class="test-subcategory">
+          <!-- repeat L9–L12 -->
+        </ul>
+      </div>
+    </section>
   </div>
 
-  <div class="test-category">
-    <h3>Pillar Tests Level 3</h3>
-    <ul class="test-subcategory">
-      <li><a href="tests/level-3/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-      <li><a href="tests/level-3/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-      <li><a href="tests/level-3/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-      <li><a href="tests/level-3/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-      <li><a href="tests/level-3/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-      <li><a href="tests/level-3/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-    </ul>
+  <!-- 📌 보충 Pillar Tests -->
+  <button class="accordion">보충 Pillar Tests</button>
+  <div class="panel">
+    <section id="pillars">
+      <div class="test-category">
+        <h3>Levels 1–4</h3>
+        <ul class="test-subcategory">
+          <li><a href="tests/level-1/pillar-tests/Vocabulary/index.html" class="test-link">L1 Vocab</a></li>
+          <li><a href="tests/level-1/pillar-tests/Grammar/index.html" class="test-link">L1 Grammar</a></li>
+          <li><a href="tests/level-1/pillar-tests/Listening/index.html" class="test-link">L1 Listening</a></li>
+          <li><a href="tests/level-1/pillar-tests/Speaking/index.html" class="test-link">L1 Speaking</a></li>
+          <li><a href="tests/level-1/pillar-tests/Reading/index.html" class="test-link">L1 Reading</a></li>
+          <li><a href="tests/level-1/pillar-tests/Writing/index.html" class="test-link">L1 Writing</a></li>
+          <!-- repeat L2–L4 -->
+        </ul>
+      </div>
+      <div class="test-category">
+        <h3>Levels 5–8</h3>
+        <ul class="test-subcategory">
+          <!-- repeat L5–L8 -->
+        </ul>
+      </div>
+      <div class="test-category">
+        <h3>Levels 9–12</h3>
+        <ul class="test-subcategory">
+          <!-- repeat L9–L12 -->
+        </ul>
+      </div>
+    </section>
   </div>
 
-  <div class="test-category">
-    <h3>Pillar Tests Level 4</h3>
-    <ul class="test-subcategory">
-      <li><a href="tests/level-4/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-      <li><a href="tests/level-4/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-      <li><a href="tests/level-4/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-      <li><a href="tests/level-4/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-      <li><a href="tests/level-4/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-      <li><a href="tests/level-4/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-    </ul>
-  </div>
+  <!-- 📌 Accordion Script -->
+  <script>
+    const acc = document.querySelectorAll(".accordion");
+    acc.forEach(btn => {
+      btn.addEventListener("click", function () {
+        this.classList.toggle("active");
+        const panel = this.nextElementSibling;
+        panel.style.display = (panel.style.display === "block") ? "none" : "block";
+      });
+    });
+  </script>
 
-  <div class="test-category">
-    <h3>Pillar Tests Level 5</h3>
-    <ul class="test-subcategory">
-      <li><a href="tests/level-5/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-      <li><a href="tests/level-5/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-      <li><a href="tests/level-5/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-      <li><a href="tests/level-5/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-      <li><a href="tests/level-5/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-      <li><a href="tests/level-5/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-    </ul>
-  </div>
-
-  <div class="test-category">
-    <h3>Pillar Tests Level 6</h3>
-    <ul class="test-subcategory">
-      <li><a href="tests/level-6/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-      <li><a href="tests/level-6/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-      <li><a href="tests/level-6/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-      <li><a href="tests/level-6/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-      <li><a href="tests/level-6/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-      <li><a href="tests/level-6/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-    </ul>
-  </div>
-
-  <div class="test-category">
-    <h3>Pillar Tests Level 7</h3>
-    <ul class="test-subcategory">
-      <li><a href="tests/level-7/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-      <li><a href="tests/level-7/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-      <li><a href="tests/level-7/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-      <li><a href="tests/level-7/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-      <li><a href="tests/level-7/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-      <li><a href="tests/level-7/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-    </ul>
-  </div>
-
-  <div class="test-category">
-    <h3>Pillar Tests Level 8</h3>
-    <ul class="test-subcategory">
-      <li><a href="tests/level-8/pillar-tests/Vocabulary/index.html" class="test-link">Vocabulary Test</a></li>
-      <li><a href="tests/level-8/pillar-tests/Grammar/index.html" class="test-link">Grammar Test</a></li>
-      <li><a href="tests/level-8/pillar-tests/Listening/index.html" class="test-link">Listening Test</a></li>
-      <li><a href="tests/level-8/pillar-tests/Speaking/index.html" class="test-link">Speaking Test</a></li>
-      <li><a href="tests/level-8/pillar-tests/Reading/index.html" class="test-link">Reading Test</a></li>
-      <li><a href="tests/level-8/pillar-tests/Writing/index.html" class="test-link">Writing Test</a></li>
-    </ul>
-  </div>
-</div>
-
-<script>
-// Accordion functionality
-var acc = document.getElementsByClassName("accordion");
-for (var i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
-  });
-}
-</script>
-
-
-<button class="accordion">강의노트</button>
-<div class="panel">
-  <ul>
-    <li>UPS Phonics (발음)</li>
-    <li>Grammar Comprehension</li>
-    <li>Listening Comprehension</li>
-    <li>Speaking Comprehension</li>
-    <li>Reading Comprehension</li>
-    <li>Vocabulary Studies</li>
-    <li>Writing Comprehension</li>
-    <li>Pops English</li>
-    <li>Movie English</li>
-  </ul>
-</div>
-
- 
-<button class="accordion">참고자료</button>
-<div class="panel">
-  <ul>
-    <li>판매중인 교재</li>
-    <li>예약판매중인 교재</li>
-    <li><a href="중1 동사구 모음.pdf" class="pdf-button" target="_blank" download>중1 동사구 모음.pdf</a></li>
-    <li><a href="중2 동사구 모음.pdf" class="pdf-button" target="_blank" download>중2 동사구 모음.pdf</a></li>
-    <li><a href="중2 영어 공통문법.pdf" class="pdf-button" target="_blank" download>중2 영어 공통문법.pdf</a></li>
-    <li><a href="중3 동사구 모음.pdf" class="pdf-button" target="_blank" download>중3 동사구 모음.pdf</a></li>
-    <li><a href="중3 영어 공통문법.pdf" class="pdf-button" target="_blank" download>중3 영어 공통문법.pdf</a></li>
-  </ul>
-</div>
-
-<footer>
-  <p>&copy; 2025 0579 Academy. All rights reserved.</p>
-</footer>
-
-</div>
-
-<script>
-const acc = document.querySelectorAll(".accordion");
-acc.forEach(btn => {
-  btn.addEventListener("click", function() {
-    this.classList.toggle("active");
-    let panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
-  });
-});
-</script>
 </body>
 </html>
