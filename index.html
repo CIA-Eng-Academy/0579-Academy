@@ -7,69 +7,10 @@
 
   <!-- 📌 CSS -->
   <style>
-    /* Accordion buttons */
-    .accordion {
-      cursor: pointer;
-      padding: 14px;
-      width: 100%;
-      text-align: left;
-      border: none;
-      outline: none;
-      transition: 0.3s;
-      font-size: 1.1em;
-      font-weight: bold;
-      background: #f7f7f7;
-      margin: 4px 0;
-      border-radius: 6px;
-    }
-    .accordion.active, .accordion:hover {
-      background: #e0e0e0;
-    }
-
-    /* Accordion panels */
-    .panel {
-      padding: 0 14px;
-      display: none;
-      overflow: hidden;
-      background: #fafafa;
-      border-radius: 6px;
-      margin-bottom: 8px;
-    }
-
-    /* Grid for test links */
-    .test-subcategory {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 6px 12px;
-      list-style-type: none;
-      padding-left: 0;
-    }
-
-    .test-link {
-      display: block;
-      padding: 6px 10px;
-      background: #f0f0f0;
-      border-radius: 6px;
-      text-align: center;
-      text-decoration: none;
-      font-size: 0.9em;
-      transition: background 0.2s;
-    }
-    .test-link:hover {
-      background: #dcdcdc;
-    }
-
-    .test-category h3 {
-      margin: 10px 0 6px;
-      font-size: 1em;
-      font-weight: bold;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      .test-subcategory {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
     }
 
     /* Ticker */
@@ -89,6 +30,93 @@
       0% { transform: translateX(0); }
       100% { transform: translateX(-100%); }
     }
+
+    /* Accordion buttons */
+    .accordion {
+      cursor: pointer;
+      padding: 14px;
+      width: 100%;
+      text-align: left;
+      border: none;
+      outline: none;
+      transition: 0.3s;
+      font-size: 1.1em;
+      font-weight: bold;
+      background: royalblue;
+      color: white;
+      margin: 4px 0;
+      border-radius: 6px;
+    }
+    .accordion.active, .accordion:hover {
+      background: #1d4ed8;
+    }
+
+    /* Accordion panels */
+    .panel {
+      padding: 10px 14px;
+      display: none;
+      overflow: hidden;
+      background: #ffffff;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      border: 1px solid #ddd;
+    }
+
+    /* Grid for test links */
+    .test-subcategory {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 8px 12px;
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .test-link {
+      display: block;
+      padding: 8px 10px;
+      background: #e0e7ff;
+      color: royalblue;
+      border-radius: 6px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 0.9em;
+      font-weight: bold;
+      transition: background 0.2s, color 0.2s;
+    }
+    .test-link:hover {
+      background: royalblue;
+      color: white;
+    }
+
+    /* PDF buttons */
+    .pdf-button {
+      display: inline-block;
+      background: green;
+      color: white;
+      padding: 6px 12px;
+      margin-top: 8px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.85em;
+    }
+    .pdf-button:hover {
+      background: darkgreen;
+    }
+
+    .test-category h3 {
+      margin: 10px 0 6px;
+      font-size: 1em;
+      font-weight: bold;
+      color: royalblue;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .test-subcategory {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      }
+    }
   </style>
 </head>
 <body>
@@ -104,6 +132,7 @@
   <button class="accordion">Placement Tests</button>
   <div class="panel">
     <section id="placement">
+      <!-- Levels 1–4 -->
       <div class="test-category">
         <h3>Levels 1–4</h3>
         <ul class="test-subcategory">
@@ -113,6 +142,7 @@
           <li><a href="tests/level-4/placement/index.html" class="test-link">L4 Placement</a></li>
         </ul>
       </div>
+      <!-- Levels 5–8 -->
       <div class="test-category">
         <h3>Levels 5–8</h3>
         <ul class="test-subcategory">
@@ -122,6 +152,7 @@
           <li><a href="tests/level-8/placement/index.html" class="test-link">L8 Placement</a></li>
         </ul>
       </div>
+      <!-- Levels 9–12 -->
       <div class="test-category">
         <h3>Levels 9–12</h3>
         <ul class="test-subcategory">
@@ -138,6 +169,7 @@
   <button class="accordion">수강생 Level Tests</button>
   <div class="panel">
     <section id="tests">
+      <!-- Levels 1–4 -->
       <div class="test-category">
         <h3>Levels 1–4</h3>
         <ul class="test-subcategory">
@@ -145,19 +177,28 @@
           <li><a href="tests/level-1/level-tests/test2/index.html" class="test-link">L1 T2</a></li>
           <li><a href="tests/level-1/level-tests/test3/index.html" class="test-link">L1 T3</a></li>
           <li><a href="tests/level-1/level-tests/test4/index.html" class="test-link">L1 T4</a></li>
-          <!-- repeat L2–L4 as needed -->
         </ul>
       </div>
+      <!-- Levels 5–8 -->
       <div class="test-category">
         <h3>Levels 5–8</h3>
         <ul class="test-subcategory">
-          <!-- repeat L5–L8 -->
+          <li><a href="#" class="test-link">L5 T1</a></li>
+          <li><a href="#" class="test-link">L5 T2</a></li>
+          <li><a href="#" class="test-link">L5 T3</a></li>
+          <li><a href="#" class="test-link">L5 T4</a></li>
+          <!-- repeat for L6–L8 -->
         </ul>
       </div>
+      <!-- Levels 9–12 -->
       <div class="test-category">
         <h3>Levels 9–12</h3>
         <ul class="test-subcategory">
-          <!-- repeat L9–L12 -->
+          <li><a href="#" class="test-link">L9 T1</a></li>
+          <li><a href="#" class="test-link">L9 T2</a></li>
+          <li><a href="#" class="test-link">L9 T3</a></li>
+          <li><a href="#" class="test-link">L9 T4</a></li>
+          <!-- repeat for L10–L12 -->
         </ul>
       </div>
     </section>
@@ -167,6 +208,7 @@
   <button class="accordion">보충 Pillar Tests</button>
   <div class="panel">
     <section id="pillars">
+      <!-- Levels 1–4 -->
       <div class="test-category">
         <h3>Levels 1–4</h3>
         <ul class="test-subcategory">
@@ -176,19 +218,32 @@
           <li><a href="tests/level-1/pillar-tests/Speaking/index.html" class="test-link">L1 Speaking</a></li>
           <li><a href="tests/level-1/pillar-tests/Reading/index.html" class="test-link">L1 Reading</a></li>
           <li><a href="tests/level-1/pillar-tests/Writing/index.html" class="test-link">L1 Writing</a></li>
-          <!-- repeat L2–L4 -->
         </ul>
       </div>
+      <!-- Levels 5–8 -->
       <div class="test-category">
         <h3>Levels 5–8</h3>
         <ul class="test-subcategory">
-          <!-- repeat L5–L8 -->
+          <li><a href="#" class="test-link">L5 Vocab</a></li>
+          <li><a href="#" class="test-link">L5 Grammar</a></li>
+          <li><a href="#" class="test-link">L5 Listening</a></li>
+          <li><a href="#" class="test-link">L5 Speaking</a></li>
+          <li><a href="#" class="test-link">L5 Reading</a></li>
+          <li><a href="#" class="test-link">L5 Writing</a></li>
+          <!-- repeat for L6–L8 -->
         </ul>
       </div>
+      <!-- Levels 9–12 -->
       <div class="test-category">
         <h3>Levels 9–12</h3>
         <ul class="test-subcategory">
-          <!-- repeat L9–L12 -->
+          <li><a href="#" class="test-link">L9 Vocab</a></li>
+          <li><a href="#" class="test-link">L9 Grammar</a></li>
+          <li><a href="#" class="test-link">L9 Listening</a></li>
+          <li><a href="#" class="test-link">L9 Speaking</a></li>
+          <li><a href="#" class="test-link">L9 Reading</a></li>
+          <li><a href="#" class="test-link">L9 Writing</a></li>
+          <!-- repeat for L10–L12 -->
         </ul>
       </div>
     </section>
