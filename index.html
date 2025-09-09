@@ -311,8 +311,7 @@ AI 활용 스마트폰 영어학습법
 <button class="accordion">보충 Pillar Tests</button>
 <div class="panel">
   <section id="pillars">
-
-    <div class="pillar-grid">
+    <div class="pillar-grid-3rows">
 
       <!-- Levels 1–4 -->
       <div class="level-header">Level 1</div>
@@ -357,12 +356,11 @@ AI 활용 스마트폰 영어학습법
         <a href="tests/level-4/pillar-tests/Writing/index.html" class="test-link">Writing</a>
       </div>
 
-      <!-- Levels 5–8 -->
+      <!-- Repeat same structure for Levels 5–8 and 9–12 -->
       <div class="level-header">Level 5</div>
       <div class="level-header">Level 6</div>
       <div class="level-header">Level 7</div>
       <div class="level-header">Level 8</div>
-
       <div class="test-row">
         <a href="tests/level-5/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
         <a href="tests/level-6/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
@@ -400,12 +398,10 @@ AI 활용 스마트폰 영어학습법
         <a href="tests/level-8/pillar-tests/Writing/index.html" class="test-link">Writing</a>
       </div>
 
-      <!-- Levels 9–12 -->
       <div class="level-header">Level 9</div>
       <div class="level-header">Level 10</div>
       <div class="level-header">Level 11</div>
       <div class="level-header">Level 12</div>
-
       <div class="test-row">
         <a href="tests/level-9/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
         <a href="tests/level-10/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
@@ -448,11 +444,11 @@ AI 활용 스마트폰 영어학습법
 </div>
 
 <style>
-.pillar-grid {
+.pillar-grid-3rows {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 8px;
   text-align: center;
-  gap: 5px;
 }
 
 .level-header {
@@ -465,6 +461,7 @@ AI 활용 스마트폰 영어학습법
   display: flex;
   justify-content: center;
   gap: 5px;
+  flex-wrap: wrap;
   margin-bottom: 4px;
 }
 
@@ -488,6 +485,14 @@ AI 활용 스마트폰 영어학습법
 @keyframes flash {
   0% { opacity: 1; }
   100% { opacity: 0.5; }
+}
+
+/* Responsive */
+@media(max-width:480px){
+  .pillar-grid-3rows {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  }
+  .test-link { font-size: 0.7em; padding: 2px 4px; }
 }
 </style>
 
