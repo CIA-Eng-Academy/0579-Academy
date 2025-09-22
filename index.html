@@ -497,14 +497,9 @@ h3 { font-weight: bold; margin-bottom: 6px; color: royalblue; }
         <a href="tests/level-12/pillar-tests/Speaking/index.html" class="test-link">Speaking</a>
         <a href="tests/level-12/pillar-tests/Reading/index.html" class="test-link">Reading</a>
         <a href="tests/level-12/pillar-tests/Writing/index.html" class="test-link">Writing</a>
-      </div>
-    </div>
+      </div> 
 
-  </section>
-</div>
-
-
-/* ===== Test Links & Grids ===== */
+/* ===== Tests Grid (Placement & Pillar) ===== */
 .test-container, .pillar-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -512,25 +507,28 @@ h3 { font-weight: bold; margin-bottom: 6px; color: royalblue; }
   text-align: center;
 }
 
-.level-block, .test-category {
+.test-category, .level-block {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.level-header {
+.level-header, h3 {
   font-weight: bold;
   font-size: 0.85em;
   margin-bottom: 6px;
   padding: 4px 0;
+  color: royalblue;
 }
 
-.test-row {
+.test-row, .test-subcategory {
   display: flex;
   justify-content: center;
   gap: 5px;
   flex-wrap: wrap;
-  margin-bottom: 4px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 4px 0;
 }
 
 .test-link {
@@ -555,25 +553,22 @@ h3 { font-weight: bold; margin-bottom: 6px; color: royalblue; }
   100% { opacity: 0.5; }
 }
 
-/* Optional 3-row variant for pillar grids */
+/* Optional 3-row pillar variant */
 .pillar-grid-3rows {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
   gap: 8px;
-  text-align: center;
 }
 
 /* ===== Responsive ===== */
 @media(max-width:768px){
-  .test-container, .pillar-grid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  }
-  .test-link { font-size: 0.7em; padding: 2px 4px; }
+  .test-container, .pillar-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
+  .test-link { font-size:0.7em; padding:2px 4px; }
 }
 
 @media(max-width:480px){
-  .test-container, .pillar-grid, .pillar-grid-3rows {
-    grid-template-columns: repeat(auto-fit, minmax(60-80px, 1fr));
-  }
-  .test-link { font-size: 0.7em; padding: 2px 4px; }
+  .test-container, .pillar-grid, .pillar-grid-3rows { grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); }
+  .test-link { font-size:0.7em; padding:2px 4px; }
+}
+
 }
