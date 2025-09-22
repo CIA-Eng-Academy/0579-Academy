@@ -237,16 +237,15 @@ updateSlider();
   </section>
 </div>
 
-<style>
-.level-grid {
+/* ===== Test Links & Grids ===== */
+.test-container, .pillar-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px 10px;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
   text-align: center;
-  margin-top: 10px;
 }
 
-.level-block {
+.level-block, .test-category {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -255,13 +254,15 @@ updateSlider();
 .level-header {
   font-weight: bold;
   font-size: 0.85em;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  padding: 4px 0;
 }
 
 .test-row {
   display: flex;
   justify-content: center;
   gap: 5px;
+  flex-wrap: wrap;
 }
 
 .test-link {
@@ -272,7 +273,7 @@ updateSlider();
   border-radius: 4px;
   text-decoration: none;
   color: #333;
-  transition: 0.3s;
+  transition: background 0.3s, color 0.3s;
 }
 
 .test-link:hover {
@@ -285,7 +286,20 @@ updateSlider();
   0% { opacity: 1; }
   100% { opacity: 0.5; }
 }
-</style>
+
+/* ===== Responsive ===== */
+@media(max-width:768px){
+  .test-container, .pillar-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+  .test-link { font-size: 0.7em; padding: 2px 4px; }
+}
+@media(max-width:480px){
+  .test-container, .pillar-grid {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  }
+}
+
 
 <!-- 📌 보충 Pillar Tests -->
 <button class="accordion">보충 Pillar Tests</button>
