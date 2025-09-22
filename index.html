@@ -1,177 +1,579 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test App</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>0579 Academy</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      color: #333;
+    :root{
+      --blue-main: #2f6ef7;    /* header main */
+      --blue-strong: #054f9a;  /* darker */
+      --blue-mid: #2a66df;
+      --blue-light: #6f9dfc;
+      --accent-red: #ff3b30;
+      --bg: #ffffff;
+      --text: #111;
+      --muted: #666;
     }
 
-    /* 🔴 Ticker */
+    /* Reset / base */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Arial',sans-serif;
+      background: #fff;
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* page container (centered on larger screens) */
+    .page {
+      max-width:920px;
+      margin:14px auto;
+      padding:0 12px 40px;
+    }
+
+    /* header box */
+    .site-header{
+      background:var(--blue-main);
+      color:white;
+      border-radius:12px;
+      padding:34px 18px;
+      text-align:center;
+      box-shadow: 0 6px 18px rgba(47,110,247,0.08);
+    }
+    .site-header h1{
+      margin:0;
+      font-size:2.4rem;
+      font-weight:800;
+      letter-spacing:0.6px;
+    }
+    .site-header p { margin:8px 0 0; opacity:0.95; }
+
+    /* small announcement pill inside header */
+    .header-ann {
+      display:inline-block;
+      margin-top:18px;
+      background: linear-gradient(180deg,var(--blue-mid),var(--blue-main));
+      color:#fff;
+      padding:10px 16px;
+      border-radius:10px;
+      font-weight:700;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+      font-size:1rem;
+    }
+
+    /* login row (black buttons) - below header and above ticker per screenshot */
+    .login-row{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      align-items:center;
+      margin:20px 0 8px;
+      flex-wrap:wrap;
+    }
+    .login-btn{
+      background:#111;
+      color:#fff;
+      border-radius:10px;
+      padding:12px 18px;
+      font-weight:700;
+      border:0;
+      cursor:pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+      transition: transform .12s, opacity .12s;
+    }
+    .login-btn:active{ transform: translateY(1px) }
+    .login-btn:hover{ opacity:0.92 }
+
+    /* ticker */
     .ticker {
-      background: red;
-      color: white;
-      padding: 10px;
-      white-space: nowrap;
-      overflow: hidden;
-      position: relative;
+      background: var(--accent-red);
+      color:#fff;
+      padding:10px 12px;
+      border-radius:8px;
+      overflow:hidden;
+      margin:10px 0 18px;
+      position:relative;
+      box-shadow: 0 4px 10px rgba(255,59,48,0.08);
     }
-    .ticker span {
-      display: inline-block;
-      padding-left: 100%;
-      animation: ticker 12s linear infinite;
+    .ticker__wrap{ display:block; white-space:nowrap; }
+    .ticker__text{
+      display:inline-block;
+      padding-left:100%;
+      animation: tickerAnim 12s linear infinite;
+      font-weight:700;
     }
-    @keyframes ticker {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
-
-    /* 🔵 Shared button style */
-    .blue-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #007bff;
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: background 0.3s;
-      cursor: pointer;
-    }
-    .blue-btn:hover {
-      background: #0056b3;
+    @keyframes tickerAnim {
+      0%{ transform: translateX(0); }
+      100%{ transform: translateX(-100%); }
     }
 
-    /* 🔵 Test grid */
-    .test-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-      gap: 15px;
-      padding: 20px;
+    /* big stacked menu buttons (like screenshot) */
+    .menu-list{ margin-top:6px; }
+    .big-btn {
+      display:flex;
+      align-items:center;
+      width:100%;
+      text-align:left;
+      justify-content:flex-start;
+      gap:12px;
+      padding:18px 20px;
+      margin:10px 0;
+      border-radius:10px;
+      color:#fff;
+      font-weight:800;
+      font-size:1.1rem;
+      border:0;
+      cursor:pointer;
+      box-shadow: 0 6px 10px rgba(47,110,247,0.08);
+      transition: transform .08s, background .18s;
     }
+    .big-btn:hover{ transform: translateY(-2px) }
+
+    /* different blue shades so the stacked blocks have slightly varied tones */
+    .big-btn.primary{ background: var(--blue-mid); }
+    .big-btn.bright{ background: var(--blue-main); }
+    .big-btn.dark{ background: var(--blue-strong); }
+    .big-btn.light{ background: var(--blue-light); color:#fff; opacity:0.98; }
+    .big-btn.inverse{ background:#fff; color:var(--blue-mid); border:1px solid rgba(47,110,247,0.08) }
+
+    /* Make accordion headers appear like big-btns */
+    .accordion { margin:0; }
+    .panel {
+      overflow:hidden;
+      max-height:0;
+      transition: max-height .36s ease, padding .28s ease;
+      background:transparent;
+      padding:0 0;
+    }
+    .panel .panel-inner {
+      padding:14px 0 6px;
+      background:transparent;
+    }
+
+    /* small link buttons inside panels */
+    .link-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fill,minmax(120px,1fr));
+      gap:10px;
+      align-items:stretch;
+    }
+    .link-grid a {
+      display:block;
+      padding:10px 12px;
+      border-radius:8px;
+      text-decoration:none;
+      background:#ffffff;
+      border:1px solid rgba(0,0,0,0.05);
+      color:var(--text);
+      font-weight:700;
+      text-align:center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      transition: background .18s, transform .12s;
+      font-size:.95rem;
+    }
+    .link-grid a:hover { background:#ffd700; transform: translateY(-2px) }
+
+    /* small caption under header (About) */
+    #about-0579 { margin: 18px 0 8px; text-align:left; }
+    #about-0579 h2 { color:var(--blue-mid); margin:12px 0; font-size:1.25rem; }
+    #about-0579 p { margin:0; color:var(--muted); line-height:1.5rem; }
+
+    /* level-grid for the detailed 12 levels if opened */
+    .level-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit,minmax(130px,1fr));
+      gap:12px;
+      margin-top:8px;
+    }
+    .level-block{
+      background: #f7f9ff;
+      border-radius:8px;
+      padding:8px;
+      text-align:center;
+    }
+    .level-header{ font-weight:800; margin-bottom:6px; color:var(--blue-strong); }
+    .test-row{ display:flex; gap:6px; justify-content:center; flex-wrap:wrap; }
+
+    /* small pill test links inside */
     .test-link {
-      height: 100px;
+      background:#f0f0f0;
+      padding:6px 8px;
+      border-radius:6px;
+      color:#222;
+      text-decoration:none;
+      font-weight:700;
+      font-size:.85rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
     }
+    .test-link:hover{ background:#ffd700; color:#000; }
 
-    /* 📂 Accordion */
-    .accordion {
-      margin: 20px;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      background: #fff;
-    }
-    .accordion-header {
-      padding: 20px;
-      margin: 0;
-      font-size: 16px;
-    }
-    .accordion-content {
-      display: none;
-      padding: 15px;
-      background: #fff;
-    }
-    .accordion.active .accordion-content {
-      display: block;
-    }
+    /* footer spacing */
+    .bottom-space { height:40px }
 
-    /* 📦 Pillar grids */
-    .pillar-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-      gap: 15px;
-      padding: 20px;
-    }
-    .pillar-item {
-      height: 100px;
-    }
-
-    /* ⚫ Login buttons */
-    .login-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding: 20px;
-    }
-    .login-btn {
-      background: #000;
-      color: #fff;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: opacity 0.3s;
-    }
-    .login-btn:hover {
-      opacity: 0.8;
+    /* small responsive tweaks */
+    @media (max-width:520px){
+      .site-header h1 { font-size:1.9rem; }
+      .header-ann { font-size:0.95rem; padding:8px 12px }
+      .login-row{ gap:8px }
+      .big-btn{ font-size:1rem; padding:14px 16px }
+      .link-grid{ grid-template-columns: repeat(auto-fill,minmax(100px,1fr)) }
     }
   </style>
 </head>
 <body>
+  <div class="page">
 
-  <!-- 🔴 Top ticker -->
-  <div class="ticker"><span>📢 Welcome to the Test App! Stay tuned for updates and announcements.</span></div>
-
-  <!-- 🔵 Test Grid -->
-  <div class="test-grid">
-    <a href="#" class="test-link blue-btn">Test 1</a>
-    <a href="#" class="test-link blue-btn">Test 2</a>
-    <a href="#" class="test-link blue-btn">Test 3</a>
-    <a href="#" class="test-link blue-btn">Test 4</a>
-  </div>
-
-  <!-- 📂 Accordions -->
-  <div class="accordion">
-    <div class="accordion-header blue-btn">Placement Tests</div>
-    <div class="accordion-content">
-      <div class="test-grid">
-        <a href="#" class="test-link blue-btn">Placement 1</a>
-        <a href="#" class="test-link blue-btn">Placement 2</a>
-      </div>
+    <!-- Header -->
+    <div class="site-header" role="banner">
+      <h1>0579 Academy</h1>
+      <p>\"영어친구 학원에 오신 것을 환영합니다.\"</p>
+      <div class="header-ann">0579 아카데미 공지사항 : Chatgpt 개정과 구글 이메일</div>
     </div>
-  </div>
 
-  <div class="accordion">
-    <div class="accordion-header blue-btn">Level Tests</div>
-    <div class="accordion-content">
-      <div class="test-grid">
-        <a href="#" class="test-link blue-btn">Level 1</a>
-        <a href="#" class="test-link blue-btn">Level 2</a>
-        <a href="#" class="test-link blue-btn">Level 3</a>
-      </div>
+    <!-- login buttons row (black) -->
+    <div class="login-row" aria-hidden="false" style="margin-top:18px;">
+      <button class="login-btn" onclick="location.href='#'">Member Login</button>
+      <button class="login-btn" onclick="location.href='#'">새회원 등록 신청</button>
+      <button class="login-btn" onclick="location.href='#'">Teacher Login</button>
     </div>
-  </div>
 
-  <!-- 📦 Pillar Grids -->
-  <div class="pillar-grid">
-    <a href="#" class="pillar-item blue-btn">Pillar 1</a>
-    <a href="#" class="pillar-item blue-btn">Pillar 2</a>
-    <a href="#" class="pillar-item blue-btn">Pillar 3</a>
-  </div>
+    <!-- hacker log placeholder (kept from your original) -->
+    <div id="hackerLog" aria-hidden="true" style="display:none"></div>
 
-  <!-- ⚫ Login Buttons -->
-  <div class="login-buttons">
-    <button class="login-btn">Login with Google</button>
-    <button class="login-btn">Login with Facebook</button>
-  </div>
+    <!-- ticker -->
+    <div class="ticker" role="status" aria-live="polite">
+      <span class="ticker__wrap"><span class="ticker__text">CNN Breaking News Feed : The hidden alien group — 공지사항: 휴대폰 문자 수강신청 010-4733-0579 | 개강: 인공지능 활용 자기주도학습법 총 12회, 2시간 수업 총 3개월 완성</span></span>
+    </div>
+
+    <!-- about -->
+    <section id="about-0579">
+      <h2>About 0579</h2>
+      <p><strong>0579 — English Friend Academy</strong><br>
+      0579 Academy helps students become self-motivated English learners for daily life, academics, and career success.</p>
+    </section>
+
+    <!-- MAIN MENU — stacked big buttons that open panels where needed -->
+    <div class="menu-list" aria-hidden="false">
+
+      <!-- Big button that is a link -->
+      <button class="big-btn bright" onclick="location.href='#course-register'">0579 아카데미 수강신청</button>
+
+      <button class="big-btn primary" onclick="location.href='#timetable'">강의 시간표</button>
+
+      <!-- This one opens your "학생 규정 및 환불규정" panel -->
+      <div class="accordion">
+        <button class="big-btn light" data-toggle="panel">학생 규정 및 환불규정</button>
+        <div class="panel" aria-hidden="true">
+          <div class="panel-inner">
+            <ol style="margin:6px 0 0; padding-left:18px; color:var(--muted)">
+              <li>강의 및 학습이 어려운 경우, 즉시 귀가조치</li>
+              <li>단정한 복장 착용과 예의바른 언어사용</li>
+              <li>단순 변심으로 인한 수업 중단 시 환불 규정 적용</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Placement Tests (accordion with grid of level groups) -->
+      <div class="accordion">
+        <button class="big-btn primary" data-toggle="panel">Placement Tests</button>
+        <div class="panel" aria-hidden="true">
+          <div class="panel-inner">
+
+            <!-- replicate your 3 columns (Levels 1–4, 5–8, 9–12) -->
+            <div class="link-grid" style="grid-template-columns:repeat(3,1fr);">
+              <div style="padding:8px">
+                <strong style="display:block;margin-bottom:6px;color:var(--blue-strong)">Levels 1–4</strong>
+                <a class="test-link" href="tests/level-1/placement/index.html">L1 Placement</a><br><br>
+                <a class="test-link" href="tests/level-2/placement/index.html">L2 Placement</a><br><br>
+                <a class="test-link" href="tests/level-3/placement/index.html">L3 Placement</a><br><br>
+                <a class="test-link" href="tests/level-4/placement/index.html">L4 Placement</a>
+              </div>
+
+              <div style="padding:8px">
+                <strong style="display:block;margin-bottom:6px;color:var(--blue-strong)">Levels 5–8</strong>
+                <a class="test-link" href="tests/level-5/placement/index.html">L5 Placement</a><br><br>
+                <a class="test-link" href="tests/level-6/placement/index.html">L6 Placement</a><br><br>
+                <a class="test-link" href="tests/level-7/placement/index.html">L7 Placement</a><br><br>
+                <a class="test-link" href="tests/level-8/placement/index.html">L8 Placement</a>
+              </div>
+
+              <div style="padding:8px">
+                <strong style="display:block;margin-bottom:6px;color:var(--blue-strong)">Levels 9–12</strong>
+                <a class="test-link" href="tests/level-9/placement/index.html">L9 Placement</a><br><br>
+                <a class="test-link" href="tests/level-10/placement/index.html">L10 Placement</a><br><br>
+                <a class="test-link" href="tests/level-11/placement/index.html">L11 Placement</a><br><br>
+                <a class="test-link" href="tests/level-12/placement/index.html">L12 Placement</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Level Tests (big dark blue button then panel with level-grid of T1-T4 links) -->
+      <div class="accordion">
+        <button class="big-btn dark" data-toggle="panel">수강생 Level Tests</button>
+        <div class="panel" aria-hidden="true">
+          <div class="panel-inner">
+            <div class="level-grid">
+              <!-- For brevity and clarity I include one sample block per level; preserve link pattern as original -->
+              <div class="level-block">
+                <div class="level-header">Level 1</div>
+                <div class="test-row">
+                  <a class="test-link" href="tests/level-1/level-tests/test1/index.html">T1</a>
+                  <a class="test-link" href="tests/level-1/level-tests/test2/index.html">T2</a>
+                  <a class="test-link" href="tests/level-1/level-tests/test3/index.html">T3</a>
+                  <a class="test-link" href="tests/level-1/level-tests/test4/index.html">T4</a>
+                </div>
+              </div>
+
+              <div class="level-block">
+                <div class="level-header">Level 2</div>
+                <div class="test-row">
+                  <a class="test-link" href="tests/level-2/level-tests/test1/index.html">T1</a>
+                  <a class="test-link" href="tests/level-2/level-tests/test2/index.html">T2</a>
+                  <a class="test-link" href="tests/level-2/level-tests/test3/index.html">T3</a>
+                  <a class="test-link" href="tests/level-2/level-tests/test4/index.html">T4</a>
+                </div>
+              </div>
+
+              <div class="level-block">
+                <div class="level-header">Level 3</div>
+                <div class="test-row">
+                  <a class="test-link" href="tests/level-3/level-tests/test1/index.html">T1</a>
+                  <a class="test-link" href="tests/level-3/level-tests/test2/index.html">T2</a>
+                  <a class="test-link" href="tests/level-3/level-tests/test3/index.html">T3</a>
+                  <a class="test-link" href="tests/level-3/level-tests/test4/index.html">T4</a>
+                </div>
+              </div>
+
+              <div class="level-block">
+                <div class="level-header">Level 4</div>
+                <div class="test-row">
+                  <a class="test-link" href="tests/level-4/level-tests/test1/index.html">T1</a>
+                  <a class="test-link" href="tests/level-4/level-tests/test2/index.html">T2</a>
+                  <a class="test-link" href="tests/level-4/level-tests/test3/index.html">T3</a>
+                  <a class="test-link" href="tests/level-4/level-tests/test4/index.html">T4</a>
+                </div>
+              </div>
+
+              <!-- Levels 5–8 -->
+              <div class="level-block">
+                <div class="level-header">Level 5</div>
+                <div class="test-row">
+                  <a class="test-link" href="tests/level-5/level-tests/test1/index.html">T1</a>
+                  <a class="test-link" href="tests/level-5/level-tests/test2/index.html">T2</a>
+                  <a class="test-link" href="tests/level-5/level-tests/test3/index.html">T3</a>
+                  <a class="test-link" href="tests/level-5/level-tests/test4/index.html">T4</a>
+                </div>
+              </div>
+
+              <div class="level-block">
+                <div class="level-header">Level 6</div>
+                <div class="test-row">
+                  <a class="test-link" href="tests/level-6/level-tests/test1/index.html">T1</a>
+                  <a class="test-link" href="tests/level-6/level-tests/test2/index.html">T2</a>
+                  <a class="test-link" href="tests/level-6/level-tests/test3/index.html">T3</a>
+                  <a class="test-link" href="tests/level-6/level-tests/test4/index.html">T4</a>
+                </div>
+              </div>
+
+              <div class="level-block">
+                <div class="level-header">Level 7</div>
+                <div class="test-row">
+                  <a class="test-link" href="tests/level-7/level-tests/test1/index.html">T1</a>
+                  <a class="test-link" href="tests/level-7/level-tests/test2/index.html">T2</a>
+                  <a class="test-link" href="tests/level-7/level-tests/test3/index.html">T3</a>
+                  <a class="test-link" href="tests/level-7/level-tests/test4/index.html">T4</a>
+                </div>
+              </div>
+
+              <div class="level-block">
+                <div class="level-header">Level 8</div>
+                <div class="test-row">
+                  <a class="test-link" href="tests/level-8/level-tests/test1/index.html">T1</a>
+                  <a class="test-link" href="tests/level-8/level-tests/test2/index.html">T2</a>
+                  <a class="test-link" href="tests/level-8/level-tests/test3/index.html">T3</a>
+                  <a class="test-link" href="tests/level-8/level-tests/test4/index.html">T4</a>
+                </div>
+              </div>
+
+              <!-- Levels 9–12 -->
+              <div class="level-block">
+                <div class="level-header">Level 9</div>
+                <div class="test-row">
+                  <a class="test-link" href="tests/level-9/level-tests/test1/index.html">T1</a>
+                  <a class="test-link" href="tests/level-9/level-tests/test2/index.html">T2</a>
+                  <a class="test-link" href="tests/level-9/level-tests/test3/index.html">T3</a>
+                  <a class="test-link" href="tests/level-9/level-tests/test4/index.html">T4</a>
+                </div>
+              </div>
+
+              <div class="level-block">
+                <div class="level-header">Level 10</div>
+                <div class="test-row">
+                  <a class="test-link" href="tests/level-10/level-tests/test1/index.html">T1</a>
+                  <a class="test-link" href="tests/level-10/level-tests/test2/index.html">T2</a>
+                  <a class="test-link" href="tests/level-10/level-tests/test3/index.html">T3</a>
+                  <a class="test-link" href="tests/level-10/level-tests/test4/index.html">T4</a>
+                </div>
+              </div>
+
+              <div class="level-block">
+                <div class="level-header">Level 11</div>
+                <div class="test-row">
+                  <a class="test-link" href="tests/level-11/level-tests/test1/index.html">T1</a>
+                  <a class="test-link" href="tests/level-11/level-tests/test2/index.html">T2</a>
+                  <a class="test-link" href="tests/level-11/level-tests/test3/index.html">T3</a>
+                  <a class="test-link" href="tests/level-11/level-tests/test4/index.html">T4</a>
+                </div>
+              </div>
+
+              <div class="level-block">
+                <div class="level-header">Level 12</div>
+                <div class="test-row">
+                  <a class="test-link" href="tests/level-12/level-tests/test1/index.html">T1</a>
+                  <a class="test-link" href="tests/level-12/level-tests/test2/index.html">T2</a>
+                  <a class="test-link" href="tests/level-12/level-tests/test3/index.html">T3</a>
+                  <a class="test-link" href="tests/level-12/level-tests/test4/index.html">T4</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar Tests -->
+      <div class="accordion">
+        <button class="big-btn primary" data-toggle="panel">보충 Pillar Tests</button>
+        <div class="panel" aria-hidden="true">
+          <div class="panel-inner">
+            <div style="margin:6px 0 0">
+              <!-- For each level, show Vocab | Grammar | Listening | Speaking | Reading | Writing -->
+              <div class="link-grid" style="grid-template-columns: repeat(auto-fill,minmax(120px,1fr));">
+                <!-- Level 1 -->
+                <div style="padding:8px">
+                  <strong style="display:block;margin-bottom:8px;color:var(--blue-strong)">Level 1</strong>
+                  <a href="tests/level-1/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a><br><br>
+                  <a href="tests/level-1/pillar-tests/Grammar/index.html" class="test-link">Grammar</a><br><br>
+                  <a href="tests/level-1/pillar-tests/Listening/index.html" class="test-link">Listening</a><br><br>
+                  <a href="tests/level-1/pillar-tests/Speaking/index.html" class="test-link">Speaking</a><br><br>
+                  <a href="tests/level-1/pillar-tests/Reading/index.html" class="test-link">Reading</a><br><br>
+                  <a href="tests/level-1/pillar-tests/Writing/index.html" class="test-link">Writing</a>
+                </div>
+
+                <!-- Level 2 -->
+                <div style="padding:8px">
+                  <strong style="display:block;margin-bottom:8px;color:var(--blue-strong)">Level 2</strong>
+                  <a href="tests/level-2/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a><br><br>
+                  <a href="tests/level-2/pillar-tests/Grammar/index.html" class="test-link">Grammar</a><br><br>
+                  <a href="tests/level-2/pillar-tests/Listening/index.html" class="test-link">Listening</a><br><br>
+                  <a href="tests/level-2/pillar-tests/Speaking/index.html" class="test-link">Speaking</a><br><br>
+                  <a href="tests/level-2/pillar-tests/Reading/index.html" class="test-link">Reading</a><br><br>
+                  <a href="tests/level-2/pillar-tests/Writing/index.html" class="test-link">Writing</a>
+                </div>
+
+                <!-- Level 3 -->
+                <div style="padding:8px">
+                  <strong style="display:block;margin-bottom:8px;color:var(--blue-strong)">Level 3</strong>
+                  <a href="tests/level-3/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a><br><br>
+                  <a href="tests/level-3/pillar-tests/Grammar/index.html" class="test-link">Grammar</a><br><br>
+                  <a href="tests/level-3/pillar-tests/Listening/index.html" class="test-link">Listening</a><br><br>
+                  <a href="tests/level-3/pillar-tests/Speaking/index.html" class="test-link">Speaking</a><br><br>
+                  <a href="tests/level-3/pillar-tests/Reading/index.html" class="test-link">Reading</a><br><br>
+                  <a href="tests/level-3/pillar-tests/Writing/index.html" class="test-link">Writing</a>
+                </div>
+
+                <!-- additional levels can be added similarly; for readability only some are expanded -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- class notes and self-study links (direct big buttons) -->
+      <button class="big-btn bright" onclick="location.href='#notes'">수강생 수업노트</button>
+      <button class="big-btn bright" onclick="location.href='#selfstudy'">자율 학습 사이트</button>
+
+    </div><!-- /.menu-list -->
+
+    <div class="bottom-space"></div>
+  </div><!-- /.page -->
 
   <script>
-    // Accordion toggle
-    document.querySelectorAll('.accordion-header').forEach(header => {
-      header.addEventListener('click', () => {
-        const parent = header.parentElement;
-        parent.classList.toggle('active');
-      });
-    });
-  </script>
+    // Smooth accordion logic
+    (function(){
+      const toggles = document.querySelectorAll('[data-toggle="panel"]');
+      toggles.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const panel = btn.parentElement.querySelector('.panel');
+          const isOpen = panel.getAttribute('data-open') === 'true';
+          if(isOpen){
+            // close
+            panel.style.maxHeight = panel.scrollHeight + 'px'; // set current height for smoothness
+            requestAnimationFrame(()=> {
+              panel.style.maxHeight = '0';
+            });
+            panel.setAttribute('data-open','false');
+            panel.setAttribute('aria-hidden','true');
+            btn.setAttribute('aria-expanded','false');
+          } else {
+            // open
+            panel.style.maxHeight = panel.scrollHeight + 'px';
+            panel.setAttribute('data-open','true');
+            panel.setAttribute('aria-hidden','false');
+            btn.setAttribute('aria-expanded','true');
 
+            // clear fixed maxHeight after transition so content can adapt if window resizes
+            panel.addEventListener('transitionend', function te(){
+              if(panel.getAttribute('data-open') === 'true'){
+                panel.style.maxHeight = panel.scrollHeight + 'px';
+                // allow dynamic height but keep value for now
+              }
+              panel.removeEventListener('transitionend', te);
+            });
+          }
+        });
+      });
+
+      // For panels that were created without "data-toggle", handle other accordion buttons (if any).
+      document.querySelectorAll('.accordion > button:not([data-toggle])').forEach(btn=>{
+        btn.addEventListener('click', () => {
+          const panel = btn.nextElementSibling;
+          if(!panel) return;
+          const open = panel.getAttribute('data-open') === 'true';
+          if(open){
+            panel.style.maxHeight = '0';
+            panel.setAttribute('data-open','false');
+            panel.setAttribute('aria-hidden','true');
+          } else {
+            panel.style.maxHeight = panel.scrollHeight + 'px';
+            panel.setAttribute('data-open','true');
+            panel.setAttribute('aria-hidden','false');
+          }
+        });
+      });
+
+      // Make sure panels collapse on load
+      document.querySelectorAll('.panel').forEach(p=>{
+        p.style.maxHeight = '0';
+        p.setAttribute('data-open','false');
+        p.setAttribute('aria-hidden','true');
+      });
+
+      // Recompute maxHeight on resize for open panels
+      window.addEventListener('resize', () => {
+        document.querySelectorAll('.panel[data-open="true"]').forEach(p=>{
+          p.style.maxHeight = p.scrollHeight + 'px';
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
