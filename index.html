@@ -77,25 +77,55 @@ h2 { margin-top:30px; color:royalblue; font-size:1.5rem; }
   </div>
 </div>
 
+<header>
+  <h1>0579 Academy</h1>
+  <p>영어친구 학원에 오신 것을 환영합니다.</p>
+</header>
+
+<!-- Hacker Log Placeholder -->
+<div id="hackerLog"></div>
+
+<!-- Ticker -->
+<div class="ticker">
+  <div class="ticker__text">
+    공지사항: 휴대폰 문자 수강신청 010-4733-0579 | 개강: 인공지능 활용 자기주도학습법 총 12회, 2시간 수업 총 3개월 완성 | 학습 수준별 1:1 맞춤지도
+  </div>
+</div>
+
 <!-- Book Sales -->
-<section id="book-sales" style="margin:40px 0;">
+<section id="book-sales">
   <h2>New Books for Sale</h2>
   <div class="book-slider-container">
     <div class="book-slider">
-      <div class="book-item"><img src="books/book1.jpg" alt="Book 1"><p>Book Title 1</p></div>
-      <div class="book-item"><img src="books/book2.jpg" alt="Book 2"><p>Book Title 2</p></div>
-      <div class="book-item"><img src="books/book3.jpg" alt="Book 3"><p>Book Title 3</p></div>
-      <div class="book-item"><img src="books/book4.jpg" alt="Book 4"><p>Book Title 4</p></div>
-      <div class="book-item"><img src="books/book5.jpg" alt="Book 5"><p>Book Title 5</p></div>
+      <div class="book-item">
+        <img src="books/book1.jpg" alt="Book 1">
+        <p>Book Title 1</p>
+      </div>
+      <div class="book-item">
+        <img src="books/book2.jpg" alt="Book 2">
+        <p>Book Title 2</p>
+      </div>
+      <div class="book-item">
+        <img src="books/book3.jpg" alt="Book 3">
+        <p>Book Title 3</p>
+      </div>
+      <div class="book-item">
+        <img src="books/book4.jpg" alt="Book 4">
+        <p>Book Title 4</p>
+      </div>
+      <div class="book-item">
+        <img src="books/book5.jpg" alt="Book 5">
+        <p>Book Title 5</p>
+      </div>
     </div>
     <button id="prevBook">&#10094;</button>
     <button id="nextBook">&#10095;</button>
   </div>
 </section>
 
-<!-- Accordions -->
-<button class="accordion">Our 1:1 Service Menu</button>
-<div class="panel">
+
+<button class="accordion" aria-expanded="false" aria-controls="servicePanel">Our 1:1 Service Menu</button>
+<div id="servicePanel" class="panel">
   <ol>
     <li>
       AI 활용 스마트폰 영어학습법
@@ -112,14 +142,56 @@ h2 { margin-top:30px; color:royalblue; font-size:1.5rem; }
   </ol>
 </div>
 
-<button class="accordion">학생 규정 및 환불규정</button>
-<div class="panel">
- <ol>
-   <li>강의 및 학습이 어려운 경우, 즉시 귀가조치</li>
-   <li>단정한 복장 착용과 예의바른 언어사용</li>
-   <li>단순 변심으로 인한 수업 중단 시 환불 규정 적용</li>
- </ol>
+
+<button class="accordion" aria-expanded="false" aria-controls="rulesPanel">학생 규정 및 환불규정</button>
+<div id="rulesPanel" class="panel">
+  <ol>
+    <li>강의 및 학습이 어려운 경우, 즉시 귀가조치</li>
+    <li>단정한 복장 착용과 예의바른 언어사용</li>
+    <li>단순 변심으로 인한 수업 중단 시 환불 규정 적용</li>
+  </ol>
 </div>
+
+<!-- Book Sales -->
+<section id="book-sales" style="margin:40px 0;">
+  <h2>New Books for Sale</h2>
+  <div class="book-slider-container">
+    <div class="book-slider">
+      <div class="book-item">
+        <a href="purchase/book1.html" target="_blank">
+          <img src="books/book1.jpg" alt="Book 1">
+          <p>Book Title 1</p>
+        </a>
+      </div>
+      <div class="book-item">
+        <a href="purchase/book2.html" target="_blank">
+          <img src="books/book2.jpg" alt="Book 2">
+          <p>Book Title 2</p>
+        </a>
+      </div>
+      <div class="book-item">
+        <a href="purchase/book3.html" target="_blank">
+          <img src="books/book3.jpg" alt="Book 3">
+          <p>Book Title 3</p>
+        </a>
+      </div>
+      <div class="book-item">
+        <a href="purchase/book4.html" target="_blank">
+          <img src="books/book4.jpg" alt="Book 4">
+          <p>Book Title 4</p>
+        </a>
+      </div>
+      <div class="book-item">
+        <a href="purchase/book5.html" target="_blank">
+          <img src="books/book5.jpg" alt="Book 5">
+          <p>Book Title 5</p>
+        </a>
+      </div>
+    </div>
+    <button id="prevBook">&#10094;</button>
+    <button id="nextBook">&#10095;</button>
+  </div>
+</section>
 
 <!-- Scripts -->
 <script>
@@ -151,8 +223,6 @@ document.getElementById('prevBook').addEventListener('click', () => {
 window.addEventListener('resize', updateSlider);
 updateSlider();
 </script>
-</body>
-</html>
 
 
 <!-- 📌 Placement Tests -->
@@ -196,6 +266,39 @@ updateSlider();
   </section>
 </div>
 
+<!-- ===== CSS for Tests (Placement only) ===== -->
+<style>
+.test-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  text-align: center;
+}
+.test-category { display: flex; flex-direction: column; align-items: center; }
+h3 { font-weight: bold; margin-bottom: 6px; color: royalblue; }
+.test-subcategory { list-style: none; padding: 0; margin: 0; }
+.test-link {
+  display: inline-block;
+  padding: 3px 6px;
+  font-size: 0.75em;
+  background: #f0f0f0;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #333;
+  transition: 0.3s;
+}
+.test-link:hover {
+  background: #ffd700;
+  color: #000;
+  animation: flash 0.8s infinite alternate;
+}
+@keyframes flash { 0% { opacity: 1; } 100% { opacity: 0.5; } }
+/* Responsive */
+@media(max-width:768px){ .test-container { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); } }
+@media(max-width:480px){ .test-container { grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); } }
+</style>
+
+
 <!-- 📌 수강생 Level Tests -->
 <button class="accordion">수강생 Level Tests</button>
 <div class="panel">
@@ -237,13 +340,14 @@ updateSlider();
   </section>
 </div>
 
+
 <!-- 📌 보충 Pillar Tests -->
 <button class="accordion">보충 Pillar Tests</button>
 <div class="panel">
-  <section id="pillars">
-    <div class="pillar-grid">
+  <section id="pillars" class="pillar-grid">
 
-      <!-- Level 1 -->
+    <!-- Levels 1–12 -->
+    <div class="level-block">
       <div class="level-header">Level 1</div>
       <div class="test-row">
         <a href="tests/level-1/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
@@ -253,8 +357,9 @@ updateSlider();
         <a href="tests/level-1/pillar-tests/Reading/index.html" class="test-link">Reading</a>
         <a href="tests/level-1/pillar-tests/Writing/index.html" class="test-link">Writing</a>
       </div>
+    </div>
 
-      <!-- Level 2 -->
+    <div class="level-block">
       <div class="level-header">Level 2</div>
       <div class="test-row">
         <a href="tests/level-2/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
@@ -264,8 +369,9 @@ updateSlider();
         <a href="tests/level-2/pillar-tests/Reading/index.html" class="test-link">Reading</a>
         <a href="tests/level-2/pillar-tests/Writing/index.html" class="test-link">Writing</a>
       </div>
+    </div>
 
-      <!-- Level 3 -->
+    <div class="level-block">
       <div class="level-header">Level 3</div>
       <div class="test-row">
         <a href="tests/level-3/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
@@ -275,8 +381,10 @@ updateSlider();
         <a href="tests/level-3/pillar-tests/Reading/index.html" class="test-link">Reading</a>
         <a href="tests/level-3/pillar-tests/Writing/index.html" class="test-link">Writing</a>
       </div>
+    </div>
 
-      <!-- Level 4 -->
+    <!-- Level 4 -->
+    <div class="level-block">
       <div class="level-header">Level 4</div>
       <div class="test-row">
         <a href="tests/level-4/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
@@ -286,8 +394,10 @@ updateSlider();
         <a href="tests/level-4/pillar-tests/Reading/index.html" class="test-link">Reading</a>
         <a href="tests/level-4/pillar-tests/Writing/index.html" class="test-link">Writing</a>
       </div>
+    </div>
 
-      <!-- Level 5 -->
+    <!-- Level 5 -->
+    <div class="level-block">
       <div class="level-header">Level 5</div>
       <div class="test-row">
         <a href="tests/level-5/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
@@ -297,8 +407,10 @@ updateSlider();
         <a href="tests/level-5/pillar-tests/Reading/index.html" class="test-link">Reading</a>
         <a href="tests/level-5/pillar-tests/Writing/index.html" class="test-link">Writing</a>
       </div>
+    </div>
 
-      <!-- Level 6 -->
+    <!-- Level 6 -->
+    <div class="level-block">
       <div class="level-header">Level 6</div>
       <div class="test-row">
         <a href="tests/level-6/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
@@ -308,8 +420,10 @@ updateSlider();
         <a href="tests/level-6/pillar-tests/Reading/index.html" class="test-link">Reading</a>
         <a href="tests/level-6/pillar-tests/Writing/index.html" class="test-link">Writing</a>
       </div>
+    </div>
 
-      <!-- Level 7 -->
+    <!-- Level 7 -->
+    <div class="level-block">
       <div class="level-header">Level 7</div>
       <div class="test-row">
         <a href="tests/level-7/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
@@ -319,8 +433,10 @@ updateSlider();
         <a href="tests/level-7/pillar-tests/Reading/index.html" class="test-link">Reading</a>
         <a href="tests/level-7/pillar-tests/Writing/index.html" class="test-link">Writing</a>
       </div>
+    </div>
 
-      <!-- Level 8 -->
+    <!-- Level 8 -->
+    <div class="level-block">
       <div class="level-header">Level 8</div>
       <div class="test-row">
         <a href="tests/level-8/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
@@ -330,8 +446,10 @@ updateSlider();
         <a href="tests/level-8/pillar-tests/Reading/index.html" class="test-link">Reading</a>
         <a href="tests/level-8/pillar-tests/Writing/index.html" class="test-link">Writing</a>
       </div>
+    </div>
 
-      <!-- Level 9 -->
+    <!-- Level 9 -->
+    <div class="level-block">
       <div class="level-header">Level 9</div>
       <div class="test-row">
         <a href="tests/level-9/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
@@ -341,8 +459,10 @@ updateSlider();
         <a href="tests/level-9/pillar-tests/Reading/index.html" class="test-link">Reading</a>
         <a href="tests/level-9/pillar-tests/Writing/index.html" class="test-link">Writing</a>
       </div>
+    </div>
 
-      <!-- Level 10 -->
+    <!-- Level 10 -->
+    <div class="level-block">
       <div class="level-header">Level 10</div>
       <div class="test-row">
         <a href="tests/level-10/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
@@ -352,8 +472,10 @@ updateSlider();
         <a href="tests/level-10/pillar-tests/Reading/index.html" class="test-link">Reading</a>
         <a href="tests/level-10/pillar-tests/Writing/index.html" class="test-link">Writing</a>
       </div>
+    </div>
 
-      <!-- Level 11 -->
+    <!-- Level 11 -->
+    <div class="level-block">
       <div class="level-header">Level 11</div>
       <div class="test-row">
         <a href="tests/level-11/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
@@ -363,8 +485,10 @@ updateSlider();
         <a href="tests/level-11/pillar-tests/Reading/index.html" class="test-link">Reading</a>
         <a href="tests/level-11/pillar-tests/Writing/index.html" class="test-link">Writing</a>
       </div>
+    </div>
 
-      <!-- Level 12 -->
+    <!-- Level 12 -->
+    <div class="level-block">
       <div class="level-header">Level 12</div>
       <div class="test-row">
         <a href="tests/level-12/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
@@ -374,6 +498,10 @@ updateSlider();
         <a href="tests/level-12/pillar-tests/Reading/index.html" class="test-link">Reading</a>
         <a href="tests/level-12/pillar-tests/Writing/index.html" class="test-link">Writing</a>
       </div>
+    </div>
+
+  </section>
+</div>
 
 
 /* ===== Test Links & Grids ===== */
@@ -402,6 +530,7 @@ updateSlider();
   justify-content: center;
   gap: 5px;
   flex-wrap: wrap;
+  margin-bottom: 4px;
 }
 
 .test-link {
@@ -426,30 +555,7 @@ updateSlider();
   100% { opacity: 0.5; }
 }
 
-/* ===== Responsive ===== */
-@media(max-width:768px){
-  .test-container, .pillar-grid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  }
-  .test-link { font-size: 0.7em; padding: 2px 4px; }
-}
-@media(max-width:480px){
-  .test-container, .pillar-grid {
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  }
-}
-
-
-<style>
-.test-container { 
-  display:flex; 
-  gap:20px; 
-  flex-wrap:wrap; 
-  justify-content:space-between; 
-}
-</style>
-
-<style>
+/* Optional 3-row variant for pillar grids */
 .pillar-grid-3rows {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
@@ -457,47 +563,17 @@ updateSlider();
   text-align: center;
 }
 
-.level-header {
-  font-weight: bold;
-  font-size: 0.85em;
-  padding: 4px 0;
-}
-
-.test-row {
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-  flex-wrap: wrap;
-  margin-bottom: 4px;
-}
-
-.test-link {
-  display: inline-block;
-  padding: 3px 6px;
-  font-size: 0.75em;
-  background: #f0f0f0;
-  border-radius: 4px;
-  text-decoration: none;
-  color: #333;
-  transition: 0.3s;
-}
-
-.test-link:hover {
-  background: #ffd700;
-  color: #000;
-  animation: flash 0.8s infinite alternate;
-}
-
-@keyframes flash {
-  0% { opacity: 1; }
-  100% { opacity: 0.5; }
-}
-
-/* Responsive */
-@media(max-width:480px){
-  .pillar-grid-3rows {
-    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+/* ===== Responsive ===== */
+@media(max-width:768px){
+  .test-container, .pillar-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
   .test-link { font-size: 0.7em; padding: 2px 4px; }
 }
-</style>
+
+@media(max-width:480px){
+  .test-container, .pillar-grid, .pillar-grid-3rows {
+    grid-template-columns: repeat(auto-fit, minmax(60-80px, 1fr));
+  }
+  .test-link { font-size: 0.7em; padding: 2px 4px; }
+}
