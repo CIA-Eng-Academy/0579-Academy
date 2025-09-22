@@ -7,7 +7,7 @@
 <style>
 /* Base styling */
 *, *::before, *::after { box-sizing: border-box; }
-body { margin:0; padding:10px; font-family: 'Arial', sans-serif; background:white; color:black; transition: background 0.3s, color 0.3s; }  
+body { margin:0; padding:10px; font-family:'Arial', sans-serif; background:white; color:black; transition: background 0.3s, color 0.3s; }  
 .container { max-width:900px; width:100%; margin:0 auto; text-align:center; }
 header, footer { background:royalblue; color:white; padding:15px; text-align:center; border-radius:6px; transition: background 0.3s, color 0.3s; }
 h2 { margin-top:30px; color:royalblue; font-size:1.5rem; }
@@ -36,16 +36,10 @@ h2 { margin-top:30px; color:royalblue; font-size:1.5rem; }
   margin-top: 10px;
 }
 
-.level-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .level-header {
   font-weight: bold;
   font-size: 0.85em;
-  margin-bottom: 4px;
+  margin:8px 0 4px;
 }
 
 .test-row {
@@ -53,7 +47,7 @@ h2 { margin-top:30px; color:royalblue; font-size:1.5rem; }
   justify-content: center;
   flex-wrap: wrap;
   gap: 5px;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .test-link {
@@ -86,8 +80,8 @@ h2 { margin-top:30px; color:royalblue; font-size:1.5rem; }
   .pillar-grid { grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); }
 }
 </style>
-</head> 
-<body> 
+</head>
+<body>
 <div class="container"> 
 <header> 
   <h1>0579 Academy</h1> 
@@ -134,79 +128,60 @@ AI 활용 스마트폰 영어학습법
  </ol> 
 </div>
 
-<!-- Placement Tests -->
 <button class="accordion">Placement Tests</button>
 <div class="panel">
   <section id="placement">
     <div class="test-container" style="display:flex; gap:20px; flex-wrap:wrap; justify-content:space-between;">
-      <!-- Your Level 1–12 Placement links here -->
+      <!-- Level 1–12 Placement links -->
     </div>
   </section>
 </div>
 
-<!-- 수강생 Level Tests -->
 <button class="accordion">수강생 Level Tests</button>
 <div class="panel">
   <section id="tests">
     <div class="level-grid">
-      <!-- Your Level 1–12 Test links here -->
+      <!-- Level 1–12 Test links -->
     </div>
   </section>
 </div>
 
-<!-- 📌 보충 Pillar Tests -->
 <button class="accordion">보충 Pillar Tests</button>
 <div class="panel">
   <section id="pillars">
-    <div class="pillar-grid" id="pillarGrid">
-      <!-- JavaScript will populate the grid -->
-    </div>
+    <div class="pillar-grid" id="pillarGrid"></div>
   </section>
 </div>
 
-<!-- Accordion Script -->
 <script>
-const acc = document.querySelectorAll(".accordion");
-acc.forEach(btn => {
-  btn.setAttribute("aria-expanded", "false");
-  btn.addEventListener("click", function () {
-    this.classList.toggle("active");
-    this.setAttribute("aria-expanded", this.classList.contains("active"));
+// Accordion functionality
+document.querySelectorAll('.accordion').forEach(btn => {
+  btn.addEventListener('click', function() {
+    this.classList.toggle('active');
     const panel = this.nextElementSibling;
-    if(panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
+    panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + "px";
   });
 });
-</script>
 
-<!-- Pillar Tests Script -->
-<script>
+// Dynamically populate Pillar Tests
 const pillarGrid = document.getElementById('pillarGrid');
-const levels = 12;
 const pillars = ['Vocab','Grammar','Listening','Speaking','Reading','Writing'];
-
-for(let level = 1; level <= levels; level++) {
-  // Level header
+for(let level=1; level<=12; level++){
   const levelHeader = document.createElement('div');
   levelHeader.className = 'level-header';
   levelHeader.textContent = 'Level ' + level;
   pillarGrid.appendChild(levelHeader);
 
-  // Test links row
   const testRow = document.createElement('div');
   testRow.className = 'test-row';
 
   pillars.forEach(pillar => {
     const link = document.createElement('a');
     link.href = `tests/level-${level}/pillar-tests/${pillar}/index.html`;
-    link.textContent = pillar;
     link.className = 'test-link';
+    link.textContent = pillar;
     testRow.appendChild(link);
   });
-
   pillarGrid.appendChild(testRow);
 }
 </script>
@@ -214,225 +189,3 @@ for(let level = 1; level <= levels; level++) {
 </div>
 </body>
 </html>
-
-
-<!-- 📌 보충 Pillar Tests -->
-<button class="accordion">보충 Pillar Tests</button>
-<div class="panel">
-  <section id="pillars">
-    <div class="pillar-grid">
-
-      <!-- Level 1 -->
-      <div class="level-header">Level 1</div>
-      <div class="test-row">
-        <a href="tests/level-1/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-        <a href="tests/level-1/pillar-tests/Grammar/index.html" class="test-link">Grammar</a>
-        <a href="tests/level-1/pillar-tests/Listening/index.html" class="test-link">Listening</a>
-        <a href="tests/level-1/pillar-tests/Speaking/index.html" class="test-link">Speaking</a>
-        <a href="tests/level-1/pillar-tests/Reading/index.html" class="test-link">Reading</a>
-        <a href="tests/level-1/pillar-tests/Writing/index.html" class="test-link">Writing</a>
-      </div>
-
-      <!-- Level 2 -->
-      <div class="level-header">Level 2</div>
-      <div class="test-row">
-        <a href="tests/level-2/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-        <a href="tests/level-2/pillar-tests/Grammar/index.html" class="test-link">Grammar</a>
-        <a href="tests/level-2/pillar-tests/Listening/index.html" class="test-link">Listening</a>
-        <a href="tests/level-2/pillar-tests/Speaking/index.html" class="test-link">Speaking</a>
-        <a href="tests/level-2/pillar-tests/Reading/index.html" class="test-link">Reading</a>
-        <a href="tests/level-2/pillar-tests/Writing/index.html" class="test-link">Writing</a>
-      </div>
-
-      <!-- Level 3 -->
-      <div class="level-header">Level 3</div>
-      <div class="test-row">
-        <a href="tests/level-3/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-        <a href="tests/level-3/pillar-tests/Grammar/index.html" class="test-link">Grammar</a>
-        <a href="tests/level-3/pillar-tests/Listening/index.html" class="test-link">Listening</a>
-        <a href="tests/level-3/pillar-tests/Speaking/index.html" class="test-link">Speaking</a>
-        <a href="tests/level-3/pillar-tests/Reading/index.html" class="test-link">Reading</a>
-        <a href="tests/level-3/pillar-tests/Writing/index.html" class="test-link">Writing</a>
-      </div>
-
-      <!-- Level 4 -->
-      <div class="level-header">Level 4</div>
-      <div class="test-row">
-        <a href="tests/level-4/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-        <a href="tests/level-4/pillar-tests/Grammar/index.html" class="test-link">Grammar</a>
-        <a href="tests/level-4/pillar-tests/Listening/index.html" class="test-link">Listening</a>
-        <a href="tests/level-4/pillar-tests/Speaking/index.html" class="test-link">Speaking</a>
-        <a href="tests/level-4/pillar-tests/Reading/index.html" class="test-link">Reading</a>
-        <a href="tests/level-4/pillar-tests/Writing/index.html" class="test-link">Writing</a>
-      </div>
-
-      <!-- Level 5 -->
-      <div class="level-header">Level 5</div>
-      <div class="test-row">
-        <a href="tests/level-5/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-        <a href="tests/level-5/pillar-tests/Grammar/index.html" class="test-link">Grammar</a>
-        <a href="tests/level-5/pillar-tests/Listening/index.html" class="test-link">Listening</a>
-        <a href="tests/level-5/pillar-tests/Speaking/index.html" class="test-link">Speaking</a>
-        <a href="tests/level-5/pillar-tests/Reading/index.html" class="test-link">Reading</a>
-        <a href="tests/level-5/pillar-tests/Writing/index.html" class="test-link">Writing</a>
-      </div>
-
-      <!-- Level 6 -->
-      <div class="level-header">Level 6</div>
-      <div class="test-row">
-        <a href="tests/level-6/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-        <a href="tests/level-6/pillar-tests/Grammar/index.html" class="test-link">Grammar</a>
-        <a href="tests/level-6/pillar-tests/Listening/index.html" class="test-link">Listening</a>
-        <a href="tests/level-6/pillar-tests/Speaking/index.html" class="test-link">Speaking</a>
-        <a href="tests/level-6/pillar-tests/Reading/index.html" class="test-link">Reading</a>
-        <a href="tests/level-6/pillar-tests/Writing/index.html" class="test-link">Writing</a>
-      </div>
-
-      <!-- Level 7 -->
-      <div class="level-header">Level 7</div>
-      <div class="test-row">
-        <a href="tests/level-7/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-        <a href="tests/level-7/pillar-tests/Grammar/index.html" class="test-link">Grammar</a>
-        <a href="tests/level-7/pillar-tests/Listening/index.html" class="test-link">Listening</a>
-        <a href="tests/level-7/pillar-tests/Speaking/index.html" class="test-link">Speaking</a>
-        <a href="tests/level-7/pillar-tests/Reading/index.html" class="test-link">Reading</a>
-        <a href="tests/level-7/pillar-tests/Writing/index.html" class="test-link">Writing</a>
-      </div>
-
-      <!-- Level 8 -->
-      <div class="level-header">Level 8</div>
-      <div class="test-row">
-        <a href="tests/level-8/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-        <a href="tests/level-8/pillar-tests/Grammar/index.html" class="test-link">Grammar</a>
-        <a href="tests/level-8/pillar-tests/Listening/index.html" class="test-link">Listening</a>
-        <a href="tests/level-8/pillar-tests/Speaking/index.html" class="test-link">Speaking</a>
-        <a href="tests/level-8/pillar-tests/Reading/index.html" class="test-link">Reading</a>
-        <a href="tests/level-8/pillar-tests/Writing/index.html" class="test-link">Writing</a>
-      </div>
-
-      <!-- Level 9 -->
-      <div class="level-header">Level 9</div>
-      <div class="test-row">
-        <a href="tests/level-9/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-        <a href="tests/level-9/pillar-tests/Grammar/index.html" class="test-link">Grammar</a>
-        <a href="tests/level-9/pillar-tests/Listening/index.html" class="test-link">Listening</a>
-        <a href="tests/level-9/pillar-tests/Speaking/index.html" class="test-link">Speaking</a>
-        <a href="tests/level-9/pillar-tests/Reading/index.html" class="test-link">Reading</a>
-        <a href="tests/level-9/pillar-tests/Writing/index.html" class="test-link">Writing</a>
-      </div>
-
-      <!-- Level 10 -->
-      <div class="level-header">Level 10</div>
-      <div class="test-row">
-        <a href="tests/level-10/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-        <a href="tests/level-10/pillar-tests/Grammar/index.html" class="test-link">Grammar</a>
-        <a href="tests/level-10/pillar-tests/Listening/index.html" class="test-link">Listening</a>
-        <a href="tests/level-10/pillar-tests/Speaking/index.html" class="test-link">Speaking</a>
-        <a href="tests/level-10/pillar-tests/Reading/index.html" class="test-link">Reading</a>
-        <a href="tests/level-10/pillar-tests/Writing/index.html" class="test-link">Writing</a>
-      </div>
-
-      <!-- Level 11 -->
-      <div class="level-header">Level 11</div>
-      <div class="test-row">
-        <a href="tests/level-11/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-        <a href="tests/level-11/pillar-tests/Grammar/index.html" class="test-link">Grammar</a>
-        <a href="tests/level-11/pillar-tests/Listening/index.html" class="test-link">Listening</a>
-        <a href="tests/level-11/pillar-tests/Speaking/index.html" class="test-link">Speaking</a>
-        <a href="tests/level-11/pillar-tests/Reading/index.html" class="test-link">Reading</a>
-        <a href="tests/level-11/pillar-tests/Writing/index.html" class="test-link">Writing</a>
-      </div>
-
-      <!-- Level 12 -->
-      <div class="level-header">Level 12</div>
-      <div class="test-row">
-        <a href="tests/level-12/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-        <a href="tests/level-12/pillar-tests/Grammar/index.html" class="test-link">Grammar</a>
-        <a href="tests/level-12/pillar-tests/Listening/index.html" class="test-link">Listening</a>
-        <a href="tests/level-12/pillar-tests/Speaking/index.html" class="test-link">Speaking</a>
-        <a href="tests/level-12/pillar-tests/Reading/index.html" class="test-link">Reading</a>
-        <a href="tests/level-12/pillar-tests/Writing/index.html" class="test-link">Writing</a>
-      </div>
-
-    </div>
-  </section>
-</div>
-
-    </div>
-  </section>
-</div>
-
-<style>
-.pillar-grid-3rows {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  gap: 8px;
-  text-align: center;
-}
-
-.level-header {
-  font-weight: bold;
-  font-size: 0.85em;
-  padding: 4px 0;
-}
-
-.test-row {
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-  flex-wrap: wrap;
-  margin-bottom: 4px;
-}
-
-.test-link {
-  display: inline-block;
-  padding: 3px 6px;
-  font-size: 0.75em;
-  background: #f0f0f0;
-  border-radius: 4px;
-  text-decoration: none;
-  color: #333;
-  transition: 0.3s;
-}
-
-.test-link:hover {
-  background: #ffd700;
-  color: #000;
-  animation: flash 0.8s infinite alternate;
-}
-
-@keyframes flash {
-  0% { opacity: 1; }
-  100% { opacity: 0.5; }
-}
-
-/* Responsive */
-@media(max-width:480px){
-  .pillar-grid-3rows {
-    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-  }
-  .test-link { font-size: 0.7em; padding: 2px 4px; }
-}
-</style>
-
-
-<!-- 📌 Accordion Script -->
-<script>
-const acc = document.querySelectorAll(".accordion");
-acc.forEach(btn => {
-  btn.addEventListener("click", function () {
-    this.classList.toggle("active");
-    const panel = this.nextElementSibling;
-    if(panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
-  });
-});
-</script>
-
-</div>
-</body>
-</html>
-
