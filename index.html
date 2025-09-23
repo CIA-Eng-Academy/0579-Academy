@@ -126,8 +126,8 @@ h2 { color:royalblue; font-size:1.5rem; }
 </div>
 
 <!-- 📌 배치고사 -->
-<button class="accordion">배치고사</button>
-<div class="panel">
+<button class="accordion" aria-expanded="false" aria-controls="placementPanel">배치고사</button>
+<div id="placementPanel" class="panel">
   <section id="배치고사" class="test-container">
 
     <!-- Levels 1–4 -->
@@ -165,6 +165,7 @@ h2 { color:royalblue; font-size:1.5rem; }
 
   </section>
 </div>
+
 
 <!-- 📌 수강생 Level Tests -->
 <button class="accordion" aria-expanded="false" aria-controls="studentLevelPanel">수강생 Level Tests</button>
@@ -207,61 +208,155 @@ h2 { color:royalblue; font-size:1.5rem; }
   </section>
 </div>
    
-<!-- Pillar Tests Accordion -->
-<button class="accordion">보충 Pillar Tests</button>
-<div class="panel">
-  <section id="pillars" class="pillar-grid">
+<!-- 보충 영역 Tests Accordion -->
+<button class="accordion" aria-expanded="false" aria-controls="supplementTestsPanel">보충 영역 Tests</button>
+<div id="supplementTestsPanel" class="panel">
+  <section class="pillar-grid">
     <!-- Levels 1–12 simplified -->
     <div class="level-block">
+
       <div class="level-header">Level 1</div>
       <div class="test-row">
-        <a href="tests/level-1/pillar-tests/Vocabulary/index.html" class="test-link">Vocab</a>
-        <a href="tests/level-1/pillar-tests/Grammar/index.html" class="test-link">Grammar</a>
-        <a href="tests/level-1/pillar-tests/Listening/index.html" class="test-link">Listening</a>
-        <a href="tests/level-1/pillar-tests/Speaking/index.html" class="test-link">Speaking</a>
-        <a href="tests/level-1/pillar-tests/Reading/index.html" class="test-link">Reading</a>
-        <a href="tests/level-1/pillar-tests/Writing/index.html" class="test-link">Writing</a>
+        <a href="tests/level-1/보충영역-tests/Vocabulary/index.html" class="test-link">Vocab</a>
+        <a href="tests/level-1/보충영역-tests/Grammar/index.html" class="test-link">Grammar</a>
+        <a href="tests/level-1/보충영역-tests/Listening/index.html" class="test-link">Listening</a>
+        <a href="tests/level-1/보충영역-tests/Speaking/index.html" class="test-link">Speaking</a>
+        <a href="tests/level-1/보충영역-tests/Reading/index.html" class="test-link">Reading</a>
+        <a href="tests/level-1/보충영역-tests/Writing/index.html" class="test-link">Writing</a>
       </div>
 
-      
-    </div>
-    <!-- Repeat similarly for Levels 2–12 -->
-  </section>
-</div>
+      <div class="level-header">Level 2</div>
+      <div class="test-row">
+        <a href="tests/level-2/보충영역-tests/Vocabulary/index.html" class="test-link">Vocab</a>
+        <a href="tests/level-2/보충영역-tests/Grammar/index.html" class="test-link">Grammar</a>
+        <a href="tests/level-2/보충영역-tests/Listening/index.html" class="test-link">Listening</a>
+        <a href="tests/level-2/보충영역-tests/Speaking/index.html" class="test-link">Speaking</a>
+        <a href="tests/level-2/보충영역-tests/Reading/index.html" class="test-link">Reading</a>
+        <a href="tests/level-2/보충영역-tests/Writing/index.html" class="test-link">Writing</a>
+      </div>
 
-<!-- Scripts -->
+      <div class="level-header">Level 3</div>
+      <div class="test-row">
+        <a href="tests/level-3/보충영역-tests/Vocabulary/index.html" class="test-link">Vocab</a>
+        <a href="tests/level-3/보충영역-tests/Grammar/index.html" class="test-link">Grammar</a>
+        <a href="tests/level-3/보충영역-tests/Listening/index.html" class="test-link">Listening</a>
+        <a href="tests/level-3/보충영역-tests/Speaking/index.html" class="test-link">Speaking</a>
+        <a href="tests/level-3/보충영역-tests/Reading/index.html" class="test-link">Reading</a>
+        <a href="tests/level-3/보충영역-tests/Writing/index.html" class="test-link">Writing</a>
+      </div>
+
+      <div class="level-header">Level 4</div>
+      <div class="test-row">
+        <a href="tests/level-4/보충영역-tests/Vocabulary/index.html" class="test-link">Vocab</a>
+        <a href="tests/level-4/보충영역-tests/Grammar/index.html" class="test-link">Grammar</a>
+        <a href="tests/level-4/보충영역-tests/Listening/index.html" class="test-link">Listening</a>
+        <a href="tests/level-4/보충영역-tests/Speaking/index.html" class="test-link">Speaking</a>
+        <a href="tests/level-4/보충영역-tests/Reading/index.html" class="test-link">Reading</a>
+        <a href="tests/level-4/보충영역-tests/Writing/index.html" class="test-link">Writing</a>
+      </div>
+
+            <!-- Level 6 -->
+      <div class="level-header">Level 6</div>
+      <div class="test-row">
+        <a href="tests/level-6/보충영역-tests/Vocabulary/index.html" class="test-link">Vocab</a>
+        <a href="tests/level-6/보충영역-tests/Grammar/index.html" class="test-link">Grammar</a>
+        <a href="tests/level-6/보충영역-tests/Listening/index.html" class="test-link">Listening</a>
+        <a href="tests/level-6/보충영역-tests/Speaking/index.html" class="test-link">Speaking</a>
+        <a href="tests/level-6/보충영역-tests/Reading/index.html" class="test-link">Reading</a>
+        <a href="tests/level-6/보충영역-tests/Writing/index.html" class="test-link">Writing</a>
+      </div>
+
+      <!-- Level 7 -->
+      <div class="level-header">Level 7</div>
+      <div class="test-row">
+        <a href="tests/level-7/보충영역-tests/Vocabulary/index.html" class="test-link">Vocab</a>
+        <a href="tests/level-7/보충영역-tests/Grammar/index.html" class="test-link">Grammar</a>
+        <a href="tests/level-7/보충영역-tests/Listening/index.html" class="test-link">Listening</a>
+        <a href="tests/level-7/보충영역-tests/Speaking/index.html" class="test-link">Speaking</a>
+        <a href="tests/level-7/보충영역-tests/Reading/index.html" class="test-link">Reading</a>
+        <a href="tests/level-7/보충영역-tests/Writing/index.html" class="test-link">Writing</a>
+      </div>
+
+      <!-- Level 8 -->
+      <div class="level-header">Level 8</div>
+      <div class="test-row">
+        <a href="tests/level-8/보충영역-tests/Vocabulary/index.html" class="test-link">Vocab</a>
+        <a href="tests/level-8/보충영역-tests/Grammar/index.html" class="test-link">Grammar</a>
+        <a href="tests/level-8/보충영역-tests/Listening/index.html" class="test-link">Listening</a>
+        <a href="tests/level-8/보충영역-tests/Speaking/index.html" class="test-link">Speaking</a>
+        <a href="tests/level-8/보충영역-tests/Reading/index.html" class="test-link">Reading</a>
+        <a href="tests/level-8/보충영역-tests/Writing/index.html" class="test-link">Writing</a>
+      </div>
+
+      <!-- Level 9 -->
+      <div class="level-header">Level 9</div>
+      <div class="test-row">
+        <a href="tests/level-9/보충영역-tests/Vocabulary/index.html" class="test-link">Vocab</a>
+        <a href="tests/level-9/보충영역-tests/Grammar/index.html" class="test-link">Grammar</a>
+        <a href="tests/level-9/보충영역-tests/Listening/index.html" class="test-link">Listening</a>
+        <a href="tests/level-9/보충영역-tests/Speaking/index.html" class="test-link">Speaking</a>
+        <a href="tests/level-9/보충영역-tests/Reading/index.html" class="test-link">Reading</a>
+        <a href="tests/level-9/보충영역-tests/Writing/index.html" class="test-link">Writing</a>
+      </div>
+
+      <!-- Level 10 -->
+      <div class="level-header">Level 10</div>
+      <div class="test-row">
+        <a href="tests/level-10/보충영역-tests/Vocabulary/index.html" class="test-link">Vocab</a>
+        <a href="tests/level-10/보충영역-tests/Grammar/index.html" class="test-link">Grammar</a>
+        <a href="tests/level-10/보충영역-tests/Listening/index.html" class="test-link">Listening</a>
+        <a href="tests/level-10/보충영역-tests/Speaking/index.html" class="test-link">Speaking</a>
+        <a href="tests/level-10/보충영역-tests/Reading/index.html" class="test-link">Reading</a>
+        <a href="tests/level-10/보충영역-tests/Writing/index.html" class="test-link">Writing</a>
+      </div>
+
+      <!-- Level 11 -->
+      <div class="level-header">Level 11</div>
+      <div class="test-row">
+        <a href="tests/level-11/보충영역-tests/Vocabulary/index.html" class="test-link">Vocab</a>
+        <a href="tests/level-11/보충영역-tests/Grammar/index.html" class="test-link">Grammar</a>
+        <a href="tests/level-11/보충영역-tests/Listening/index.html" class="test-link">Listening</a>
+        <a href="tests/level-11/보충영역-tests/Speaking/index.html" class="test-link">Speaking</a>
+        <a href="tests/level-11/보충영역-tests/Reading/index.html" class="test-link">Reading</a>
+        <a href="tests/level-11/보충영역-tests/Writing/index.html" class="test-link">Writing</a>
+      </div>
+
+      <!-- Level 12 -->
+      <div class="level-header">Level 12</div>
+      <div class="test-row">
+        <a href="tests/level-12/보충영역-tests/Vocabulary/index.html" class="test-link">Vocab</a>
+        <a href="tests/level-12/보충영역-tests/Grammar/index.html" class="test-link">Grammar</a>
+        <a href="tests/level-12/보충영역-tests/Listening/index.html" class="test-link">Listening</a>
+        <a href="tests/level-12/보충영역-tests/Speaking/index.html" class="test-link">Speaking</a>
+        <a href="tests/level-12/보충영역-tests/Reading/index.html" class="test-link">Reading</a>
+        <a href="tests/level-12/보충영역-tests/Writing/index.html" class="test-link">Writing</a>
+      </div>
+
+    </div> <!-- end level-block -->
+  </section>
+</div> <!-- end panel -->
+
 <script>
-// Accordion
-document.querySelectorAll(".accordion").forEach(btn => {
-  btn.addEventListener("click", function () {
-    this.classList.toggle("active");
-    const panel = this.nextElementSibling;
-    if (panel.style.maxHeight) panel.style.maxHeight = null;
-    else panel.style.maxHeight = panel.scrollHeight + "px";
+// Accordion functionality
+document.querySelectorAll(".accordion").forEach(button => {
+  button.addEventListener("click", () => {
+    const panel = button.nextElementSibling;
+    const isActive = button.classList.contains("active");
+
+    // Close all accordions
+    document.querySelectorAll(".accordion").forEach(btn => {
+      btn.classList.remove("active");
+      btn.setAttribute("aria-expanded", "false");
+      btn.nextElementSibling.style.maxHeight = null;
+    });
+
+    // If the clicked one was not active, open it
+    if (!isActive) {
+      button.classList.add("active");
+      panel.style.maxHeight = panel.scrollHeight + "px";
+      button.setAttribute("aria-expanded", "true");
+    }
   });
 });
-
-// Book slider
-const slider = document.querySelector('.book-slider');
-let currentIndex = 0;
-function updateSlider() {
-  const itemsPerPage = window.innerWidth <= 480 ? 1 : window.innerWidth <= 768 ? 2 : 3;
-  slider.style.transform = `translateX(-${(100/itemsPerPage) * currentIndex}%)`;
-}
-document.getElementById('nextBook1').addEventListener('click', () => {
-  const itemsPerPage = window.innerWidth <= 480 ? 1 : window.innerWidth <= 768 ? 2 : 3;
-  const totalItems = document.querySelectorAll('.book-item').length;
-  if(currentIndex < totalItems - itemsPerPage) { currentIndex++; updateSlider(); }
-});
-document.getElementById('prevBook1').addEventListener('click', () => {
-  if(currentIndex > 0) { currentIndex--; updateSlider(); }
-});
-window.addEventListener('resize', updateSlider);
-updateSlider();
 </script>
-
-</div> <!-- end container -->
-</body>
-</html>
-
 
