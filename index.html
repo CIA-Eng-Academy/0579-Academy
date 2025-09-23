@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,12 +21,34 @@ h2 { color:royalblue; font-size:1.5rem; }
 .pdf-button:hover { background:#218838; transform:scale(1.05); }
 .share-button, .sms-button, .wa-button { background:royalblue; color:white; padding:12px 20px; border:none; border-radius:8px; font-size:1rem; cursor:pointer; margin:5px; }
 .share-button:hover, .sms-button:hover, .wa-button:hover { background:#0056b3; }
-.share-input, #smsMessage { padding:8px; font-size:1rem; width:100%; max-width:220px; margin-right:5px; border-radius:6px; border:1px solid #ccc; }
+.share-input, #smsMessage { padding:8px; font-size:1rem; width:100%; max-width:500px; margin-right:5px; border-radius:6px; border:1px solid #ccc; }
 
 /* ===== Ticker ===== */
-.ticker { width: 100%; overflow: hidden; background: #ffd700; color: black; border-radius: 6px; padding: 10px 0; margin: 20px 0; position: relative; }
-.ticker__text { display: inline-block; white-space: nowrap; padding-left:100%; animation: tickerMove 20s linear infinite; font-weight: bold; }
-@keyframes tickerMove { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+.ticker, .ticker-container { 
+  width: 100%; 
+  overflow: hidden; 
+  background: #ffd700; 
+  color: black; 
+  border-radius: 6px; 
+  padding: 10px 0; 
+  margin: 10px 0; 
+  position: relative; 
+}
+
+.ticker__text { 
+  display: inline-block; 
+  white-space: nowrap; 
+  padding-left:100%; 
+  animation: tickerMove 800s linear infinite; /* slower speed */
+  font-weight: bold; 
+}
+@keyframes tickerMove { 
+  0% { transform: translateX(100%); } 
+  100% { transform: translateX(-100%); } 
+}
+
+/* ===== Pause on Hover ===== */
+.ticker:hover, .ticker-container:hover { animation-play-state: paused; }
 
 /* ===== Book Slider ===== */
 .book-slider-container { position:relative; overflow:hidden; max-width:900px; margin:0 auto; }
@@ -39,17 +59,14 @@ h2 { color:royalblue; font-size:1.5rem; }
 #prevBook1 { left:0; }
 #nextBook1 { right:0; }
 
-/* ===== Tests Grid (Placement & Pillar) ===== */
+/* ===== Tests Grid ===== */
 .test-container, .pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; text-align: center; }
 .test-category, .level-block { display: flex; flex-direction: column; align-items: center; }
-.level-header, h3 { font-weight: bold; font-size: 0.85em; margin-bottom: 6px; padding: 4px 0; color: royalblue; }
+.level-header, h3 { font-weight: bold; font-size: 0.85em; margin-bottom: 20px; padding: 4px 0; color: royalblue; }
 .test-row, .test-subcategory { display: flex; justify-content: center; gap: 5px; flex-wrap: wrap; list-style: none; padding: 0; margin: 0 0 4px 0; }
 .test-link { display: inline-block; padding: 3px 6px; font-size: 0.75em; background: #f0f0f0; border-radius: 4px; text-decoration: none; color: #333; transition: background 0.3s, color 0.3s; }
 .test-link:hover { background: #ffd700; color: #000; animation: flash 0.8s infinite alternate; }
 @keyframes flash { 0% { opacity: 1; } 100% { opacity: 0.5; } }
-
-/* Optional 3-row pillar variant */
-.pillar-grid-3rows { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 8px; }
 
 /* ===== Responsive ===== */
 @media(max-width:768px){
@@ -77,7 +94,8 @@ h2 { color:royalblue; font-size:1.5rem; }
 <!-- Ticker -->
 <div class="ticker">
   <div class="ticker__text">
-    공지사항: 휴대폰 문자 수강신청 010-4733-0579 | 개강: 인공지능 활용 자기주도학습법 총 12회, 2시간 수업 총 3개월 완성 | 학습 수준별 1:1 맞춤지도
+    Welcome to 0579 인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성 "Learning English can open up a world of opportunities for you" 수준별 1:1 맞춤지도 수강신청 010-4733-0579 (영어친구)Welcome to 0579 인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성 "Learning English can open up a world of opportunities for you" 수준별 1:1 맞춤지도 수강신청 010-4733-0579 (영어친구)
+
   </div>
 </div>
 
@@ -337,26 +355,106 @@ h2 { color:royalblue; font-size:1.5rem; }
 </div> <!-- end panel -->
 
 <script>
-// Accordion functionality
-document.querySelectorAll(".accordion").forEach(button => {
-  button.addEventListener("click", () => {
-    const panel = button.nextElementSibling;
-    const isActive = button.classList.contains("active");
-
-    // Close all accordions
-    document.querySelectorAll(".accordion").forEach(btn => {
-      btn.classList.remove("active");
-      btn.setAttribute("aria-expanded", "false");
-      btn.nextElementSibling.style.maxHeight = null;
+  <!-- ===== New Accordion for Teachers & Students ===== -->
+<button class="accordion" aria-expanded="false" aria-controls="teachersPanel">Teachers & Students Files</button>
+<div id="teachersPanel" class="panel">
+  <ul>
+    <li><a href="teachers/lesson1.pdf" class="test-link" target="_blank">Teacher Lesson File 1</a></li>
+    <li><a href="teachers/lesson2.pdf" class="test-link" target="_blank">Teacher Lesson File 2</a></li>
+    <li><a href="students/classnote1.pdf" class="test-link" target="_blank">Student Class Note 1</a></li>
+    <li><a href="students/classnote2.pdf" class="test-link" target="_blank">Student Class Note 2</a></li>
+  </ul>
+</div>  
+    
+  // Accordion toggle behavior
+  const accordions = document.querySelectorAll('.accordion');
+  accordions.forEach(acc => {
+    acc.addEventListener('click', () => {
+      acc.classList.toggle('active');
+      const panel = document.getElementById(acc.getAttribute('aria-controls'));
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+        acc.setAttribute('aria-expanded', 'false');
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        acc.setAttribute('aria-expanded', 'true');
+      }
     });
-
-    // If the clicked one was not active, open it
-    if (!isActive) {
-      button.classList.add("active");
-      panel.style.maxHeight = panel.scrollHeight + "px";
-      button.setAttribute("aria-expanded", "true");
-    }
   });
-});
 </script>
+
+<!-- Teachers & Students Accordion -->
+<button class="accordion" aria-expanded="false" aria-controls="teachersPanel">Teachers & Students Files</button>
+<div id="teachersPanel" class="panel">
+  <ul>
+    <li><a href="teachers/lesson1.pdf" class="test-link" target="_blank">Teacher Lesson File 1</a></li>
+    <li><a href="teachers/lesson2.pdf" class="test-link" target="_blank">Teacher Lesson File 2</a></li>
+    <li><a href="students/classnote1.pdf" class="test-link" target="_blank">Student Class Note 1</a></li>
+    <li><a href="students/classnote2.pdf" class="test-link" target="_blank">Student Class Note 2</a></li>
+  </ul>
+</div>
+<!-- ===== Slow Right-to-Left Bottom Ticker ===== -->
+<style>
+  .bottom-ticker-container {
+    width: 100%;
+    overflow: hidden;
+    background: #ffd700;
+    border-radius: 6px;
+    padding: 15px 0;
+    margin-top: 15px;    /* consistent with accordion spacing */
+    margin-bottom: 15px; /* consistent with accordion spacing */
+  }
+
+  #bottom-ticker {
+    display: inline-block;
+    white-space: nowrap;
+    font-weight: bold;
+    will-change: transform;
+  }
+
+  #bottom-ticker span {
+    margin-right: 50px;
+  }
+
+  #bottom-ticker a {
+    text-decoration: none;
+    color: black;
+  }
+
+  #bottom-ticker a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="bottom-ticker-container">
+  <div id="bottom-ticker">
+    <span><a href="#" target="_blank">France formally recognises Palestinian state</a></span>
+  </div>
+</div>
+
+<script>
+  const ticker = document.getElementById("bottom-ticker");
+  ticker.innerHTML += ticker.innerHTML; // duplicate content for seamless loop
+  let pos = 0;
+  const speed = 0.3; // very slow
+
+  let paused = false;
+  ticker.parentElement.addEventListener("mouseenter", () => paused = true);
+  ticker.parentElement.addEventListener("mouseleave", () => paused = false);
+
+  function moveTicker() {
+    if (!paused) {
+      pos -= speed;
+      if (Math.abs(pos) >= ticker.scrollWidth / 2) pos = 0;
+      ticker.style.transform = `translateX(${pos}px)`;
+    }
+    requestAnimationFrame(moveTicker);
+  }
+  moveTicker();
+</script>
+
+
+
+
+
 
