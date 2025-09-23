@@ -24,6 +24,7 @@ h2 { color:royalblue; font-size:1.5rem; }
 .share-input, #smsMessage { padding:8px; font-size:1rem; width:100%; max-width:500px; margin-right:5px; border-radius:6px; border:1px solid #ccc; }
 
 /* ===== Ticker ===== */
+/* ===== Ticker ===== */
 .ticker, .ticker-container { 
   width: 100%; 
   overflow: hidden; 
@@ -38,14 +39,15 @@ h2 { color:royalblue; font-size:1.5rem; }
 .ticker__text { 
   display: inline-block; 
   white-space: nowrap; 
-  padding-left:100%; 
-  animation: tickerMove 800s linear infinite; /* slower speed */
   font-weight: bold; 
+  animation: tickerMove 12000s linear infinite; /* adjust duration for slower/faster speed */
 }
+
 @keyframes tickerMove { 
   0% { transform: translateX(100%); } 
   100% { transform: translateX(-100%); } 
 }
+
 
 /* ===== Pause on Hover ===== */
 .ticker:hover, .ticker-container:hover { animation-play-state: paused; }
@@ -94,26 +96,12 @@ h2 { color:royalblue; font-size:1.5rem; }
 <!-- Ticker -->
 <div class="ticker">
   <div class="ticker__text">
-    Welcome to 0579 인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성 "Learning English can open up a world of opportunities for you" 수준별 1:1 맞춤지도 수강신청 010-4733-0579 (영어친구)Welcome to 0579 인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성 "Learning English can open up a world of opportunities for you" 수준별 1:1 맞춤지도 수강신청 010-4733-0579 (영어친구)
+    Welcome to 0579         인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성          "Learning English can open up a world of opportunities for you"                수준별 1:1 맞춤지도 수강신청 010-4733-0579 (영어친구)            Welcome to 0579 인공지능 활용 자기주도학습법          주2회월 8회 총16시간 3개월 완성           "Learning English can open up a world of opportunities for you"       수준별 1:1 맞춤지도 수강신청          010-4733-0579 (영어친구)
 
   </div>
 </div>
 
-<!-- Book Sales -->
-<section id="book-sales">
-  <h2>New Books for Sale</h2>
-  <div class="book-slider-container">
-    <div class="book-slider">
-      <div class="book-item"><img src="books/book1.jpg" alt="Book 1"><p>Book Title 1</p></div>
-      <div class="book-item"><img src="books/book2.jpg" alt="Book 2"><p>Book Title 2</p></div>
-      <div class="book-item"><img src="books/book3.jpg" alt="Book 3"><p>Book Title 3</p></div>
-      <div class="book-item"><img src="books/book4.jpg" alt="Book 4"><p>Book Title 4</p></div>
-      <div class="book-item"><img src="books/book5.jpg" alt="Book 5"><p>Book Title 5</p></div>
-    </div>
-    <button id="prevBook1">&#10094;</button>
-    <button id="nextBook1">&#10095;</button>
-  </div>
-</section>
+
 
 <!-- Accordion Sections -->
 <button class="accordion" aria-expanded="false" aria-controls="servicePanel">Our 1:1 Service Menu</button>
@@ -355,100 +343,237 @@ h2 { color:royalblue; font-size:1.5rem; }
 </div> <!-- end panel -->
 
 <script>
-  <!-- ===== New Accordion for Teachers & Students ===== -->
-<button class="accordion" aria-expanded="false" aria-controls="teachersPanel">Teachers & Students Files</button>
-<div id="teachersPanel" class="panel">
-  <ul>
-    <li><a href="teachers/lesson1.pdf" class="test-link" target="_blank">Teacher Lesson File 1</a></li>
-    <li><a href="teachers/lesson2.pdf" class="test-link" target="_blank">Teacher Lesson File 2</a></li>
-    <li><a href="students/classnote1.pdf" class="test-link" target="_blank">Student Class Note 1</a></li>
-    <li><a href="students/classnote2.pdf" class="test-link" target="_blank">Student Class Note 2</a></li>
-  </ul>
-</div>  
-    
-  // Accordion toggle behavior
-  const accordions = document.querySelectorAll('.accordion');
+
+<!-- ===== Accordion Styles ===== -->
+<style>
+  .accordion {
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin: 10px 0; /* consistent spacing between accordions */
+    border-radius: 6px;
+  }
+
+  .accordion:hover {
+    background-color: #2980b9;
+  }
+
+  .active, .accordion.active {
+    background-color: #2c3e50;
+  }
+
+  .panel {
+    padding: 10px 15px;
+    background-color: #f9f9f9;
+    display: none;
+    overflow: hidden;
+    margin-bottom: 10px; /* consistent space below panel */
+    border-radius: 6px;
+    border: 1px solid #ddd;
+  }
+
+  .panel ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .panel li {
+    margin: 5px 0;
+  }
+
+  .panel a {
+    text-decoration: none;
+    color: #333;
+  }
+
+  .panel a:hover {
+    text-decoration: underline;
+    color: #000;
+  }
+</style>
+
+<!-- ===== Accordion Script ===== -->
+<script>
+  // Accordion Toggle Function
+  const accordions = document.querySelectorAll(".accordion");
   accordions.forEach(acc => {
-    acc.addEventListener('click', () => {
-      acc.classList.toggle('active');
-      const panel = document.getElementById(acc.getAttribute('aria-controls'));
-      if (panel.style.maxHeight) {
-        panel.style.maxHeight = null;
-        acc.setAttribute('aria-expanded', 'false');
-      } else {
-        panel.style.maxHeight = panel.scrollHeight + "px";
-        acc.setAttribute('aria-expanded', 'true');
-      }
+    acc.addEventListener("click", function () {
+      this.classList.toggle("active");
+      const panel = this.nextElementSibling;
+      panel.style.display = (panel.style.display === "block") ? "none" : "block";
     });
   });
+
+  // Generate Teacher Lessons
+  const teacherList = document.getElementById("teacher-lessons");
+  for (let i = 1; i <= 120; i++) {
+    let li = document.createElement("li");
+    li.innerHTML = `<a href="teacher-lesson${i}.pdf" target="_blank">Teacher Lesson ${i}</a>`;
+    teacherList.appendChild(li);
+  }
+
+  // Generate Student Notes
+  const studentList = document.getElementById("student-notes");
+  for (let i = 1; i <= 120; i++) {
+    let li = document.createElement("li");
+    li.innerHTML = `<a href="student-note${i}.pdf" target="_blank">Student Note ${i}</a>`;
+    studentList.appendChild(li);
+  }
 </script>
 
-<!-- Teachers & Students Accordion -->
-<button class="accordion" aria-expanded="false" aria-controls="teachersPanel">Teachers & Students Files</button>
-<div id="teachersPanel" class="panel">
-  <ul>
-    <li><a href="teachers/lesson1.pdf" class="test-link" target="_blank">Teacher Lesson File 1</a></li>
-    <li><a href="teachers/lesson2.pdf" class="test-link" target="_blank">Teacher Lesson File 2</a></li>
-    <li><a href="students/classnote1.pdf" class="test-link" target="_blank">Student Class Note 1</a></li>
-    <li><a href="students/classnote2.pdf" class="test-link" target="_blank">Student Class Note 2</a></li>
-  </ul>
-</div>
-<!-- ===== Slow Right-to-Left Bottom Ticker ===== -->
+
+<!-- ===== Accordions ===== -->
 <style>
-  .bottom-ticker-container {
-    width: 100%;
-    overflow: hidden;
-    background: #ffd700;
-    border-radius: 6px;
-    padding: 15px 0;
-    margin-top: 15px;    /* consistent with accordion spacing */
-    margin-bottom: 15px; /* consistent with accordion spacing */
-  }
+.accordion {
+  background-color: royalblue;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin: 10px 0;
+  border-radius: 6px;
+  font-weight: bold;
+}
+.accordion:hover {
+  background-color: #0056b3; /* slightly darker on hover */
+}
+.accordion.active {
+  background-color: #2c3e50; /* darkest when active */
+}
+.panel {
+  padding: 10px 15px;
+  background-color: #f9f9f9;
+  display: none;
+  overflow: hidden;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+.panel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.panel li {
+  margin: 5px 0;
+}
+.panel a {
+  text-decoration: none;
+  color: #333;
+}
+.panel a:hover {
+  text-decoration: underline;
+  color: #000;
+}
+</style>
 
-  #bottom-ticker {
-    display: inline-block;
-    white-space: nowrap;
-    font-weight: bold;
-    will-change: transform;
-  }
+<!-- Accordion Buttons -->
+<button class="accordion">Students' Class Notes</button>
+<div class="panel">
+  <ul id="student-notes"></ul>
+</div>
 
-  #bottom-ticker span {
-    margin-right: 50px;
-  }
+<button class="accordion">Teachers' Guide</button>
+<div class="panel">
+  <ul id="teacher-lessons"></ul>
+</div>
 
-  #bottom-ticker a {
-    text-decoration: none;
-    color: black;
-  }
+<script>
+// Accordion toggle
+const accordions = document.querySelectorAll(".accordion");
+accordions.forEach(acc => {
+  acc.addEventListener("click", function () {
+    this.classList.toggle("active");
+    const panel = this.nextElementSibling;
+    panel.style.display = (panel.style.display === "block") ? "none" : "block";
+  });
+});
 
-  #bottom-ticker a:hover {
-    text-decoration: underline;
-  }
+// Generate Student Notes
+const studentList = document.getElementById("student-notes");
+for (let i = 1; i <= 120; i++) {
+  const li = document.createElement("li");
+  li.innerHTML = `<a href="student-note${i}.pdf" target="_blank">Student Note ${i}</a>`;
+  studentList.appendChild(li);
+}
+
+// Generate Teacher Lessons
+const teacherList = document.getElementById("teacher-lessons");
+for (let i = 1; i <= 120; i++) {
+  const li = document.createElement("li");
+  li.innerHTML = `<a href="teacher-lesson${i}.pdf" target="_blank">Teacher Lesson ${i}</a>`;
+  teacherList.appendChild(li);
+}
+</script>
+
+<!-- ===== Bottom Ticker ===== -->
+<style>
+.bottom-ticker-container {
+  width: 100%;
+  overflow: hidden;
+  background: #ffd700;
+  border-radius: 6px;
+  padding: 15px 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+#bottom-ticker {
+  display: inline-block;
+  white-space: nowrap;
+  font-weight: bold;
+  will-change: transform;
+}
+#bottom-ticker span {
+  margin-right: 50px;
+}
+#bottom-ticker a {
+  text-decoration: none;
+  color: black;
+}
+#bottom-ticker a:hover {
+  text-decoration: underline;
+}
 </style>
 
 <div class="bottom-ticker-container">
   <div id="bottom-ticker">
     <span><a href="#" target="_blank">France formally recognises Palestinian state</a></span>
+    <span><a href="#" target="_blank">Duchess of York dropped from multiple charities over Epstein email</a></span>
+    <span><a href="#" target="_blank">Jimmy Kimmel show to return after suspension over Charlie Kirk comments</a></span>
   </div>
 </div>
 
 <script>
-  const ticker = document.getElementById("bottom-ticker");
-  ticker.innerHTML += ticker.innerHTML; // duplicate content for seamless loop
-  let pos = 0;
-  const speed = 0.3; // very slow
+const ticker = document.getElementById("bottom-ticker");
+ticker.innerHTML += ticker.innerHTML; // duplicate for smooth scroll
+let pos = 0;
+const speed = 0.1; // slower
 
-  let paused = false;
-  ticker.parentElement.addEventListener("mouseenter", () => paused = true);
-  ticker.parentElement.addEventListener("mouseleave", () => paused = false);
+let paused = false;
+ticker.parentElement.addEventListener("mouseenter", () => paused = true);
+ticker.parentElement.addEventListener("mouseleave", () => paused = false);
 
-  function moveTicker() {
-    if (!paused) {
-      pos -= speed;
-      if (Math.abs(pos) >= ticker.scrollWidth / 2) pos = 0;
-      ticker.style.transform = `translateX(${pos}px)`;
-    }
-    requestAnimationFrame(moveTicker);
+function moveTicker() {
+  if (!paused) {
+    pos -= speed;
+    if (Math.abs(pos) >= ticker.scrollWidth / 2) pos = 0;
+    ticker.style.transform = `translateX(${pos}px)`;
   }
-  moveTicker();
+  requestAnimationFrame(moveTicker);
+}
+
+moveTicker();
 </script>
