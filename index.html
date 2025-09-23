@@ -430,81 +430,96 @@ h2 { color:royalblue; font-size:1.5rem; }
 </script>
 
 
-<!-- Accordions -->
-<button class="accordion">Students' Class Notes</button>
+<!-- Students Accordion -->
+<button class="accordion">Students' Notes</button>
 <div class="panel">
-  <ul id="student-notes"></ul>
+  <div class="grid-list" id="student-notes"></div>
 </div>
 
+<!-- Teachers Accordion -->
 <button class="accordion">Teachers' Guide</button>
 <div class="panel">
-  <ul id="teacher-lessons"></ul>
+  <div class="grid-list" id="teacher-lessons"></div>
 </div>
 
-<script>
-// Populate Student Notes first
-const studentList = document.getElementById("student-notes");
-for (let i = 1; i <= 120; i++) {
-  const li = document.createElement("li");
-  li.innerHTML = `<a href="student-note${i}.pdf" target="_blank">Student Note ${i}</a>`;
-  studentList.appendChild(li);
-}
-
-// Populate Teacher Lessons first
-const teacherList = document.getElementById("teacher-lessons");
-for (let i = 1; i <= 120; i++) {
-  const li = document.createElement("li");
-  li.innerHTML = `<a href="teacher-lesson${i}.pdf" target="_blank">Teacher Lesson ${i}</a>`;
-  teacherList.appendChild(li);
-}
-
-// Accordion toggle using max-height for smooth animation
-const accordions = document.querySelectorAll(".accordion");
-accordions.forEach(acc => {
-  acc.addEventListener("click", function () {
-    this.classList.toggle("active");
-    const panel = this.nextElementSibling;
-
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null; // collapse
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px"; // expand to fit content
-    }
-  });
-});
-</script>
-
 <style>
+/* Grid 4 lanes */
+.grid-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px 8px;
+  padding: 10px 0;
+}
+.grid-list a {
+  display: block;
+  font-size: 0.75em;
+  text-align: center;
+  padding: 4px 5px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #333;
+  transition: 0.2s;
+}
+.grid-list a:hover { background: #ffd700; color: #000; }
+
+/* Accordion */
 .accordion {
-  background-color: royalblue;
+  background: royalblue;
   color: white;
-  cursor: pointer;
-  padding: 15px;
+  font-weight: bold;
+  padding: 12px 15px;
   width: 100%;
+  text-align: left;
   border: none;
   border-radius: 6px;
-  font-weight: bold;
-  margin: 10px 0;
-  text-align: left;
-  transition: background 0.3s;
+  cursor: pointer;
+  margin: 8px 0;
 }
-.accordion:hover { background-color: #0056b3; }
-.accordion.active { background-color: #2c3e50; }
+.accordion:hover { background: #0056b3; }
+.accordion.active { background: #2c3e50; }
 
 .panel {
-  background-color: #f9f9f9;
-  overflow: hidden;
   max-height: 0;
-  transition: max-height 0.4s ease;
-  padding: 0 15px;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  background: #f9f9f9;
   border-radius: 6px;
   border: 1px solid #ddd;
 }
-.panel ul { padding: 10px 0; margin: 0; list-style: none; }
-.panel li { margin: 5px 0; }
-.panel a { text-decoration: none; color: #333; }
-.panel a:hover { text-decoration: underline; color: #000; }
 </style>
+
+<script>
+// Accordion toggle
+document.querySelectorAll(".accordion").forEach(acc => {
+  acc.addEventListener("click", function() {
+    this.classList.toggle("active");
+    const panel = this.nextElementSibling;
+    panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + "px";
+  });
+});
+
+// Generate 120 Student Notes
+const studentNotes = document.getElementById("student-notes");
+for(let i=1; i<=120; i++){
+  const a = document.createElement("a");
+  a.href = `student-note${i}.pdf`;
+  a.target="_blank";
+  a.textContent = `S${i}`;
+  studentNotes.appendChild(a);
+}
+
+// Generate 120 Teacher Lessons
+const teacherLessons = document.getElementById("teacher-lessons");
+for(let i=1; i<=120; i++){
+  const a = document.createElement("a");
+  a.href = `teacher-lesson${i}.pdf`;
+  a.target="_blank";
+  a.textContent = `T${i}`;
+  teacherLessons.appendChild(a);
+}
+</script>
+
 
 
 <!-- ===== Bottom Ticker ===== -->
