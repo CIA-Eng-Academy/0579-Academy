@@ -430,57 +430,7 @@ h2 { color:royalblue; font-size:1.5rem; }
 </script>
 
 
-<!-- ===== Accordions ===== -->
-<style>
-.accordion {
-  background-color: royalblue;
-  color: white;
-  cursor: pointer;
-  padding: 15px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 16px;
-  transition: background-color 0.3s;
-  margin: 10px 0;
-  border-radius: 6px;
-  font-weight: bold;
-}
-.accordion:hover {
-  background-color: #0056b3; /* slightly darker on hover */
-}
-.accordion.active {
-  background-color: #2c3e50; /* darkest when active */
-}
-.panel {
-  padding: 10px 15px;
-  background-color: #f9f9f9;
-  display: none;
-  overflow: hidden;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-}
-.panel ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.panel li {
-  margin: 5px 0;
-}
-.panel a {
-  text-decoration: none;
-  color: #333;
-}
-.panel a:hover {
-  text-decoration: underline;
-  color: #000;
-}
-</style>
-
-<!-- Accordion Buttons -->
+<!-- Accordions -->
 <button class="accordion">Students' Class Notes</button>
 <div class="panel">
   <ul id="student-notes"></ul>
@@ -492,17 +442,7 @@ h2 { color:royalblue; font-size:1.5rem; }
 </div>
 
 <script>
-// Accordion toggle
-const accordions = document.querySelectorAll(".accordion");
-accordions.forEach(acc => {
-  acc.addEventListener("click", function () {
-    this.classList.toggle("active");
-    const panel = this.nextElementSibling;
-    panel.style.display = (panel.style.display === "block") ? "none" : "block";
-  });
-});
-
-// Generate Student Notes
+// Populate Student Notes first
 const studentList = document.getElementById("student-notes");
 for (let i = 1; i <= 120; i++) {
   const li = document.createElement("li");
@@ -510,14 +450,62 @@ for (let i = 1; i <= 120; i++) {
   studentList.appendChild(li);
 }
 
-// Generate Teacher Lessons
+// Populate Teacher Lessons first
 const teacherList = document.getElementById("teacher-lessons");
 for (let i = 1; i <= 120; i++) {
   const li = document.createElement("li");
   li.innerHTML = `<a href="teacher-lesson${i}.pdf" target="_blank">Teacher Lesson ${i}</a>`;
   teacherList.appendChild(li);
 }
+
+// Accordion toggle using max-height for smooth animation
+const accordions = document.querySelectorAll(".accordion");
+accordions.forEach(acc => {
+  acc.addEventListener("click", function () {
+    this.classList.toggle("active");
+    const panel = this.nextElementSibling;
+
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null; // collapse
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px"; // expand to fit content
+    }
+  });
+});
 </script>
+
+<style>
+.accordion {
+  background-color: royalblue;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  margin: 10px 0;
+  text-align: left;
+  transition: background 0.3s;
+}
+.accordion:hover { background-color: #0056b3; }
+.accordion.active { background-color: #2c3e50; }
+
+.panel {
+  background-color: #f9f9f9;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease;
+  padding: 0 15px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+.panel ul { padding: 10px 0; margin: 0; list-style: none; }
+.panel li { margin: 5px 0; }
+.panel a { text-decoration: none; color: #333; }
+.panel a:hover { text-decoration: underline; color: #000; }
+</style>
+
 
 <!-- ===== Bottom Ticker ===== -->
 <style>
