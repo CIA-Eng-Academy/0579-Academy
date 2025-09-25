@@ -206,89 +206,91 @@
 <body>
 
   <div class="container">
-  <!-- Header Section -->
-  <header>
-    <h1>0579 Academy</h1>
-    <p>"영어친구 학원에 오신 것을 환영합니다."</p>
-  </header>
+    <!-- Header Section -->
+    <header>
+      <h1>0579 Academy</h1>
+      <p>"영어친구 학원에 오신 것을 환영합니다."</p>
+    </header>
 
-  <!-- Ticker Section -->
-  <div class="ticker-container">
-    <div class="ticker">
-      <span>Welcome to 0579 인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성 "Learning English can open up a world of opportunities for you" 수준별 1:1 맞춤지도 수강신청 010-4733-0579 (영어친구)</span>
-      <span>Welcome to 0579 인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성 "Learning English can open up a world of opportunities for you" 수준별 1:1 맞춤지도 수강신청 010-4733-0579 (영어친구)</span>
+    <!-- Ticker Section -->
+    <div class="ticker-container">
+      <div class="ticker">
+        <span>Welcome to 0579 인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성 "Learning English can open up a world of opportunities for you" 수준별 1:1 맞춤지도 수강신청 010-4733-0579 (영어친구)</span>
+        <span>Welcome to 0579 인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성 "Learning English can open up a world of opportunities for you" 수준별 1:1 맞춤지도 수강신청 010-4733-0579 (영어친구)</span>
+      </div>
     </div>
-  </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const ticker = document.querySelector('.ticker');
-      let tickerWidth = ticker.scrollWidth;
-      let tickerPosition = 0;
-      const tickerSpeed = 0.5; // Control the speed of the ticker
 
-      function animateTicker() {
-        tickerPosition -= tickerSpeed;
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const ticker = document.querySelector('.ticker');
+        if (!ticker) return; // Early exit if ticker is not found
 
-        if (Math.abs(tickerPosition) >= tickerWidth) {
-          tickerPosition = 0; // Reset to the start once the ticker is completely out of view
+        let tickerWidth = ticker.scrollWidth;
+        let tickerPosition = 0;
+        const tickerSpeed = 0.5; // Control the speed of the ticker
+
+        function animateTicker() {
+          tickerPosition -= tickerSpeed;
+
+          if (Math.abs(tickerPosition) >= tickerWidth) {
+            tickerPosition = 0; // Reset to the start once the ticker is completely out of view
+          }
+
+          ticker.style.transform = `translateX(${tickerPosition}px)`; // Move the ticker
+          requestAnimationFrame(animateTicker); // Recursively call the function for continuous scrolling
         }
 
-        ticker.style.transform = `translateX(${tickerPosition}px)`; // Move the ticker
-        requestAnimationFrame(animateTicker); // Recursively call the function for continuous scrolling
-      }
+        animateTicker(); // Start the ticker animation
+      });
+    </script>
 
-      animateTicker(); // Start the ticker animation
+    <!-- Accordion Sections -->
+    <button class="accordion" aria-expanded="false" aria-controls="servicePanel">Our 1:1 Service Menu</button>
+    <div id="servicePanel" class="panel">
+      <ol>
+        <li>AI 활용 스마트폰 영어학습법
+          <ul>
+            <li>레벨테스트</li>
+            <li>발음교정</li>
+            <li>문법강의</li>
+            <li>듣기, 말하기, 독해, 작문</li>
+            <li>영어일기쓰기 교정</li>
+            <li>중등/고등/모의고사 쪽집게 풀이</li>
+            <li>영어 스피치 & 창의력 대회 준비</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+
+    <button class="accordion" aria-expanded="false" aria-controls="rulesPanel">학생 규정 및 환불규정</button>
+    <div id="rulesPanel" class="panel">
+      <ol>
+        <li>강의 및 학습이 어려운 경우, 즉시 귀가조치</li>
+        <li>단정한 복장 착용과 예의바른 언어사용</li>
+        <li>단순 변심으로 인한 수업 중단 시 환불 규정 적용</li>
+      </ol>
+    </div>
+  </div>
+
+  <script>
+    // Accordion functionality (for opening and closing the panels)
+    const accordions = document.querySelectorAll('.accordion');
+    
+    accordions.forEach(accordion => {
+      accordion.addEventListener('click', function () {
+        const panel = document.getElementById(this.getAttribute('aria-controls'));
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        
+        // Toggle the panel visibility
+        panel.style.maxHeight = isExpanded ? '0' : `${panel.scrollHeight}px`;
+
+        // Toggle the aria-expanded attribute
+        this.setAttribute('aria-expanded', !isExpanded);
+      });
     });
   </script>
-    
-    
 
-  <!-- Accordion Sections -->
-  <button class="accordion" aria-expanded="false" aria-controls="servicePanel">Our 1:1 Service Menu</button>
-  <div id="servicePanel" class="panel">
-    <ol>
-      <li>AI 활용 스마트폰 영어학습법
-        <ul>
-          <li>레벨테스트</li>
-          <li>발음교정</li>
-          <li>문법강의</li>
-          <li>듣기, 말하기, 독해, 작문</li>
-          <li>영어일기쓰기 교정</li>
-          <li>중등/고등/모의고사 쪽집게 풀이</li>
-          <li>영어 스피치 & 창의력 대회 준비</li>
-        </ul>
-      </li>
-    </ol>
-  </div>
-
-  <button class="accordion" aria-expanded="false" aria-controls="rulesPanel">학생 규정 및 환불규정</button>
-  <div id="rulesPanel" class="panel">
-    <ol>
-      <li>강의 및 학습이 어려운 경우, 즉시 귀가조치</li>
-      <li>단정한 복장 착용과 예의바른 언어사용</li>
-      <li>단순 변심으로 인한 수업 중단 시 환불 규정 적용</li>
-    </ol>
-  </div>
-
-</div>
-
-<script>
-  // Accordion functionality (for opening and closing the panels)
-  const accordions = document.querySelectorAll('.accordion');
-  
-  accordions.forEach(accordion => {
-    accordion.addEventListener('click', function () {
-      const panel = document.getElementById(this.getAttribute('aria-controls'));
-      const isExpanded = this.getAttribute('aria-expanded') === 'true';
-      
-      // Toggle the panel visibility
-      panel.style.maxHeight = isExpanded ? '0' : `${panel.scrollHeight}px`;
-
-      // Toggle the aria-expanded attribute
-      this.setAttribute('aria-expanded', !isExpanded);
-    });
-  });
-</script>
+</body>
 
 <!-- 📌 배치고사 -->
 <button class="accordion" aria-expanded="false" aria-controls="placementPanel">배치고사</button>
