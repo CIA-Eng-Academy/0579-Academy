@@ -528,6 +528,30 @@ for(let i=1; i<=120; i++){
 }
 </script>
 
+<script>
+(function(){
+  const bgClasses = ['bg-level-a','bg-level-b','bg-level-c','bg-level-d'];
+
+  function setBgClass(el, cls) {
+    el.classList.remove(...bgClasses);
+    el.classList.add(cls);
+  }
+
+  function applyBg(sectionId) {
+    const section = document.getElementById(sectionId);
+    if(!section) return;
+    const anchors = section.querySelectorAll('a');
+    anchors.forEach((a, idx) => {
+      const cls = bgClasses[idx % bgClasses.length];
+      setBgClass(a, cls);
+    });
+  }
+
+  // Apply to these two sections
+  applyBg('배치고사');
+  applyBg('수강생-level-tests');
+})();
+</script>
 
 
 <!-- ===== Bottom Ticker ===== -->
