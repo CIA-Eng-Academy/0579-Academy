@@ -66,13 +66,15 @@
     }
 
     .panel {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s ease;
-      background: #f9f9f9;
-      border-radius: 6px;
-      margin-bottom: 10px;
-      padding: 0 15px;
+  max-height: 0; /* Initially collapsed */
+  overflow: hidden;
+  transition: max-height 0.35s ease-out; /* Smooth transition for opening/closing */
+  background: #f9f9f9;
+  border-radius: 6px;
+  padding: 0 15px;
+  margin-bottom: 10px; /* Space between panels */
+}
+
     }
 
     /* ===== Grid Lists (Student/Teacher links) ===== */
@@ -319,34 +321,6 @@
 </script>
 
 
-    <!-- Accordion Sections -->
-    <button class="accordion" aria-expanded="false" aria-controls="servicePanel">Our 1:1 Service Menu</button>
-    <div id="servicePanel" class="panel">
-      <ol>
-        <li>AI 활용 스마트폰 영어학습법
-          <ul>
-            <li>레벨테스트</li>
-            <li>발음교정</li>
-            <li>문법강의</li>
-            <li>듣기, 말하기, 독해, 작문</li>
-            <li>영어일기쓰기 교정</li>
-            <li>중등/고등/모의고사 쪽집게 풀이</li>
-            <li>영어 스피치 & 창의력 대회 준비</li>
-          </ul>
-        </li>
-      </ol>
-    </div>
-
-    <button class="accordion" aria-expanded="false" aria-controls="rulesPanel">학생 규정 및 환불규정</button>
-    <div id="rulesPanel" class="panel">
-      <ol>
-        <li>강의 및 학습이 어려운 경우, 즉시 귀가조치</li>
-        <li>단정한 복장 착용과 예의바른 언어사용</li>
-        <li>단순 변심으로 인한 수업 중단 시 환불 규정 적용</li>
-      </ol>
-    </div>
-  </div>
-
   <script>
     // Accordion functionality (for opening and closing the panels)
     const accordions = document.querySelectorAll('.accordion');
@@ -366,6 +340,35 @@
   </script>
 
 </body>
+
+<!-- Accordion: Our 1:1 Service Menu -->
+<button class="accordion" aria-expanded="false" aria-controls="servicePanel">Our 1:1 Service Menu</button>
+<div id="servicePanel" class="panel">
+  <ol>
+    <li>AI 활용 스마트폰 영어학습법
+      <ul>
+        <li>레벨테스트</li>
+        <li>발음교정</li>
+        <li>문법강의</li>
+        <li>듣기, 말하기, 독해, 작문</li>
+        <li>영어일기쓰기 교정</li>
+        <li>중등/고등/모의고사 쪽집게 풀이</li>
+        <li>영어 스피치 & 창의력 대회 준비</li>
+      </ul>
+    </li>
+  </ol>
+</div>
+
+<!-- Accordion: 학생 규정 및 환불규정 -->
+<button class="accordion" aria-expanded="false" aria-controls="rulesPanel">학생 규정 및 환불규정</button>
+<div id="rulesPanel" class="panel">
+  <ol>
+    <li>강의 및 학습이 어려운 경우, 즉시 귀가조치</li>
+    <li>단정한 복장 착용과 예의바른 언어사용</li>
+    <li>단순 변심으로 인한 수업 중단 시 환불 규정 적용</li>
+  </ol>
+</div>
+
 
 <!-- 📌 배치고사 -->
 <button class="accordion" aria-expanded="false" aria-controls="placementPanel">배치고사</button>
@@ -642,52 +645,6 @@
     outline: 2px solid #fff; /* White outline for better visibility */
   }
 </style>
-
-
-<!-- ===== Accordion Script ===== -->
-<script>
-  // Accordion Toggle Function
-  document.querySelectorAll(".accordion").forEach(acc => {
-    acc.addEventListener("click", function() {
-      // Toggle the active class for the clicked accordion button
-      this.classList.toggle("active");
-
-      // Get the associated panel
-      const panel = this.nextElementSibling;
-
-      // Update the aria-expanded attribute
-      const isExpanded = this.classList.contains("active");
-      this.setAttribute("aria-expanded", isExpanded);
-
-      // Toggle the max-height for smooth expanding/collapsing
-      if (panel.style.maxHeight) {
-        panel.style.maxHeight = null; // Collapse the panel
-      } else {
-        panel.style.maxHeight = panel.scrollHeight + "px"; // Expand the panel
-      }
-    });
-  });
-
-  // Generate Teacher Lessons
-  const teacherList = document.getElementById("teacher-lessons");
-  if (teacherList) { // Check if the element exists
-    for (let i = 1; i <= 120; i++) {
-      const li = document.createElement("li");
-      li.innerHTML = `<a href="teacher-lesson${i}.pdf" target="_blank">Teacher Lesson ${i}</a>`;
-      teacherList.appendChild(li);
-    }
-  }
-
-  // Generate Student Notes
-  const studentList = document.getElementById("student-notes");
-  if (studentList) { // Check if the element exists
-    for (let i = 1; i <= 120; i++) {
-      const li = document.createElement("li");
-      li.innerHTML = `<a href="student-note${i}.pdf" target="_blank">Student Note ${i}</a>`;
-      studentList.appendChild(li);
-    }
-  }
-</script>
 
 <!-- Students Accordion -->
 <button class="accordion" aria-expanded="false" aria-controls="studentPanel">Students' Notes</button>
