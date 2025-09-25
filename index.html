@@ -14,7 +14,7 @@
       font-family: 'Arial', sans-serif; 
       background: white; 
       color: black; 
-      transition: background 0.3s, color 0.3s; 
+      transition: background-color 0.3s ease, color 0.3s ease; /* Smooth background and color transition */
     }
     
     .container { 
@@ -33,8 +33,14 @@
       transition: background 0.3s, color 0.3s; 
     }
     
-    h1, h2, h3 { margin-top: 0; }
-    h2 { color: royalblue; font-size: 1.5rem; }
+    h1, h2, h3 { 
+      margin-top: 0; 
+    }
+
+    h2 { 
+      color: royalblue; 
+      font-size: 1.5rem; 
+    }
 
     /* ===== Accordion ===== */
     .accordion {
@@ -48,11 +54,16 @@
       border-radius: 6px;
       cursor: pointer;
       margin: 8px 0;
-      transition: background 0.3s;
+      transition: background 0.3s ease;
     }
 
-    .accordion:hover { background: #0056b3; }
-    .accordion.active { background: #2c3e50; }
+    .accordion:hover { 
+      background: #0056b3; 
+    }
+
+    .accordion.active { 
+      background: #2c3e50; 
+    }
 
     .panel {
       max-height: 0;
@@ -81,16 +92,30 @@
       border-radius: 4px;
       text-decoration: none;
       color: #333;
-      transition: 0.2s;
+      transition: background 0.2s ease, color 0.2s ease;
     }
 
-    .grid-list a:hover { background: #ffd700; color: #000; }
+    .grid-list a:hover { 
+      background: #ffd700; 
+      color: #000; 
+    }
 
     /* ===== Background classes for alternating colors ===== */
-    .bg-level-a { background-color: #E6F0FF; }
-    .bg-level-b { background-color: #E8F8F5; }
-    .bg-level-c { background-color: #FFF9E6; }
-    .bg-level-d { background-color: #FDEDEC; }
+    .bg-level-a { 
+      background-color: #E6F0FF; 
+    }
+
+    .bg-level-b { 
+      background-color: #E8F8F5; 
+    }
+
+    .bg-level-c { 
+      background-color: #FFF9E6; 
+    }
+
+    .bg-level-d { 
+      background-color: #FDEDEC; 
+    }
 
     /* ===== Bottom Ticker ===== */
     .bottom-ticker-container {
@@ -110,9 +135,18 @@
       will-change: transform;
     }
 
-    #bottom-ticker span { margin-right: 80px; }
-    #bottom-ticker a { text-decoration: none; color: black; }
-    #bottom-ticker a:hover { text-decoration: underline; }
+    #bottom-ticker span { 
+      margin-right: 80px; 
+    }
+
+    #bottom-ticker a { 
+      text-decoration: none; 
+      color: black; 
+    }
+
+    #bottom-ticker a:hover { 
+      text-decoration: underline; 
+    }
 
     /* ===== Book Slider ===== */
     .book-slider-container { 
@@ -155,14 +189,19 @@
 
     /* ===== Responsive ===== */
     @media(max-width: 768px) {
-      .book-item { flex: 0 0 50%; }
+      .book-item { 
+        flex: 0 0 50%; 
+      }
     }
 
     @media(max-width: 480px) {
-      .book-item { flex: 0 0 100%; }
+      .book-item { 
+        flex: 0 0 100%; 
+      }
     }
   </style>
 </head>
+
 
 <body>
 
