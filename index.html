@@ -219,6 +219,29 @@
       <span>Welcome to 0579 인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성 "Learning English can open up a world of opportunities for you" 수준별 1:1 맞춤지도 수강신청 010-4733-0579 (영어친구)</span>
     </div>
   </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const ticker = document.querySelector('.ticker');
+      let tickerWidth = ticker.scrollWidth;
+      let tickerPosition = 0;
+      const tickerSpeed = 0.5; // Control the speed of the ticker
+
+      function animateTicker() {
+        tickerPosition -= tickerSpeed;
+
+        if (Math.abs(tickerPosition) >= tickerWidth) {
+          tickerPosition = 0; // Reset to the start once the ticker is completely out of view
+        }
+
+        ticker.style.transform = `translateX(${tickerPosition}px)`; // Move the ticker
+        requestAnimationFrame(animateTicker); // Recursively call the function for continuous scrolling
+      }
+
+      animateTicker(); // Start the ticker animation
+    });
+  </script>
+    
+    
 
   <!-- Accordion Sections -->
   <button class="accordion" aria-expanded="false" aria-controls="servicePanel">Our 1:1 Service Menu</button>
