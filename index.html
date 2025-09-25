@@ -9,15 +9,25 @@
       box-sizing: border-box; 
     }
     
-     header {
-  background: royalblue;  /* royal blue background */
-  color: white;           /* white text */
-  padding: 15px;
-  text-align: center;
-  border-radius: 6px;
-  transition: background 0.3s, color 0.3s;
+  header {
+    width: 100vw;           /* Full viewport width */
+    max-width: 100%;         /* Prevent max-width limit */
+    margin: 0;               /* Remove centering margin */
+    padding: 15px 0;         /* Optional padding */
+    background: royalblue;   /* Your blue background */
+    color: white;
+    text-align: center;
+    box-sizing: border-box;  /* Ensure padding included */
 }
-    
+
+.top-ticker-container {
+    width: 100vw;            /* Full viewport width */
+    max-width: 100%;
+    margin: 0;               /* Remove container centering */
+    border-radius: 0;        /* Remove rounding if you want full width */
+    padding: 10px 0;
+}
+
     
     body { 
       margin: 0; 
