@@ -2,152 +2,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>0579 Academy</title>
- 
+
   <style>
     /* ===== Base Styling ===== */
-    *, *::before, *::after { 
-      box-sizing: border-box; 
+    *, *::before, *::after {
+      box-sizing: border-box;
     }
 
-  header {
-    width: 100vw;           /* Full viewport width */
-    max-width: 100%;         /* Prevent max-width limit */
-    margin: 0;               /* Remove centering margin */
-    padding: 15px 0;         /* Optional padding */
-    background: royalblue;   /* Your blue background */
-    color: white;
-    text-align: center;
-    box-sizing: border-box;  /* Ensure padding included */
-}
-
-.top-ticker-container {
-    width: 100vw;            /* Full viewport width */
-    max-width: 100%;
-    margin: 0;               /* Remove container centering */
-    border-radius: 0;        /* Remove rounding if you want full width */
-    padding: 10px 0;
-}
-    
-    body { 
-      margin: 0; 
-      padding: 10px; 
-      font-family: 'Arial', sans-serif; 
-      background:white; 
-      color: black; 
-      transition: background-color 0.3s ease, color 0.3s ease; /* Smooth background and color transition */
-    }
-    
-    .container { 
-      max-width: 900px; 
-      width: 100%; 
-      margin: 0 auto; 
-      text-align: center; 
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: white;
+      color: black;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* ===== Accordion Styles ===== */
-    .accordion {
-    background: royalblue;
-    color: white;
-    font-weight: bold;
-    padding: 12px 15px;
-    width: 100%;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin: 8px 0;
-    transition: background 0.3s ease;
-
-    display: flex;           /* Use flex for alignment */
-    justify-content: center; /* Center horizontally */
-    align-items: center;     /* Center vertically */
-    text-align: center;      /* Fallback for text inside */
-
-    /* Panel styles */
-    .panel {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s ease;
-      background: #f9f9f9;
-      border-radius: 6px;
-      margin-bottom: 10px;
-      padding: 0 15px;
-    }
-
-    /* ===== Grid Lists (Student/Teacher links) ===== */
-    .grid-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 5px 8px;
-      padding: 10px 0;
-    }
-    
-    .grid-list a {
-      display: block;
-      font-size: 0.75em;
+    /* ===== Header ===== */
+    header {
+      width: 100vw;
+      padding: 15px 0;
+      background: royalblue;
+      color: white;
       text-align: center;
-      padding: 4px 5px;
-      background: #f0f0f0;
-      border-radius: 4px;
-      text-decoration: none;
-      color: #333;
-      transition: background 0.2s ease, color 0.2s ease;
     }
 
-    .grid-list a:hover { 
-      background: #ffd700; 
-      color: #000; 
-    }
-
-    /* ===== Bottom Ticker ===== */
-    .bottom-ticker-container {
-      width: 100%;
-      overflow: hidden;
+    /* ===== Top Ticker ===== */
+    .top-ticker-container {
+      width: 100vw;
       background: #ffd700;
-      border-radius: 6px;
+      overflow: hidden;
       padding: 10px 0;
-      margin: 15px 0;
       position: relative;
+      height: 50px;
+      line-height: 50px;
     }
 
-    #bottom-ticker {
+    .top-ticker {
       display: flex;
       white-space: nowrap;
       font-weight: bold;
       will-change: transform;
     }
 
-    #bottom-ticker span { 
-      margin-right: 80px; 
+    .top-ticker span {
+      margin-right: 80px;
     }
 
-    #bottom-ticker a { 
-      text-decoration: none; 
-      color: black; 
+    .top-ticker a {
+      text-decoration: none;
+      color: black;
     }
 
-    #bottom-ticker a:hover { 
-      text-decoration: underline; 
+    .top-ticker a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Header Section: OUTSIDE the container -->
 <header>
   <h1>0579 Academy</h1>
   <p>"영어친구 학원에 오신 것을 환영합니다."</p>
 </header>
 
-<!-- Top Ticker Section: OUTSIDE the container -->
-<div class="ticker-container top-ticker-container">
-  <div class="ticker top-ticker">
+<div class="top-ticker-container">
+  <div class="top-ticker">
     <span>Welcome to 0579 인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성 "Learning English can open up a world of opportunities for you" 수준별 1:1 맞춤지도 수강신청 010-4733-0579 (영어친구)</span>
     <span>Welcome to 0579 인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성 "Learning English can open up a world of opportunities for you" 수준별 1:1 맞춤지도 수강신청 010-4733-0579</span>
     <span>Welcome to 0579 인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성 "Learning English can open up a world of opportunities for you" 수준별 1:1 맞춤지도 수강신청 010-4733-0579</span>
-    <span>Welcome to 0579 인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성 "Learning English can open up a world of opportunities for you" 수준별 1:1 맞춤지도 수강신청 010-4733-0579 </span>
+    <span>Welcome to 0579 인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성 "Learning English can open up a world of opportunities for you" 수준별 1:1 맞춤지도 수강신청 010-4733-0579</span>
   </div>
 </div>
+
 
 <!-- Main Content Container -->
 <div class="container">
@@ -312,7 +239,10 @@
   </ol>
 </div>
 
-      
+<!-- Your existing panels above -->
+
+<!-- Insert new panels here -->
+
     
 <!-- 📌 신규회원 레벨테스트 -->
 <button class="accordion" aria-expanded="false" aria-controls="placementPanel">신규회원 레벨테스트</button>
@@ -590,11 +520,182 @@
   }
 </style>
 
-<!-- Students Accordion -->
-<button class="accordion" aria-expanded="false" aria-controls="studentPanel">Students' Notes</button>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>수강생 학습노트</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f2f2f2;
+  }
+
+  header {
+    background-color: #0077cc;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .tab-buttons {
+    display: flex;
+    justify-content: space-around;
+    background-color: #005fa3;
+  }
+
+  .tab-buttons button {
+    flex: 1;
+    padding: 10px;
+    background-color: #005fa3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .tab-buttons button.active {
+    background-color: #0077cc;
+  }
+
+  .main-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #fff;
+  }
+
+  .panel {
+    display: none;
+  }
+
+  .panel.active {
+    display: block;
+  }
+
+  .notes-container {
+    position: sticky;
+    bottom: 0;
+    background-color: #e6e6e6;
+    padding: 10px;
+    border-top: 2px solid #ccc;
+  }
+
+  .notes-container textarea {
+    width: 100%;
+    min-height: 120px;
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .notes-container input, .notes-container button {
+    padding: 8px;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+
+  iframe {
+    width: 100%;
+    height: 300px;
+    border: none;
+  }
+
+  @media (max-width: 600px) {
+    .notes-container textarea {
+      min-height: 150px;
+    }
+    .tab-buttons button {
+      font-size: 14px;
+      padding: 8px;
+    }
+  }
+</style>
+<html lang="ko">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>수강생 학습노트 Dashboard</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+  .accordion { width: 100%; padding: 15px; font-size: 18px; cursor: pointer; border: none; outline: none; text-align: left; background: #2c3e50; color: white; }
+  .panel { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+  .panel.open { max-height: 100vh; }
+  .dashboard { display: flex; flex-direction: column; height: 100%; }
+  .sources { display: flex; background: #34495e; }
+  .sources button { flex: 1; padding: 10px; font-size: 16px; color: white; border: none; cursor: pointer; background: #34495e; }
+  .sources button.activeSource { background: #1abc9c; font-weight: bold; }
+  .content-area { flex: 1; display: flex; overflow: hidden; }
+  .iframe-area { flex: 1; border: none; display: none; }
+  .iframe-area.activeIframe { display: block; }
+  .note-area { flex: 1; padding: 10px; background: #f8f9fa; display: flex; flex-direction: column; }
+  .note-area textarea { flex: 1; resize: none; width: 100%; font-size: 16px; padding: 10px; margin-bottom: 10px; }
+  .note-buttons { display: flex; gap: 10px; }
+  .note-buttons button { flex: 1; padding: 10px; font-size: 16px; cursor: pointer; }
+</style>
+
+<button class="accordion" aria-expanded="false" aria-controls="studentPanel">수강생 학습노트</button>
 <div id="studentPanel" class="panel">
-  <div class="grid-list" id="student-notes"></div>
+  <div class="dashboard">
+    <div class="sources">
+      <button id="dictBtn" onclick="showPanel('dictPanel', this)">📖 Dictionary</button>
+      <button id="voaBtn" onclick="showPanel('voaPanel', this)">📰 VOA News</button>
+      <button id="chatgptBtn" onclick="showPanel('chatgptPanel', this)">🤖 ChatGPT</button>
+      <button id="googleBtn" onclick="showPanel('googlePanel', this)">🔎 Google</button>
+      <button id="youtubeBtn" onclick="showPanel('youtubePanel', this)">▶️ YouTube</button>
+    </div>
+
+    <div class="content-area">
+      <iframe src="https://www.dictionary.com/" id="dictPanel" class="iframe-area activeIframe"></iframe>
+      <iframe src="https://www.voanews.com/" id="voaPanel" class="iframe-area"></iframe>
+      <iframe src="https://chat.openai.com/" id="chatgptPanel" class="iframe-area"></iframe>
+      <iframe src="https://www.google.com/" id="googlePanel" class="iframe-area"></iframe>
+      <iframe src="https://www.youtube.com/" id="youtubePanel" class="iframe-area"></iframe>
+
+      <div class="note-area">
+        <h3>📝 학생 노트 / Homework</h3>
+        <input type="text" id="studentName" placeholder="Your Name">
+        <input type="email" id="studentEmail" placeholder="Your Email">
+        <textarea id="studentDiary" placeholder="Write your notes or homework here..."></textarea>
+        <div class="note-buttons">
+          <button onclick="sendHomework()">📬 Send Email</button>
+          <button onclick="saveNote()">💾 Save to Device</button>
+        </div>
+        <p><em>Your note is saved temporarily in your browser until you refresh the page.</em></p>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+  // Accordion toggle
+  document.querySelectorAll('.accordion').forEach(acc => {
+    acc.addEventListener('click', function() {
+      const panel = this.nextElementSibling;
+      const isOpen = panel.classList.contains('open');
+      panel.classList.toggle('open', !isOpen);
+      this.setAttribute('aria-expanded', !isOpen);
+    });
+  });
+
+  // Source buttons toggle
+  function showPanel(panelId, button) {
+    document.querySelectorAll('.iframe-area').forEach(f => f.classList.remove('activeIframe'));
+    document.getElementById(panelId).classList.add('activeIframe');
+
+    document.querySelectorAll('.sources button').forEach(b => b.classList.remove('activeSource'));
+    button.classList.add('activeSource');
+  }
+
+  // Placeholder functions
+  function saveNote() { alert('Note saved!'); }
+  function sendHomework() { alert('Homework sent!'); }
+</script>
+</html>
+
 
 <!-- Teachers Accordion -->
 <button class="accordion" aria-expanded="false" aria-controls="teacherPanel">Teachers' Guide</button>
