@@ -2,17 +2,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>0579 Academy</title>
+ 
   <style>
     /* ===== Base Styling ===== */
     *, *::before, *::after { 
       box-sizing: border-box; 
     }
     
+     header {
+  background: royalblue;  /* royal blue background */
+  color: white;           /* white text */
+  padding: 15px;
+  text-align: center;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
+}
+    
+    
     body { 
       margin: 0; 
       padding: 10px; 
       font-family: 'Arial', sans-serif; 
-      background: white; 
+      background:white; 
       color: black; 
       transition: background-color 0.3s ease, color 0.3s ease; /* Smooth background and color transition */
     }
@@ -23,58 +34,46 @@
       margin: 0 auto; 
       text-align: center; 
     }
-    
-    header, footer { 
-      background: royalblue; 
-      color: white; 
-      padding: 15px; 
-      text-align: center; 
-      border-radius: 6px; 
-      transition: background 0.3s, color 0.3s; 
-    }
-    
-    h1, h2, h3 { 
-      margin-top: 0; 
-    }
 
-    h2 { 
-      color: royalblue; 
-      font-size: 1.5rem; 
-    }
-
-    /* ===== Accordion ===== */
+    /* ===== Accordion Styles ===== */
     .accordion {
-      background: royalblue;
-      color: white;
-      font-weight: bold;
-      padding: 12px 15px;
-      width: 100%;
-      text-align: left;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      margin: 8px 0;
-      transition: background 0.3s ease;
-    }
+    background: royalblue;
+    color: white;
+    font-weight: bold;
+    padding: 12px 15px;
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 8px 0;
+    transition: background 0.3s ease;
 
-    .accordion:hover { 
-      background: #0056b3; 
-    }
-
-    .accordion.active { 
-      background: #2c3e50; 
-    }
-
-    .panel {
-  max-height: 0; /* Initially collapsed */
-  overflow: hidden;
-  transition: max-height 0.35s ease-out; /* Smooth transition for opening/closing */
-  background: #f9f9f9;
-  border-radius: 6px;
-  padding: 0 15px;
-  margin-bottom: 10px; /* Space between panels */
+    display: flex;           /* Use flex for alignment */
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+    text-align: center;      /* Fallback for text inside */
 }
 
+}
+
+
+    .accordion:hover {
+      background: #0056b3; /* Darker blue on hover */
+    }
+
+    .accordion.active {
+      background: #2c3e50; /* Active state */
+    }
+
+    /* Panel styles */
+    .panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+      background: #f9f9f9;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      padding: 0 15px;
     }
 
     /* ===== Grid Lists (Student/Teacher links) ===== */
@@ -102,23 +101,6 @@
       color: #000; 
     }
 
-    /* ===== Background classes for alternating colors ===== */
-    .bg-level-a { 
-      background-color: #E6F0FF; 
-    }
-
-    .bg-level-b { 
-      background-color: #E8F8F5; 
-    }
-
-    .bg-level-c { 
-      background-color: #FFF9E6; 
-    }
-
-    .bg-level-d { 
-      background-color: #FDEDEC; 
-    }
-
     /* ===== Bottom Ticker ===== */
     .bottom-ticker-container {
       width: 100%;
@@ -129,7 +111,7 @@
       margin: 15px 0;
       position: relative;
     }
-    
+
     #bottom-ticker {
       display: flex;
       white-space: nowrap;
@@ -149,61 +131,8 @@
     #bottom-ticker a:hover { 
       text-decoration: underline; 
     }
-
-    /* ===== Book Slider ===== */
-    .book-slider-container { 
-      position: relative; 
-      overflow: hidden; 
-      max-width: 900px; 
-      margin: 0 auto; 
-    }
-
-    .book-slider { 
-      display: flex; 
-      transition: transform 0.4s ease; 
-    }
-
-    .book-item { 
-      flex: 0 0 33.3333%; 
-      padding: 10px; 
-      text-align: center; 
-    }
-
-    .book-item img { 
-      width: 100%; 
-      border-radius: 6px; 
-    }
-
-    #prevBook1, #nextBook1 { 
-      position: absolute; 
-      top: 50%; 
-      transform: translateY(-50%); 
-      background: royalblue; 
-      color: white; 
-      border: none; 
-      padding: 10px 15px; 
-      border-radius: 6px; 
-      cursor: pointer; 
-    }
-
-    #prevBook1 { left: 0; } 
-    #nextBook1 { right: 0; }
-
-    /* ===== Responsive ===== */
-    @media(max-width: 768px) {
-      .book-item { 
-        flex: 0 0 50%; 
-      }
-    }
-
-    @media(max-width: 480px) {
-      .book-item { 
-        flex: 0 0 100%; 
-      }
-    }
   </style>
 </head>
-
 
 <body>
 
