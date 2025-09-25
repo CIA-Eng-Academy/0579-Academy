@@ -513,31 +513,32 @@
     width: 100%;
     border: none;
     text-align: left;
-    outline: none;
+    outline: none; /* Focus outline removed for design consistency */
     font-size: 16px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease; /* Smooth background-color transition */
     margin: 10px 0; /* consistent spacing between accordions */
     border-radius: 6px;
   }
 
-  .accordion:hover {
-    background-color: #2980b9;
+  .accordion:hover,
+  .accordion:focus {
+    background-color: #2980b9; /* Same color for hover and focus */
   }
 
   .accordion.active {
-    background-color: #2c3e50;
+    background-color: #2c3e50; /* Active state */
   }
 
   .panel {
     padding: 10px 15px;
     background-color: #f9f9f9;
-    display: block; /* default display, will be handled by max-height */
-    max-height: 0; /* initially collapsed */
+    display: block; /* Ensures that the panel is initially visible when expanded */
+    max-height: 0; /* Initially collapsed */
     overflow: hidden;
-    margin-bottom: 10px; /* consistent space below panel */
+    margin-bottom: 10px; /* Consistent space below panel */
     border-radius: 6px;
     border: 1px solid #ddd;
-    transition: max-height 0.3s ease-out; /* smooth transition */
+    transition: max-height 0.3s ease-out; /* Smooth expansion transition */
   }
 
   .panel ul {
@@ -553,27 +554,41 @@
   .panel a {
     text-decoration: none;
     color: #333;
+    transition: color 0.2s ease; /* Smooth text color transition */
   }
 
   .panel a:hover {
     text-decoration: underline;
     color: #000;
   }
+
+  /* Ensure focus states for accessibility */
+  .accordion:focus {
+    outline: 2px solid #fff; /* White outline for better visibility */
+  }
 </style>
+
 
 <!-- ===== Accordion Script ===== -->
 <script>
   // Accordion Toggle Function
   document.querySelectorAll(".accordion").forEach(acc => {
     acc.addEventListener("click", function() {
+      // Toggle the active class for the clicked accordion button
       this.classList.toggle("active");
+
+      // Get the associated panel
       const panel = this.nextElementSibling;
-      
-      // If the panel is open, close it, else open it
+
+      // Update the aria-expanded attribute
+      const isExpanded = this.classList.contains("active");
+      this.setAttribute("aria-expanded", isExpanded);
+
+      // Toggle the max-height for smooth expanding/collapsing
       if (panel.style.maxHeight) {
-        panel.style.maxHeight = null;
+        panel.style.maxHeight = null; // Collapse the panel
       } else {
-        panel.style.maxHeight = panel.scrollHeight + "px";
+        panel.style.maxHeight = panel.scrollHeight + "px"; // Expand the panel
       }
     });
   });
@@ -582,7 +597,7 @@
   const teacherList = document.getElementById("teacher-lessons");
   if (teacherList) { // Check if the element exists
     for (let i = 1; i <= 120; i++) {
-      let li = document.createElement("li");
+      const li = document.createElement("li");
       li.innerHTML = `<a href="teacher-lesson${i}.pdf" target="_blank">Teacher Lesson ${i}</a>`;
       teacherList.appendChild(li);
     }
@@ -592,7 +607,7 @@
   const studentList = document.getElementById("student-notes");
   if (studentList) { // Check if the element exists
     for (let i = 1; i <= 120; i++) {
-      let li = document.createElement("li");
+      const li = document.createElement("li");
       li.innerHTML = `<a href="student-note${i}.pdf" target="_blank">Student Note ${i}</a>`;
       studentList.appendChild(li);
     }
@@ -613,32 +628,48 @@
 
 <!-- Grid and Accordion Styles -->
 <style>
-  /* Grid 4 lanes */
+  /* ===== Grid Styles ===== */
   .grid-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 5px 8px;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns in larger screens */
+    gap: 5px 8px; /* Space between grid items */
     padding: 10px 0;
+    margin: 0 auto; /* Center grid content */
   }
 
+  /* Responsive grid layout for smaller screens */
+  @media(max-width: 768px) {
+    .grid-list {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+    }
+  }
+
+  @media(max-width: 480px) {
+    .grid-list {
+      grid-template-columns: 1fr; /* 1 column on small screens */
+    }
+  }
+
+  /* Grid item links styling */
   .grid-list a {
     display: block;
     font-size: 0.75em;
     text-align: center;
-    padding: 4px 5px;
+    padding: 8px 12px; /* More padding for better spacing */
     background: #f0f0f0;
     border-radius: 4px;
     text-decoration: none;
     color: #333;
-    transition: 0.2s;
+    transition: background 0.2s ease, color 0.2s ease; /* Smooth background and color transition */
   }
 
+  /* Hover effect for grid items */
   .grid-list a:hover {
-    background: #ffd700;
-    color: #000;
+    background: #ffd700; /* Highlight background */
+    color: #000; /* Text color on hover */
   }
 
-  /* Accordion */
+  /* ===== Accordion Styles ===== */
   .accordion {
     background: royalblue;
     color: white;
@@ -650,16 +681,109 @@
     border-radius: 6px;
     cursor: pointer;
     margin: 8px 0;
+    transition: background 0.3s ease; /* Smooth background transition */
   }
 
+  /* Hover effect for accordion buttons */
+  .accordion:hover {
+    background: #0056b3; /* Slightly darker blue on hover */
+  }
+
+  /* Active state for accordion buttons */
+  .accordion.active {
+    background: #2c3e50; /* Darker color when active */
+  }
+
+  /* ===== Accordion Panel Styles ===== */
+  .panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease; /* Smooth transition for expansion */
+    background: #f9f9f9;
+    border-radius: 6px;
+    border: 1px solid #ddd; /* Light border around the panel */
+    padding: 0 15px; /* Padding for content inside the panel */
+    margin-bottom: 10px; /* Space below each panel */
+  }
+</style>
+
+
+  <!-- CSS for Background Colors and Grid Layout -->
+<style>
+  /* ===== Background colors for levels ===== */
+  .bg-level-a { background-color: #E6F0FF; }  /* soft sky blue */
+  .bg-level-b { background-color: #E8F8F5; }  /* mint green */
+  .bg-level-c { background-color: #FFF9E6; }  /* warm light yellow */
+  .bg-level-d { background-color: #FDEDEC; }  /* pastel coral */
+
+  /* ===== Responsive Grid ===== */
+  .grid-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Default 4 columns */
+    gap: 5px 8px;
+    padding: 10px 0;
+    margin: 0 auto; /* Center grid content */
+  }
+
+  /* Responsive grid layout for medium screens (768px) */
+  @media (max-width: 768px) {
+    .grid-list {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+    }
+  }
+
+  /* Responsive grid layout for small screens (480px) */
+  @media (max-width: 480px) {
+    .grid-list {
+      grid-template-columns: 1fr; /* 1 column on small screens */
+    }
+  }
+
+  /* ===== Grid Item Styling ===== */
+  .grid-list a {
+    display: block;
+    font-size: 0.75em;
+    text-align: center;
+    padding: 8px 12px; /* More padding for better spacing */
+    background: #f0f0f0;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  /* Hover effect for grid items */
+  .grid-list a:hover {
+    background: #ffd700; /* Highlight background */
+    color: #000; /* Text color on hover */
+  }
+
+  /* ===== Accordion Styles ===== */
+  .accordion {
+    background: royalblue;
+    color: white;
+    font-weight: bold;
+    padding: 12px 15px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 8px 0;
+    transition: background 0.3s ease;
+  }
+
+  /* Hover effect for accordion buttons */
   .accordion:hover {
     background: #0056b3;
   }
 
+  /* Active state for accordion buttons */
   .accordion.active {
     background: #2c3e50;
   }
 
+  /* ===== Accordion Panel Styles ===== */
   .panel {
     max-height: 0;
     overflow: hidden;
@@ -667,29 +791,12 @@
     background: #f9f9f9;
     border-radius: 6px;
     border: 1px solid #ddd;
-  }
-
-  /* ===== Background colors for levels ===== */
-  .bg-level-a { background-color: #E6F0FF; }  /* soft sky blue */
-  .bg-level-b { background-color: #E8F8F5; }  /* mint green */
-  .bg-level-c { background-color: #FFF9E6; }  /* warm light yellow */
-  .bg-level-d { background-color: #FDEDEC; }  /* pastel coral */
-
-  /* Responsive Grid */
-  @media (max-width: 768px) {
-    .grid-list {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 480px) {
-    .grid-list {
-      grid-template-columns: 1fr;
-    }
+    padding: 0 15px;
+    margin-bottom: 10px;
   }
 </style>
 
-<!-- Accordion Script -->
+<!-- JavaScript for Accordion and Dynamic Content -->
 <script>
   // Accordion Toggle Function
   document.querySelectorAll(".accordion").forEach(acc => {
@@ -725,66 +832,81 @@
   generateLinks("teacher-lessons", "teacher-lesson");
 </script>
 
+<!-- JavaScript for Background Colors -->
 <script>
-// Function to apply background colors for each section
-(function(){
-  const bgClasses = ['bg-level-a','bg-level-b','bg-level-c','bg-level-d'];
+  // Function to apply background colors for each section
+  (function(){
+    const bgClasses = ['bg-level-a','bg-level-b','bg-level-c','bg-level-d'];
 
-  function setBgClass(el, cls) {
-    el.classList.remove(...bgClasses);
-    el.classList.add(cls);
-  }
+    function setBgClass(el, cls) {
+      el.classList.remove(...bgClasses);
+      el.classList.add(cls);
+    }
 
-  function applyBg(sectionId) {
-    const section = document.getElementById(sectionId);
-    if (!section) return;
+    function applyBg(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (!section) return;
 
-    const anchors = section.querySelectorAll('a');
-    anchors.forEach((a, idx) => {
-      setBgClass(a, bgClasses[idx % bgClasses.length]);
-    });
-  }
+      const anchors = section.querySelectorAll('a');
+      anchors.forEach((a, idx) => {
+        setBgClass(a, bgClasses[idx % bgClasses.length]);
+      });
+    }
 
-  // Apply background to these sections (make sure IDs exist in your HTML)
-  applyBg('배치고사');
-  applyBg('수강생-level-tests');
-  applyBg('supplementTestsPanel');
-  applyBg('student-notes');
-  applyBg('teacher-lessons');
-})();
+    // Apply background to these sections (make sure IDs exist in your HTML)
+    applyBg('배치고사');
+    applyBg('수강생-level-tests');
+    applyBg('supplementTestsPanel');
+    applyBg('student-notes');
+    applyBg('teacher-lessons');
+  })();
 </script>
+
 
 <!-- ===== Bottom Ticker Styles ===== -->
 <style>
-.bottom-ticker-container {
-  width: 100%;
-  overflow: hidden;
-  background: #ffd700;
-  border-radius: 6px;
-  padding: 10px 0;
-  margin: 15px 0;
-  position: relative;
-}
+  /* Container for the bottom ticker */
+  .bottom-ticker-container {
+    width: 100%;
+    overflow: hidden;
+    background: #ffd700;
+    border-radius: 6px;
+    padding: 10px 0;
+    margin: 15px 0;
+    position: relative;
+  }
 
-#bottom-ticker {
-  display: flex;
-  white-space: nowrap;
-  font-weight: bold;
-  will-change: transform;
-}
+  /* Ticker content styling */
+  #bottom-ticker {
+    display: flex;
+    white-space: nowrap;
+    font-weight: bold;
+    will-change: transform;
+    animation: scroll-left 10s linear infinite; /* Added animation for smooth scrolling */
+  }
 
-#bottom-ticker span {
-  margin-right: 80px;
-}
+  #bottom-ticker span {
+    margin-right: 80px;
+  }
 
-#bottom-ticker a {
-  text-decoration: none;
-  color: black;
-}
+  #bottom-ticker a {
+    text-decoration: none;
+    color: black;
+  }
 
-#bottom-ticker a:hover {
-  text-decoration: underline;
-}
+  #bottom-ticker a:hover {
+    text-decoration: underline;
+  }
+
+  /* Animation for infinite scrolling */
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(100%); /* Start off-screen */
+    }
+    100% {
+      transform: translateX(-100%); /* End off-screen */
+    }
+  }
 </style>
 
 <!-- ===== Bottom Ticker HTML ===== -->
@@ -797,30 +919,38 @@
   </div>
 </div>
 
-<!-- ===== Bottom Ticker JavaScript ===== -->
+<!-- ===== Bottom Ticker JavaScript (Optional for Control) ===== -->
 <script>
-// Duplicating ticker content for infinite scrolling
+// Duplicating ticker content for infinite scrolling if not using CSS animation
 const ticker = document.getElementById("bottom-ticker");
-ticker.innerHTML += ticker.innerHTML; // duplicate for infinite scroll
 
-let pos = 0;
-const speed = 0.5; // adjust for faster/slower
+// Duplicate the ticker content for continuous scrolling
+ticker.innerHTML += ticker.innerHTML;
+
+// Optional: Pausing the ticker on hover
 let paused = false;
+const tickerParent = ticker.parentElement;
+tickerParent.addEventListener("mouseenter", () => paused = true);
+tickerParent.addEventListener("mouseleave", () => paused = false);
 
-// Pausing the ticker on hover
-ticker.parentElement.addEventListener("mouseenter", () => paused = true);
-ticker.parentElement.addEventListener("mouseleave", () => paused = false);
-
-// Ticker movement logic
+// Function to control the ticker position
 function moveTicker() {
   if (!paused) {
-    pos -= speed;
-    if (Math.abs(pos) >= ticker.scrollWidth / 2) pos = 0;
-    ticker.style.transform = `translateX(${pos}px)`;
+    const speed = 0.5; // Ticker speed
+    const position = ticker.getBoundingClientRect().left;
+    const width = ticker.scrollWidth;
+    
+    // When the ticker moves out of view, reset it to the start
+    if (position <= -width) {
+      ticker.style.transform = 'translateX(100%)'; // Reset position to the right
+    } else {
+      ticker.style.transform = `translateX(${position - speed}px)`;
+    }
   }
-  requestAnimationFrame(moveTicker);
+  requestAnimationFrame(moveTicker); // Call moveTicker recursively for continuous movement
 }
 
-// Start moving the ticker
+// Start the ticker movement
 moveTicker();
 </script>
+
