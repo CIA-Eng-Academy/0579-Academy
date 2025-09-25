@@ -1,157 +1,234 @@
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>0579 Academy</title>
-<style>
-/* ===== Base Styling ===== */
-*, *::before, *::after { box-sizing: border-box; }
-body { margin:0; padding:10px; font-family:'Arial', sans-serif; background:white; color:black; transition: background 0.3s, color 0.3s; }
-.container { max-width:900px; width:100%; margin:0 auto; text-align:center; }
-header, footer { background:royalblue; color:white; padding:15px; text-align:center; border-radius:6px; transition: background 0.3s, color 0.3s; }
-h1, h2, h3 { margin-top:0; }
-h2 { color:royalblue; font-size:1.5rem; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>0579 Academy</title>
+  <style>
+    /* ===== Base Styling ===== */
+    *, *::before, *::after { 
+      box-sizing: border-box; 
+    }
+    
+    body { 
+      margin: 0; 
+      padding: 10px; 
+      font-family: 'Arial', sans-serif; 
+      background: white; 
+      color: black; 
+      transition: background 0.3s, color 0.3s; 
+    }
+    
+    .container { 
+      max-width: 900px; 
+      width: 100%; 
+      margin: 0 auto; 
+      text-align: center; 
+    }
+    
+    header, footer { 
+      background: royalblue; 
+      color: white; 
+      padding: 15px; 
+      text-align: center; 
+      border-radius: 6px; 
+      transition: background 0.3s, color 0.3s; 
+    }
+    
+    h1, h2, h3 { margin-top: 0; }
+    h2 { color: royalblue; font-size: 1.5rem; }
 
-/* ===== Accordion ===== */
-.accordion {
-  background: royalblue;
-  color: white;
-  font-weight: bold;
-  padding: 12px 15px;
-  width: 100%;
-  text-align: left;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin: 8px 0;
-  transition: background 0.3s;
-}
-.accordion:hover { background: #0056b3; }
-.accordion.active { background: #2c3e50; }
+    /* ===== Accordion ===== */
+    .accordion {
+      background: royalblue;
+      color: white;
+      font-weight: bold;
+      padding: 12px 15px;
+      width: 100%;
+      text-align: left;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 8px 0;
+      transition: background 0.3s;
+    }
 
-.panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s ease;
-  background: #f9f9f9;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  margin-bottom: 10px;
-  padding: 0 15px;
-}
+    .accordion:hover { background: #0056b3; }
+    .accordion.active { background: #2c3e50; }
 
-/* ===== Grid Lists (Student/Teacher links) ===== */
-.grid-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 5px 8px;
-  padding: 10px 0;
-}
-.grid-list a {
-  display: block;
-  font-size: 0.75em;
-  text-align: center;
-  padding: 4px 5px;
-  background: #f0f0f0;
-  border-radius: 4px;
-  text-decoration: none;
-  color: #333;
-  transition: 0.2s;
-}
-.grid-list a:hover { background: #ffd700; color: #000; }
+    .panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+      background: #f9f9f9;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      padding: 0 15px;
+    }
 
-/* ===== Background classes for alternating colors ===== */
-.bg-level-a { background-color: #E6F0FF; }
-.bg-level-b { background-color: #E8F8F5; }
-.bg-level-c { background-color: #FFF9E6; }
-.bg-level-d { background-color: #FDEDEC; }
-</style>
+    /* ===== Grid Lists (Student/Teacher links) ===== */
+    .grid-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 5px 8px;
+      padding: 10px 0;
+    }
+    
+    .grid-list a {
+      display: block;
+      font-size: 0.75em;
+      text-align: center;
+      padding: 4px 5px;
+      background: #f0f0f0;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #333;
+      transition: 0.2s;
+    }
 
-/* ===== Bottom Ticker ===== */
-.bottom-ticker-container {
-  width: 100%;
-  overflow: hidden;
-  background: #ffd700;
-  border-radius: 6px;
-  padding: 10px 0;
-  margin: 15px 0;
-  position: relative;
-}
-#bottom-ticker {
-  display: flex;
-  white-space: nowrap;
-  font-weight: bold;
-  will-change: transform;
-}
-#bottom-ticker span { margin-right: 80px; }
-#bottom-ticker a { text-decoration: none; color: black; }
-#bottom-ticker a:hover { text-decoration: underline; }
+    .grid-list a:hover { background: #ffd700; color: #000; }
 
-/* ===== Book Slider ===== */
-.book-slider-container { position:relative; overflow:hidden; max-width:900px; margin:0 auto; }
-.book-slider { display:flex; transition: transform 0.4s ease; }
-.book-item { flex:0 0 33.3333%; padding:10px; text-align:center; }
-.book-item img { width:100%; border-radius:6px; }
-#prevBook1, #nextBook1 { position:absolute; top:50%; transform:translateY(-50%); background:royalblue; color:white; border:none; padding:10px 15px; border-radius:6px; cursor:pointer; }
-#prevBook1 { left:0; } #nextBook1 { right:0; }
+    /* ===== Background classes for alternating colors ===== */
+    .bg-level-a { background-color: #E6F0FF; }
+    .bg-level-b { background-color: #E8F8F5; }
+    .bg-level-c { background-color: #FFF9E6; }
+    .bg-level-d { background-color: #FDEDEC; }
 
-/* ===== Responsive ===== */
-@media(max-width:768px){
-  .test-container, .pillar-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
-  .test-link { font-size:0.7em; padding:2px 4px; }
-  .book-item { flex:0 0 50%; }
-}
-@media(max-width:480px){
-  .test-container, .pillar-grid, .pillar-grid-3rows { grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); }
-  .test-link { font-size:0.7em; padding:2px 4px; }
-  .book-item { flex:0 0 100%; }
-  .share-button,.sms-button,.wa-button,.share-input,#smsMessage{width:90%; margin:5px 0;}
-}
-</style>
+    /* ===== Bottom Ticker ===== */
+    .bottom-ticker-container {
+      width: 100%;
+      overflow: hidden;
+      background: #ffd700;
+      border-radius: 6px;
+      padding: 10px 0;
+      margin: 15px 0;
+      position: relative;
+    }
+    
+    #bottom-ticker {
+      display: flex;
+      white-space: nowrap;
+      font-weight: bold;
+      will-change: transform;
+    }
 
+    #bottom-ticker span { margin-right: 80px; }
+    #bottom-ticker a { text-decoration: none; color: black; }
+    #bottom-ticker a:hover { text-decoration: underline; }
+
+    /* ===== Book Slider ===== */
+    .book-slider-container { 
+      position: relative; 
+      overflow: hidden; 
+      max-width: 900px; 
+      margin: 0 auto; 
+    }
+
+    .book-slider { 
+      display: flex; 
+      transition: transform 0.4s ease; 
+    }
+
+    .book-item { 
+      flex: 0 0 33.3333%; 
+      padding: 10px; 
+      text-align: center; 
+    }
+
+    .book-item img { 
+      width: 100%; 
+      border-radius: 6px; 
+    }
+
+    #prevBook1, #nextBook1 { 
+      position: absolute; 
+      top: 50%; 
+      transform: translateY(-50%); 
+      background: royalblue; 
+      color: white; 
+      border: none; 
+      padding: 10px 15px; 
+      border-radius: 6px; 
+      cursor: pointer; 
+    }
+
+    #prevBook1 { left: 0; } 
+    #nextBook1 { right: 0; }
+
+    /* ===== Responsive ===== */
+    @media(max-width: 768px) {
+      .book-item { flex: 0 0 50%; }
+    }
+
+    @media(max-width: 480px) {
+      .book-item { flex: 0 0 100%; }
+    }
+  </style>
 </head>
+
 <body>
-<div class="container">
+  <div class="container">
 
-<header>
-  <h1>0579 Academy</h1>
-  <p>"영어친구 학원에 오신 것을 환영합니다."</p>
-</header>
+    <!-- Header Section -->
+    <header>
+      <h1>0579 Academy</h1>
+      <p>"영어친구 학원에 오신 것을 환영합니다."</p>
+    </header>
 
-<!-- Ticker -->
-<div class="ticker-container">
-  <div class="ticker">
-    <span>Welcome to 0579 인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성 "Learning English can open up a world of opportunities for you" 수준별 1:1 맞춤지도 수강신청 010-4733-0579 (영어친구)</span>
-    <span>Welcome to 0579 인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성 "Learning English can open up a world of opportunities for you" 수준별 1:1 맞춤지도 수강신청 010-4733-0579 (영어친구)</span> <!-- duplicate for smooth loop -->
+    <!-- Ticker Section -->
+    <div class="ticker-container">
+      <div class="ticker">
+        <span>Welcome to 0579 인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성 "Learning English can open up a world of opportunities for you" 수준별 1:1 맞춤지도 수강신청 010-4733-0579 (영어친구)</span>
+        <span>Welcome to 0579 인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성 "Learning English can open up a world of opportunities for you" 수준별 1:1 맞춤지도 수강신청 010-4733-0579 (영어친구)</span>
+      </div>
+    </div>
+
+    <!-- Accordion Sections -->
+    <button class="accordion" aria-expanded="false" aria-controls="servicePanel">Our 1:1 Service Menu</button>
+    <div id="servicePanel" class="panel">
+      <ol>
+        <li>AI 활용 스마트폰 영어학습법
+          <ul>
+            <li>레벨테스트</li>
+            <li>발음교정</li>
+            <li>문법강의</li>
+            <li>듣기, 말하기, 독해, 작문</li>
+            <li>영어일기쓰기 교정</li>
+            <li>중등/고등/모의고사 쪽집게 풀이</li>
+            <li>영어 스피치 & 창의력 대회 준비</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+
+    <button class="accordion" aria-expanded="false" aria-controls="rulesPanel">학생 규정 및 환불규정</button>
+    <div id="rulesPanel" class="panel">
+      <ol>
+        <li>강의 및 학습이 어려운 경우, 즉시 귀가조치</li>
+        <li>단정한 복장 착용과 예의바른 언어사용</li>
+        <li>단순 변심으로 인한 수업 중단 시 환불 규정 적용</li>
+      </ol>
+    </div>
+
   </div>
-</div>
 
-<!-- Accordion Sections -->
-<button class="accordion" aria-expanded="false" aria-controls="servicePanel">Our 1:1 Service Menu</button>
-<div id="servicePanel" class="panel">
-  <ol>
-    <li>
-      AI 활용 스마트폰 영어학습법
-      <ul>
-        <li>레벨테스트</li>
-        <li>발음교정</li>
-        <li>문법강의</li>
-        <li>듣기, 말하기, 독해, 작문</li>
-        <li>영어일기쓰기 교정</li>
-        <li>중등/고등/모의고사 쪽집게 풀이</li>
-        <li>영어 스피치 & 창의력 대회 준비</li>
-      </ul>
-    </li>
-  </ol>
-</div>
+  <script>
+    // Accordion functionality (for opening and closing the panels)
+    const accordions = document.querySelectorAll('.accordion');
+    
+    accordions.forEach(accordion => {
+      accordion.addEventListener('click', function () {
+        const panel = document.getElementById(this.getAttribute('aria-controls'));
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        
+        // Toggle the panel visibility
+        panel.style.maxHeight = isExpanded ? '0' : `${panel.scrollHeight}px`;
 
-<button class="accordion" aria-expanded="false" aria-controls="rulesPanel">학생 규정 및 환불규정</button>
-<div id="rulesPanel" class="panel">
-  <ol>
-    <li>강의 및 학습이 어려운 경우, 즉시 귀가조치</li>
-    <li>단정한 복장 착용과 예의바른 언어사용</li>
-    <li>단순 변심으로 인한 수업 중단 시 환불 규정 적용</li>
-  </ol>
-</div>
+        // Toggle the aria-expanded attribute
+        this.setAttribute('aria-expanded', !isExpanded);
+      });
+    });
+  </script>
+</body>
+
 
 <!-- 📌 배치고사 -->
 <button class="accordion" aria-expanded="false" aria-controls="placementPanel">배치고사</button>
@@ -364,8 +441,6 @@ h2 { color:royalblue; font-size:1.5rem; }
   </section>
 </div> <!-- end panel -->
 
-<script>
-
 <!-- ===== Accordion Styles ===== -->
 <style>
   .accordion {
@@ -387,18 +462,20 @@ h2 { color:royalblue; font-size:1.5rem; }
     background-color: #2980b9;
   }
 
-  .active, .accordion.active {
+  .accordion.active {
     background-color: #2c3e50;
   }
 
   .panel {
     padding: 10px 15px;
     background-color: #f9f9f9;
-    display: none;
+    display: block; /* default display, will be handled by max-height */
+    max-height: 0; /* initially collapsed */
     overflow: hidden;
     margin-bottom: 10px; /* consistent space below panel */
     border-radius: 6px;
     border: 1px solid #ddd;
+    transition: max-height 0.3s ease-out; /* smooth transition */
   }
 
   .panel ul {
@@ -426,132 +503,168 @@ h2 { color:royalblue; font-size:1.5rem; }
 <script>
   // Accordion Toggle Function
   document.querySelectorAll(".accordion").forEach(acc => {
-  acc.addEventListener("click", function() {
-    this.classList.toggle("active");
-    const panel = this.nextElementSibling;
-    panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + "px";
+    acc.addEventListener("click", function() {
+      this.classList.toggle("active");
+      const panel = this.nextElementSibling;
+      
+      // If the panel is open, close it, else open it
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
   });
-});
-
 
   // Generate Teacher Lessons
   const teacherList = document.getElementById("teacher-lessons");
-  for (let i = 1; i <= 120; i++) {
-    let li = document.createElement("li");
-    li.innerHTML = `<a href="teacher-lesson${i}.pdf" target="_blank">Teacher Lesson ${i}</a>`;
-    teacherList.appendChild(li);
+  if (teacherList) { // Check if the element exists
+    for (let i = 1; i <= 120; i++) {
+      let li = document.createElement("li");
+      li.innerHTML = `<a href="teacher-lesson${i}.pdf" target="_blank">Teacher Lesson ${i}</a>`;
+      teacherList.appendChild(li);
+    }
   }
 
   // Generate Student Notes
   const studentList = document.getElementById("student-notes");
-  for (let i = 1; i <= 120; i++) {
-    let li = document.createElement("li");
-    li.innerHTML = `<a href="student-note${i}.pdf" target="_blank">Student Note ${i}</a>`;
-    studentList.appendChild(li);
+  if (studentList) { // Check if the element exists
+    for (let i = 1; i <= 120; i++) {
+      let li = document.createElement("li");
+      li.innerHTML = `<a href="student-note${i}.pdf" target="_blank">Student Note ${i}</a>`;
+      studentList.appendChild(li);
+    }
   }
 </script>
 
-
 <!-- Students Accordion -->
-<button class="accordion">Students' Notes</button>
-<div class="panel">
+<button class="accordion" aria-expanded="false" aria-controls="studentPanel">Students' Notes</button>
+<div id="studentPanel" class="panel">
   <div class="grid-list" id="student-notes"></div>
 </div>
 
 <!-- Teachers Accordion -->
-<button class="accordion">Teachers' Guide</button>
-<div class="panel">
+<button class="accordion" aria-expanded="false" aria-controls="teacherPanel">Teachers' Guide</button>
+<div id="teacherPanel" class="panel">
   <div class="grid-list" id="teacher-lessons"></div>
 </div>
 
+<!-- Grid and Accordion Styles -->
 <style>
-/* Grid 4 lanes */
-.grid-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 5px 8px;
-  padding: 10px 0;
-}
-.grid-list a {
-  display: block;
-  font-size: 0.75em;
-  text-align: center;
-  padding: 4px 5px;
-  background: #f0f0f0;
-  border-radius: 4px;
-  text-decoration: none;
-  color: #333;
-  transition: 0.2s;
-}
-.grid-list a:hover { background: #ffd700; color: #000; }
+  /* Grid 4 lanes */
+  .grid-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px 8px;
+    padding: 10px 0;
+  }
 
-/* Accordion */
-.accordion {
-  background: royalblue;
-  color: white;
-  font-weight: bold;
-  padding: 12px 15px;
-  width: 100%;
-  text-align: left;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin: 8px 0;
-}
-.accordion:hover { background: #0056b3; }
-.accordion.active { background: #2c3e50; }
+  .grid-list a {
+    display: block;
+    font-size: 0.75em;
+    text-align: center;
+    padding: 4px 5px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    transition: 0.2s;
+  }
 
-.panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s ease;
-  background: #f9f9f9;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-}
+  .grid-list a:hover {
+    background: #ffd700;
+    color: #000;
+  }
 
- /* ===== Background colors for levels ===== */
-.bg-level-a { background-color: #E6F0FF; }  /* soft sky blue */
-.bg-level-b { background-color: #E8F8F5; }  /* mint green */
-.bg-level-c { background-color: #FFF9E6; }  /* warm light yellow */
-.bg-level-d { background-color: #FDEDEC; }  /* pastel coral */
+  /* Accordion */
+  .accordion {
+    background: royalblue;
+    color: white;
+    font-weight: bold;
+    padding: 12px 15px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 8px 0;
+  }
+
+  .accordion:hover {
+    background: #0056b3;
+  }
+
+  .accordion.active {
+    background: #2c3e50;
+  }
+
+  .panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    background: #f9f9f9;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+  }
+
+  /* ===== Background colors for levels ===== */
+  .bg-level-a { background-color: #E6F0FF; }  /* soft sky blue */
+  .bg-level-b { background-color: #E8F8F5; }  /* mint green */
+  .bg-level-c { background-color: #FFF9E6; }  /* warm light yellow */
+  .bg-level-d { background-color: #FDEDEC; }  /* pastel coral */
+
+  /* Responsive Grid */
+  @media (max-width: 768px) {
+    .grid-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .grid-list {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
- 
-</style>
 
+<!-- Accordion Script -->
 <script>
-document.querySelectorAll(".accordion").forEach(acc => {
-  acc.addEventListener("click", function() {
-    this.classList.toggle("active");
-    const panel = this.nextElementSibling;
-    panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + "px";
-    this.setAttribute("aria-expanded", this.classList.contains("active"));
+  // Accordion Toggle Function
+  document.querySelectorAll(".accordion").forEach(acc => {
+    acc.addEventListener("click", function() {
+      const panel = this.nextElementSibling;
+      this.classList.toggle("active");
+      
+      // Toggle panel maxHeight and update aria-expanded
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+        this.setAttribute("aria-expanded", "false");
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        this.setAttribute("aria-expanded", "true");
+      }
+    });
   });
-});
 
+  // Reusable function to generate notes or lessons
+  function generateLinks(containerId, prefix) {
+    const container = document.getElementById(containerId);
+    for (let i = 1; i <= 120; i++) {
+      const a = document.createElement("a");
+      a.href = `${prefix}${i}.pdf`;
+      a.target = "_blank";
+      a.textContent = `${prefix === 'student-note' ? 'S' : 'T'}${i}`;
+      container.appendChild(a);
+    }
+  }
 
-// Generate 120 Student Notes
-const studentNotes = document.getElementById("student-notes");
-for(let i=1; i<=120; i++){
-  const a = document.createElement("a");
-  a.href = `student-note${i}.pdf`;
-  a.target="_blank";
-  a.textContent = `S${i}`;
-  studentNotes.appendChild(a);
-}
-
-// Generate 120 Teacher Lessons
-const teacherLessons = document.getElementById("teacher-lessons");
-for(let i=1; i<=120; i++){
-  const a = document.createElement("a");
-  a.href = `teacher-lesson${i}.pdf`;
-  a.target="_blank";
-  a.textContent = `T${i}`;
-  teacherLessons.appendChild(a);
-}
+  // Generate Student Notes and Teacher Lessons
+  generateLinks("student-notes", "student-note");
+  generateLinks("teacher-lessons", "teacher-lesson");
 </script>
 
 <script>
+// Function to apply background colors for each section
 (function(){
   const bgClasses = ['bg-level-a','bg-level-b','bg-level-c','bg-level-d'];
 
@@ -562,23 +675,24 @@ for(let i=1; i<=120; i++){
 
   function applyBg(sectionId) {
     const section = document.getElementById(sectionId);
-    if(!section) return;
+    if (!section) return;
+
     const anchors = section.querySelectorAll('a');
     anchors.forEach((a, idx) => {
       setBgClass(a, bgClasses[idx % bgClasses.length]);
     });
   }
 
-  // Make sure these IDs exist in your HTML
+  // Apply background to these sections (make sure IDs exist in your HTML)
   applyBg('배치고사');
   applyBg('수강생-level-tests');
   applyBg('supplementTestsPanel');
   applyBg('student-notes');
-applyBg('teacher-lessons');
+  applyBg('teacher-lessons');
+})();
+</script>
 
-
-
-<!-- ===== Bottom Ticker ===== -->
+<!-- ===== Bottom Ticker Styles ===== -->
 <style>
 .bottom-ticker-container {
   width: 100%;
@@ -611,6 +725,7 @@ applyBg('teacher-lessons');
 }
 </style>
 
+<!-- ===== Bottom Ticker HTML ===== -->
 <div class="bottom-ticker-container">
   <div id="bottom-ticker">
     <span><a href="https://www.cnn.com/2025/09/25/europe/russia-daytime-drone-attacks-ukraine-intl-cmd" target="_blank">Russia's Daytime Drone Attacks on Ukraine</a></span>
@@ -620,29 +735,21 @@ applyBg('teacher-lessons');
   </div>
 </div>
 
+<!-- ===== Bottom Ticker JavaScript ===== -->
 <script>
+// Duplicating ticker content for infinite scrolling
 const ticker = document.getElementById("bottom-ticker");
 ticker.innerHTML += ticker.innerHTML; // duplicate for infinite scroll
 
 let pos = 0;
 const speed = 0.5; // adjust for faster/slower
-
 let paused = false;
+
+// Pausing the ticker on hover
 ticker.parentElement.addEventListener("mouseenter", () => paused = true);
-
-function moveTicker() {
-  if (!paused) {
-    pos -= speed;
-    if (Math.abs(pos) >= ticker.scrollWidth / 2) pos = 0;
-    ticker.style.transform = `translateX(${pos}px)`;
-  }
-  requestAnimationFrame(moveTicker);
-}
-
-</script>
-
 ticker.parentElement.addEventListener("mouseleave", () => paused = false);
 
+// Ticker movement logic
 function moveTicker() {
   if (!paused) {
     pos -= speed;
@@ -652,5 +759,7 @@ function moveTicker() {
   requestAnimationFrame(moveTicker);
 }
 
+// Start moving the ticker
 moveTicker();
 </script>
+
