@@ -182,22 +182,29 @@
 
 
   <script>
-    // Accordion functionality (for opening and closing the panels)
-    const accordions = document.querySelectorAll('.accordion');
-    
-    accordions.forEach(accordion => {
-      accordion.addEventListener('click', function () {
-        const panel = document.getElementById(this.getAttribute('aria-controls'));
-        const isExpanded = this.getAttribute('aria-expanded') === 'true';
-        
-        // Toggle the panel visibility
-        panel.style.maxHeight = isExpanded ? '0' : `${panel.scrollHeight}px`;
+  const accordions = document.querySelectorAll('.accordion');
+  
+  accordions.forEach(accordion => {
+    accordion.addEventListener('click', function () {
+      const panelId = this.getAttribute('aria-controls');
+      const panel = document.getElementById(panelId);
+      if (!panel) return; // guard against missing panel
 
-        // Toggle the aria-expanded attribute
-        this.setAttribute('aria-expanded', !isExpanded);
-      });
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+      if (isExpanded) {
+        panel.style.maxHeight = '0';
+        panel.setAttribute('aria-hidden', 'true');
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        panel.setAttribute('aria-hidden', 'false');
+      }
+
+      this.setAttribute('aria-expanded', String(!isExpanded));
     });
-  </script>
+  });
+</script>
+
 
 </body>
 
