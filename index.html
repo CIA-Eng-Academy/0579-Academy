@@ -1,71 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>0579 Academy</title>
 
+  <!-- ===== CSS ===== -->
   <style>
-    /* ===== Base Styling ===== */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: white;
       color: black;
-      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* ===== Header ===== */
     header {
-      width: 100vw;
-      padding: 15px 0;
       background: royalblue;
       color: white;
+      padding: 15px;
       text-align: center;
     }
 
-    /* ===== Top Ticker ===== */
+    /* Top ticker */
     .top-ticker-container {
-      width: 100vw;
       background: #ffd700;
       overflow: hidden;
-      padding: 10px 0;
-      position: relative;
       height: 50px;
       line-height: 50px;
     }
-
-    .top-ticker {
-      display: flex;
-      white-space: nowrap;
-      font-weight: bold;
-      will-change: transform;
+    .top-ticker { display: flex; animation: scroll-left 15s linear infinite; }
+    .top-ticker span { margin-right: 80px; font-weight: bold; }
+    @keyframes scroll-left {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
     }
 
-    .top-ticker span {
-      margin-right: 80px;
+    /* Accordion */
+    .accordion {
+      background: #3498db;
+      color: white;
+      cursor: pointer;
+      padding: 15px;
+      width: 100%;
+      border: none;
+      margin: 10px 0;
+      border-radius: 6px;
+      text-align: left;
+      transition: 0.3s;
     }
-
-    .top-ticker a {
-      text-decoration: none;
-      color: black;
+    .accordion:hover { background: #2980b9; }
+    .panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 0 15px;
+      border-radius: 6px;
     }
-
-    .top-ticker a:hover {
-      text-decoration: underline;
-    }
+    .panel.open { max-height: 1000px; padding: 10px 15px; }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>0579 Academy</h1>
-  <p>"영어친구 학원에 오신 것을 환영합니다."</p>
-</header>
-
+  <header>
+    <h1>0579 Academy</h1>
+    <p>"영어친구 학원에 오신 것을 환영합니다."</p>
+  </header>
+  
 <div class="top-ticker-container">
   <div class="top-ticker">
     <span>Welcome to 0579 인공지능 활용 자기주도학습법 주2회월 8회 총16시간 3개월 완성 "Learning English can open up a world of opportunities for you" 수준별 1:1 맞춤지도 수강신청 010-4733-0579 (영어친구)</span>
