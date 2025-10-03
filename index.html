@@ -148,48 +148,29 @@
   }
 </style>
 
-<!-- JavaScript for Ticker (Top and Bottom) -->
+
+<!-- Accordion and Ticker Script -->
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // For the top ticker
-    const topTicker = document.querySelector('.top-ticker');
-    if (topTicker) {
-      let topTickerWidth = topTicker.scrollWidth;
-      let topTickerPosition = 0;
-      const topTickerSpeed = 0.5; // Control the speed of the top ticker
-
-      function animateTopTicker() {
-        topTickerPosition -= topTickerSpeed;
-
-        if (Math.abs(topTickerPosition) >= topTickerWidth) {
-          topTickerPosition = 0; // Reset to the start once the ticker is completely out of view
-        }
-
-        topTicker.style.transform = `translateX(${topTickerPosition}px)`; // Move the top ticker
-        requestAnimationFrame(animateTopTicker); // Recursively call the function for continuous scrolling
-      }
-
-      animateTopTicker(); // Start the top ticker animation
-    }
-
-    // For the bottom ticker (already animated via CSS)
-    const bottomTicker = document.querySelector('.bottom-ticker');
-    if (bottomTicker) {
-      // You can add additional JavaScript logic here if needed
-    }
-  });
-</script>
-
-
-  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  // -----------------------
+  // Accordion functionality
+  // -----------------------
   const accordions = document.querySelectorAll('.accordion');
-  
   accordions.forEach(accordion => {
-    accordion.addEventListener('click', function () {
-      const panelId = this.getAttribute('aria-controls');
-      const panel = document.getElementById(panelId);
-      if (!panel) return; // guard against missing panel
+    const panelId = accordion.getAttribute('aria-controls');
+    const panel = document.getElementById(panelId);
 
+    // Ensure panel exists
+    if (!panel) return;
+
+    // Initialize panel state
+    panel.style.maxHeight = '0';
+    panel.style.overflow = 'hidden';
+    panel.style.transition = 'max-height 0.3s ease';
+    panel.setAttribute('aria-hidden', 'true');
+    accordion.setAttribute('aria-expanded', 'false');
+
+    accordion.addEventListener('click', function () {
       const isExpanded = this.getAttribute('aria-expanded') === 'true';
 
       if (isExpanded) {
@@ -203,9 +184,67 @@
       this.setAttribute('aria-expanded', String(!isExpanded));
     });
   });
+
+  // -----------------------
+  // Top ticker animation
+  // -----------------------
+  const topTicker = document.querySelector('.top-ticker');
+  if (topTicker) {
+    let topTickerWidth = topTicker.scrollWidth;
+    let topTickerPosition = 0;
+    const topTickerSpeed = 0.5; // pixels per frame
+
+    function animateTopTicker() {
+      topTickerPosition -= topTickerSpeed;
+      if (Math.abs(topTickerPosition) >= topTickerWidth) {
+        topTickerPosition = 0; // Reset
+      }
+      topTicker.style.transform = `translateX(${topTickerPosition}px)`;
+      requestAnimationFrame(animateTopTicker);
+    }
+
+    animateTopTicker();
+  }
+
+  // -----------------------
+  // Bottom ticker (optional JS)
+  // -----------------------
+  const bottomTicker = document.querySelector('.bottom-ticker');
+  if (bottomTicker) {
+    // JS logic here if needed
+  }
+});
 </script>
 
+<!-- Example CSS for Accordion -->
+<style>
+.accordion {
+  cursor: pointer;
+  padding: 1em;
+  background: #333;
+  color: #fff;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 1em;
+  transition: background 0.2s;
+}
+.accordion:hover {
+  background: #444;
+}
 
+.accordion-panel {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+  background: #f1f1f1;
+  padding: 0 1em;
+}
+</style>
+
+  
+
+  
 </body>
 
 <!-- Accordion: 학원소개 -->
